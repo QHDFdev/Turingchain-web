@@ -1,0 +1,55 @@
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<div class="container" ng-controller="NoderController">
+<form class='form-horizontal'    ng-submit="IssuanceBill()" name="issuance_form" novalidate>
+	<div class="form-group">
+		<label for="" class="control-label  col-sm-offset-1 col-xs-3">承贴人</label>
+		<div class="col-xs-4">
+			<input type="text"  ng-model="discounting.discountingNoder.companyName"  name="signer" class="form-control " required>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="" class="control-label  col-sm-offset-1 col-xs-3">票据号</label>
+		<div class="col-xs-4">
+			<input type="text" ng-model="discounting.billNumber " name="billNumber" class="form-control " required>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="" class="control-label  col-sm-offset-1 col-xs-3">收款人</label>
+		<div class="col-xs-4">
+			<input type="text"  ng-model="discounting.payeeNoder.companyName" name="payee" class="form-control " required>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="" class="control-label  col-sm-offset-1 col-xs-3">金额</label>
+		<div class="col-xs-4">
+			<input type="number"  ng-model="discounting.moneySum" name="moneySum" class="form-control " required>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="" class="control-label  col-sm-offset-1 col-xs-3">承贴机构</label>
+		<div class="col-xs-4">
+			<input type="text"  ng-model="discounting.discountingOrgNoder.companyName" name="discountingOrg" class="form-control " required> 
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="" class="control-label  col-sm-offset-1 col-xs-3">到期日</label>
+		<div class="col-xs-4">
+			<input type="date" ng-model="discounting.expireDate" name="expireDate" class="form-control " required>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-4 col-xs-7">
+			<button type="submit" class="btn btn-default"  ng-disabled="issuance_form.$invalid">承贴</button>
+		</div>
+	</div>
+</form>
+</div>

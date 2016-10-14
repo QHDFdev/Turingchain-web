@@ -1,0 +1,65 @@
+<div class='container bill-forms' ng-controller="NoderController">
+	<div class='row'>
+		<div class='col-sm-8 col-sm-offset-2 form-box'>
+			<form ng-submit="payrollBill()" name="payroll_form" novalidate>
+				<div class='form-top text-center'>
+
+					<h2>
+						提薪票据<i class=' icon-arrow-right'></i>
+					</h2>
+
+				</div>
+				<div class='form-bottom'>
+					<div class="form-group">
+						<label for="" class="sr-only">提薪人：</label> <input type="text"
+							ng-model="payroll.payrollNoder.companyName" name="signer"
+							class="form-control " placeholder="提薪人..." required>
+
+					</div>
+					<div class="form-group">
+						<label for="" class="sr-only">票据号：</label> <input type="text"
+							ng-model="payroll.billNumber " name="billNumber"
+							class="form-control " placeholder="票据号..." required>
+
+					</div>
+					<div class="form-group">
+						<label for="" class="sr-only">收款人：</label> <input type="text"
+							ng-model="payroll.payeeNoder.companyName" name="payee"
+							class="form-control " placeholder="提薪..." required>
+
+					</div>
+					<div class="form-group">
+						<label for="" class="sr-only">金额：</label> <input type="number"
+							ng-model="payroll.moneySum" name="moneySum" class="form-control "
+							placeholder="金额..." required>
+
+					</div>
+					<div class="form-group">
+						<label for="" class="sr-only">承贴机构：</label> <input type="text"
+							ng-model="payroll.discountingOrgNoder.companyName"
+							name="discountingOrg" class="form-control " placeholder="承贴机构..."
+							required>
+
+					</div>
+					<div class="form-group">
+						<label for="">到期日：</label> <input type="date"
+							ng-model="payroll.expireDate" name="expireDate"
+							class="form-control " required>
+
+					</div>
+					<div class="form-group">
+						<label for="" class="sr-only">提薪备注</label>
+
+						<textarea rows="5" ng-model="payroll.remark" name="expireDate"
+							class="form-control " placeholder="提薪备注..." required></textarea>
+
+					</div>
+					<div class='form-group'>
+						<button type="submit" class="btn"
+							ng-disabled="payroll_form.$invalid">提薪</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,150 @@
+
+<div class="loginwrap">
+	<div class="formbox">
+		<div class="box col-md-10 col-md-offset-1" >
+			<div class="head-info">
+				
+			</div>
+			<div class="title">产品运输单</div>
+			<div class="main-info">
+				<div class="tab-content tab-bordered">
+					<div class="tab-panel">
+						<form class="register-detail showcase-form" ng-submit="addProdTrans()" id="form" name="form" novalidate enctype="multipart/form-data">
+							<div class="info-right col-md-offset-1 col-md-9 ">
+								
+								<div class="form-group">
+									<label class="col-sm-3 control-label">物品名称</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text" required name="articleName" ng-model="prod.productName"
+												class="form-control" placeholder="物品名称">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">物品编号</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text"  required ng-pattern="/^[0-9]{6,6}$/"
+												name="articleNum" ng-model="prod.productNum"
+												class="form-control">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">采购数量</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text"  required name="number" ng-model="prod.number"
+												class="form-control" placeholder="采购数量">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">计量单位</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text"  required name="iu" ng-model="prod.iu"
+												class="form-control" placeholder="计量单位">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">物件发出负责人名</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text" required name="senderName" ng-model="transPord.senderName"
+												class="form-control" placeholder="物件发出负责人名">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">物件发出负责人编号</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text" required name="senderNum" ng-model="transPord.senderNum"
+												class="form-control" placeholder="物件发出负责编号">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">运输价格</label>
+									<div >
+										<div class="col-sm-4">
+											<input type="text"  required name="price" ng-model="transPord.price"
+												class="form-control" placeholder="运输价格">
+										</div>
+										<div class="col-sm-3">
+											<span>元/</span><span ng-bind="prod.iu"></span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">运输单号</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text" required name="transportNum" ng-model="transPord.transportNum"
+												class="form-control" placeholder="运输单号">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">运输人名</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text" required name="carrierName" ng-model="transPord.carrierName"
+												class="form-control" placeholder="运输单号">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">运输人编号</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text" required name="carrierNum" ng-model="transPord.carrierNum"
+												class="form-control" placeholder="运输单号">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">发件公司</label>
+									<div class="col-sm-7">
+										<input type="text" name="companyName" ng-model="prod.seller.companyName" required 
+											 class="form-control" placeholder="生产公司"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">发件公司地址</label>
+									<div class="col-sm-7">
+										<input type="text" name="companyNum" ng-model="prod.seller.noderAddress" required 
+											 class="form-control" placeholder="生产公司编号"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">收件公司</label>
+									<div class="col-sm-7">
+										<input type="text" name="pcompanyName" ng-model="prodp.purchaser.companyName" required 
+											 class="form-control" placeholder="生产公司"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">收件公司地址</label>
+									<div class="col-sm-7">
+										<input type="text" name="pcompanyNum" ng-model="prodp.purchaser.noderAddress" required 
+											 class="form-control" placeholder="生产公司编号"/>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<div class="col-sm-offset-9 col-sm-1">
+										<button type="submit" class="btn btn-success" ng-disabled="form.$invalid">完成</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

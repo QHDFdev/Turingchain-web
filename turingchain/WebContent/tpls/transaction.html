@@ -1,0 +1,188 @@
+<div class="loginwrap">
+	<div class="formbox">
+		<div class="box col-md-10 col-md-offset-1" >
+			<div class="head-info">	
+			</div>
+			<div class="title">交易详情</div>
+			<div class="main-info">
+				<div class="tab-content tab-bordered">
+					<div class="tab-panel">
+						<form class="register-detail showcase-form">
+							<div class="info-right col-md-offset-1 col-md-9 ">
+							<div class="form-group">
+									<label class="col-sm-3 control-label">发起方国家</label>
+									<div class="col-sm-7">
+										<div>
+										<span  ng-bind="originalNation" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">发起方城市</label>
+									<div class="col-sm-7">
+										<div>
+										<span  ng-bind="originalPlace" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">发起方区域</label>
+									<div class="col-sm-7">
+										<div>
+										<span  ng-bind="originalRegion" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">接收方国家</label>
+									<div class="col-sm-7">
+										<div>
+										<span  ng-bind="gotoNation" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">接收方城市</label>
+									<div class="col-sm-7">
+										<div>
+										<span  ng-bind="gotoPlace" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">接收方区域</label>
+									<div class="col-sm-7">
+										<div>
+										<span  ng-bind="gotoRegion" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">发起方</label>
+									<div class="col-sm-7">
+										<div>
+										<span  ng-bind="originalUserName" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">发起方公司名称</label>
+									<div class="col-sm-7">
+										<div>
+										<span  ng-bind="originalCompanyName" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">接收方</label>
+									<div class="col-sm-7">
+										<div>
+										<span  ng-bind="gotoUserName" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">接收方公司名称</label>
+									<div class="col-sm-7">
+										<div>
+										<span  ng-bind="gotoCompanyName" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">物件类型</label>
+									<div class="col-sm-7">
+										<div>
+											<span  ng-bind="thingTypeName" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">物件名称</label>
+									<div class="col-sm-7">
+										<div>
+											<span  ng-bind="thingName" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">物件Id</label>
+									<div class="col-sm-7">
+										<div>
+											<span  ng-bind="thingId" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">物件产地</label>
+									<div class="col-sm-7">
+										<div>
+											<span  ng-bind="originPlace" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">物件订购数量</label>
+									<div class="col-sm-7">
+										<div>
+											<span  ng-bind="thingOrderQuantity" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">物件订购批次</label>
+									<div>
+										<div class="col-sm-7">
+											<span  ng-bind="thingOrderBatch" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">物件价格</label>
+									<div class="col-sm-7">
+										<div>
+											<span  ng-bind="price | currency:'￥'" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">生产完成时间</label>
+									<div class="col-sm-7">
+										<div>
+											<span  ng-bind="makeDate | date:'yyyy/MM/dd HH:mm:ss'" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">发货时间</label>
+									<div class="col-sm-7">
+										<div>
+											<span  ng-bind="sendDate | date:'yyyy/MM/dd HH:mm:ss'" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">收货时间</label>
+									<div class="col-sm-7">
+										<div>
+											<span  ng-bind="receiveDate | date:'yyyy/MM/dd HH:mm:ss'" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">保质期</label>
+									<div class="col-sm-7">
+										<div>
+											<span  ng-bind="expireDate | date:'yyyy/MM/dd HH:mm:ss'" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+						<div class="info-right col-md-offset-2 col-md-1 "><button type="button" class="btn btn-primary"  onClick="javascript: history.go(-1);">返回上一页</button></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

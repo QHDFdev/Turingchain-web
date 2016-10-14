@@ -1,0 +1,92 @@
+<div class="loginwrap">
+	<div class="formbox">
+		<div class="box col-md-10 col-md-offset-1" >
+			<div class="head-info">
+				
+			</div>
+			<div class="title">交易信息</div>
+			<div class="main-info">
+				<div class="tab-content tab-bordered">
+					<div class="tab-panel">
+						<form class="register-detail showcase-form" ng-submit="rawmDelivery()" id="form" name="form" novalidate enctype="multipart/form-data">
+							<div class="info-right col-md-offset-1 col-md-9 ">
+								<div class="form-group">
+									<label class="col-sm-3 control-label">交易ID</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text" required ng-model="tp.transportNum"
+												class="form-control" placeholder="采购单号">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">交易序号</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text"  required  ng-model="tp.purchase.articleName"
+												class="form-control" placeholder="物品名称">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">交易发起方地址</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text"  required  ng-model="tp.purchase.articleNum"
+												class="form-control" placeholder="物品名称">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">交易时间</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text"  required  ng-model="tp.purchase.number"
+												class="form-control" placeholder="采购数量">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">交易发起方地址</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text"  required  ng-model="tp.purchase.iu"
+												class="form-control" placeholder="采购单位">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">操作</label>
+									<div>
+										<div class="col-sm-4">
+											<input type="text"  required  ng-model="tp.price"
+												class="form-control" placeholder="价格">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">data-uuid</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text"  required  ng-model="tp.sentDate"
+												class="form-control" placeholder="采购单位">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">txId</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text"  required  ng-model="tp.sentDate"
+												class="form-control" placeholder="采购单位">
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

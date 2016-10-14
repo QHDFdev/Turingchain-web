@@ -1,0 +1,77 @@
+<div class='container bill-forms' ng-controller="NoderController">
+	<div class='row'>
+		<div class='col-sm-8 col-sm-offset-2 form-box'>
+			<form ng-submit="discountBill()" name="discount_form" novalidate>
+				<div class='form-top text-center'>
+
+					<h2>
+						贴现票据<i class=' icon-arrow-left'></i>
+					</h2>
+
+				</div>
+				<div class='form-bottom'>
+					<div class="form-group">
+						<label for="" class="sr-only">贴现人：</label> <input type="text"
+							ng-model="discount.discountNoder.companyName" name="signer"
+							class="form-control " placeholder="贴现人..." required>
+
+					</div>
+					<div class="form-group">
+						<label for="" class="sr-only">票据号：</label> <input type="text"
+							ng-model="discount.billNumber " name="billNumber"
+							class="form-control " placeholder="票据号..." required>
+
+					</div>
+					<div class="form-group">
+						<label for="" class="sr-only">收款人：</label> <input type="text"
+							ng-model="discount.payeeNoder.companyName" name="payee"
+							class="form-control " placeholder="收款人..." required>
+
+					</div>
+					<div class="form-group">
+						<label for="" class="sr-only">金额：</label> <input type="number"
+							ng-model="discount.moneySum" name="moneySum"
+							class="form-control " placeholder="金额..." required>
+
+					</div>
+					<div class="form-group">
+						<label for="" class="sr-only">承贴机构：</label> <input type="text"
+							ng-model="discount.discountingOrgNoder.companyName"
+							name="discountingOrg" class="form-control " placeholder="承贴机构..."
+							required>
+
+					</div>
+					<div class="form-group">
+						<label for="">到期日：</label> <input type="date"
+							ng-model="discount.expireDate" name="expireDate"
+							class="form-control " required>
+
+					</div>
+					<div class="form-group">
+						<label for="" class="sr-only">贴现备注</label>
+
+						<textarea rows="5" ng-model="discount.remark" name="expireDate"
+							class="form-control " placeholder="贴现备注..." required></textarea>
+
+					</div>
+					<div class="form-group">
+						<label for="">贴现日期</label> <input type="date"
+							ng-model="discount.discountDate" name="expireDate"
+							class="form-control " required>
+
+					</div>
+					<div class="form-group">
+						<label for="" class="sr-only">贴现率</label> <input type="number"
+							ng-model="discount.discountRate" name="expireDate"
+							class="form-control " placeholder="贴现率..." required>
+
+					</div>
+					<div class='form-group'>
+						<button type="submit" class="btn"
+							ng-disabled="discount_form.$invalid">贴现</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tulingchain.mapper.PurchaseMapper" >
+  <resultMap id="BaseResultMap" type="com.tulingchain.model.Purchase" >
+    <id column="purchaseid" property="purchaseid"/>
+    <result column="purchaseNum" property="purchaseNum" />
+    <result column="number" property="number" />
+    <result column="iu" property="iu" />
+    <result column="purchaseDate" property="purchaseDate" />
+    <result column="articleName" property="articleName" />
+    <result column="articleNum" property="articleNum" />
+  </resultMap>
+  <resultMap id="PurcResultMap" type="com.tulingchain.model.Purchase" >
+    <id column="purchaseid" property="purchaseid"/>
+    <result column="purchaseNum" property="purchaseNum" />
+    <result column="number" property="number" />
+    <result column="iu" property="iu" />
+    <result column="purchaseDate" property="purchaseDate" />
+    <result column="articleName" property="articleName" />
+    <result column="articleNum" property="articleNum" />
+    <result column="purchaserId" property="purchaserId" />  <!-- 购买者的id -->
+    <association property="purchaser" column="purchaserId" javaType="Noder">
+    	<id column="id" property="id"/>
+    	<result column="companyName" property="companyName" />
+    	<result column="companyId" property="companyId" />
+    </association>
+  </resultMap>
+    <insert id="save" keyColumn="purchaseid" keyProperty="purchaseid" useGeneratedKeys="true">
+    insert into purchase_ (purchaseNum,number,articleName,articleNum,iu,purchaseDate,purchaserId,sellerId,state
+      )
+    values (#{purchaseNum}, #{number},#{articleName},#{articleNum},#{iu},#{purchaseDate},#{purchaserId},#{sellerId},#{state}
+      )
+  </insert>
+  
+  <select id="listAll" resultMap="BaseResultMap">
+  	select *
+  	from purchase_
+  </select> 
+ 
+  <select id="getSellerCount" resultType="String" parameterType="int">
+  	select count(*)
+  	from purchase_
+  	where sellerId = #{id} and state = '未确认'
+  </select>
+ 
+  <select id="listPurchaseById" resultMap="PurcResultMap" parameterType="int">
+  	<!-- 在       生产商    显示     采购商     的 采购通知 -->
+  	select *
+  	from purchase_ p ,noder_ n
+  	where p.sellerId = #{sellerId} and p.purchaserId = n.id and p.state = '未确认'
+  </select>
+  
+    <select id="getPurchaseById" resultMap="PurcResultMap" parameterType="int">
+  	select *
+  	from purchase_ p ,noder_ n
+  	where p.purchaserId = n.id and p.purchaseid = #{id}
+  </select>
+  
+  <update id="updateState" parameterType="int">
+  	update  purchase_
+	set state = '已确认'
+	where purchaseid = #{purchaseid}
+  </update>
+  
+</mapper>

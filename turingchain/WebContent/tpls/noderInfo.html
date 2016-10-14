@@ -1,0 +1,232 @@
+
+<div class="userInfowraptest">
+	<div class="basic_bg">
+		<div class="container">
+			<div class="base_info col-md-6">
+				<a class="user_avatar"> <img
+					ng-src="{{noder.noderImg}}" alt="头像"
+					width="90" height="90">
+				</a> 
+				<!-- <a class="user_name"> <span ng-bind="noder.noderName"></span>
+				</a><br> <a class="user_email"> <span ng-bind="noder.email"></span>
+				</a> -->
+			</div>
+			<div class="central col-md-2 col-md-offset-4">
+				<a>个人中心</a>
+			</div>
+		</div>
+	</div>
+	<div class="infobox col-md-8 col-md-offset-2">
+		<div class="main-info">
+			<ul class="nav nav-tabs" ng-init="tab.activeTab=1">
+				<li ng-class="{active: tab.activeTab == 1}"><a class="tab1"
+					href="javascript:;" ng-click="tab.activeTab = 1">个人资料</a></li>
+				<li ng-class="{active: tab.activeTab == 2}"><a class="tab2"
+					href="javascript:;" ng-click="tab.activeTab = 2">安全设置</a></li>
+				<li ng-class="{active: tab.activeTab == 3}"><a class="tab3"
+					href="javascript:;" ng-click="tab.activeTab = 3">帐号绑定</a></li>
+				<li ng-class="{active: tab.activeTab == 4}"><a class="tab4"
+					href="javascript:;" ng-click="tab.activeTab = 4">辅助功能</a></li>
+			</ul>
+			<div class="tab-content tab-bordered">
+				 <div class="tab-panel" ng-show="tab.activeTab == 1">
+					<form class="form-horizontal showcase-form">
+						<div class="info-left col-md-offset-1 col-md-1">
+							<div class="user_avatar">  
+                                <img ng-src="{{noder.noderImg}}"  
+                                    alt="头像" width="90" height="90"> <br>  
+                                <p>请选择一张本地照片大小不超过2M</p>  
+                                <a class="change_avatar btn" data-toggle="modal" data-target="#mymodal-data">修改头像</a>  
+                            </div>
+						</div>
+						<div class="modal fade" id="mymodal-data" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" >
+						    <div class="form-group modal-dialog">
+						    	<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only" ng-click="upload = null">Close</span></button>
+										<h5 class="modal-title">修改头像</h5>
+									</div>
+									<div class="container">
+										<div class="modal-body">
+											<div>  
+				                                <img class="img img-circle" ng-src="{{noder.noderImg}}"  
+				                                    alt="username" width="90" height="90"> <br>  
+				                                <small>请选择一张本地照片大小不超过2M</small>  
+				                                <input type="file" file-model="noder.noderImg" required id="noderImg" name="noderImg"/>
+				                            </div>
+				                             
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-success" data-dismiss="modal">完成</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-9 col-md-offset-0">
+							<br/> 
+                        	<br/> 
+                        	<br/> 
+                        	<br/> 
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户名：</label> <input
+									type="text" class="col-sm-10" ng-model="noder.noderName" readonly>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">邮箱：</label> <input
+									type="email" class="col-sm-10" ng-model="noder.email" readonly>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户类别：</label> 
+								<input type="text" class="col-sm-10" ng-show="noder.noderType == 0" value="产品生产商" readonly/>
+								<input type="text" class="col-sm-10" ng-show="noder.noderType == 1" value="原料商" readonly/>
+								<input type="text" class="col-sm-10" ng-show="noder.noderType == 2" value="物流运输商" readonly/>
+								<input type="text" class="col-sm-10" ng-show="noder.noderType == 3" value="销售商" readonly/>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="tab-panel" ng-show="tab.activeTab == 2">
+					<div class="change" class="col-md-offset-2 col-md-8">
+						<form class="form-horizontal showcase-form " id="form_1" name="form_1">
+							<div class="col-md-9 col-md-offset-1">
+	                       		<br/>
+		                       	<br/>  
+		                       	<div class="form-group">
+                        			<label class="col-sm-2 control-label"></label>
+	                                <label class="col-sm-9 fa fa-2x" style="color:black;">修改密码</label>
+	                            </div>
+		                       	<br/>
+		                       	<div class="form-group">
+									<label class="col-sm-2 control-label">当前密码</label> 
+									<div class="col-sm-10" >
+										<input type="password" name="nowPassword" ng-model="noder.nowPassword" required ng-maxlength="20"
+											ng-minlength="6" class="form-control"
+											placeholder="6-20个字符，包含字母及数字"/>
+									</div>
+									<div class="col-sm-offset-2 col-sm-10">
+										<span ng-show="noder.nowPassword != password && noder.nowPassword != null">*原密码输入不一致</span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">新密码</label> 
+									<div class="col-sm-10" >
+										<input type="password" name="newPassword"
+											ng-model="newPassword" required  ng-maxlength="20"
+											ng-minlength="6" class="form-control"
+											placeholder="6-20个字符，包含字母及数字">
+									</div>
+								</div>
+		                       	<div class="form-group">
+									<label class="col-sm-2 control-label">确认密码</label> 
+									<div class="col-sm-10" >
+										<input type="password" name="repassword"
+											ng-model="repassword" required  ng-maxlength="20"
+											ng-minlength="6" class="form-control"
+											placeholder="6-20个字符，包含字母及数字">
+									</div>
+									<div class="col-sm-offset-2 col-sm-10">
+										<span ng-show="repassword !=null && newPassword != null && repassword != newPassword ">*两次密码输入不一致</span>
+									</div>
+								</div>
+		                       	<div class="form-group">
+	                           		<div class="col-sm-offset-2 col-sm-10">
+		                            	<button type="button" ng-click="updatePwd()" class="btn btn-success" ng-disabled="form_1.$invalid">保存</button>
+	                           		</div>
+	                           	</div>
+		                    </div>
+						</form>
+					</div>
+				</div>
+				<div class="tab-panel" ng-show="tab.activeTab == 3">
+					<div class="change" class="col-md-offset-2 col-md-8">
+						<form action="#" class="form-horizontal showcase-form">
+							<div class="col-md-9 col-md-offset-1">
+	                       		<br/>
+		                       	<br/>  
+		                       	<div class="form-group">
+                        			<label class="col-sm-2 control-label"></label>
+	                                <label class="col-sm-9 fa fa-2x" style="color:black;">绑定手机号码</label>
+	                            </div>
+		                       	<br/>
+		                       	
+								<div class="form-group">
+									<label  class="col-sm-2 control-label" for="telephone">新手机号码</label> 
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="telephone">
+									</div>
+									<label  class="col-sm-2 control-label"></label> 
+									<div class="col-sm-10">
+										<button type="button" class="btn btn-default">获取验证码</button>
+									</div>
+								</div>
+								<div class="form-group">
+									<label  class="col-sm-2 control-label" for="yanzhengma">手机验证码</label> 
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="yanzhengma">
+									</div>
+								</div>
+								<div class="form-group">
+	                           		<div class="col-sm-offset-2 col-sm-10">
+		                            	<!-- <button type="button" ng-click="updatePwd()" class="btn btn-success"
+											ng-disabled="basic_form.$invalid">保存</button> -->
+										<button type="button" class="btn btn-success">&nbsp;&nbsp;保存&nbsp;&nbsp;</button>
+	                           		</div>
+	                           	</div>
+	                       	</div>
+						</form>
+					</div>
+				</div>
+				<div class="tab-panel" ng-show="tab.activeTab == 4">
+					<div class="change">
+						<form id="form" name="form" class="form-horizontal showcase-form">
+							<br/>
+							<br/>
+							<div class="form-group col-md-11">
+								<div class="col-md-7">
+									<div class="col-md-10">
+										<div class="col-md-3 col-md-offset-1 control-label">
+											<label for="telephone" >输入手机号码</label> 
+										</div>
+										<div class="col-md-8">
+											<input type="tel" class="form-control" required id="mobile" ng-model="mobile" />
+										</div>
+									</div>
+									<div class="col-md-2">
+										<button type="button" class="btn btn-info" ng-click="queryMobile()" ng-disabled="form.$invalid" >获取信息</button>
+									</div>
+								</div>
+								<div class="col-md-4" ng-show="mobileInfo != null">
+									<span>{{mobileInfo}}</span>
+								</div>
+							</div>
+						</form>
+						<form id="form1" name="form1" class="form-horizontal showcase-form">
+							<br/>
+							<br/>
+							<div class="form-group col-md-11">
+								<div class="col-md-7">
+									<div class="col-md-10">
+										<div class="col-md-3 col-md-offset-1 control-label">
+											<label for="yanzhengma" >输入Email</label> 
+										</div>
+										<div class="col-md-8">
+											<input type="email" class="form-control" required id="email" ng-model="email">
+										</div>
+									</div>
+									<div class="col-md-2">
+										<button type="button" class="btn btn-info" ng-click="queryEmail()" ng-disabled="form1.$invalid" >获取信息</button>
+									</div>	
+								</div>
+								<div class="col-md-4" ng-show="emailInfo != null">
+									<span>{{emailInfo}}</span>
+								</div>
+							</div>
+						</form>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

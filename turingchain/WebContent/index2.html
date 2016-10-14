@@ -1,0 +1,161 @@
+<!doctype html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+    <title>ThingTrace</title>
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="css/main.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/showBo.css" />
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link href="http://libs.baidu.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.css" />
+</head>
+<body>
+    <div class="wrap " ng-controller="IndexController">
+      <nav class="navbar nav-bar-fixed-top" role="navigation">
+              
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" 
+                        data-target="#navs">
+                        <span class="sr-only">切换导航</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="#/case" class="navbar-brand">
+                          TuringThingTrace
+                    </a> 
+                </div>
+              
+                <div class="collapse navbar-collapse " id="navs" >
+                  <ul class="navbar-right nav navbar-nav">
+                        <li><a ng-href="index.html" >返回TC</a></li>
+                        <li><a ng-href="#/trace ">产品溯源</a></li>
+                        <li><a ng-href="#/aboutus" >关于我们</a></li>
+                        <li><a ng-href="#/solution" >服务解决方案</a></li>
+                        <!-- <li class="dropdown">
+                        	<div ng-hide="noderName == null">
+                        		<a href="##" data-toggle="dropdown" prod-count="" class="dropdown-toggle" ng-click="queryNodeApplyBlockMessage()" ng-controller="newNodeApplyController">
+                        		新节点申请<span class="caret"></span></a>
+                        		<ul class="dropdown-menu dropdown-menu-left">
+			                        <li><a href="#/newNodeApply">申请</a></li>
+			                        <li><a href="#/newNodeApplyRecord">申请记录</a></li>
+                        		</ul>
+                        	</div>
+                        </li> -->
+                        <li class="dropdown">
+                          <div ng-hide="noderName == null">
+	                     	  <div ng-show="noderType == 0">
+						          <a href="" data-toggle="dropdown" prod-count="" class="dropdown-toggle">采购/出货<span class="caret"></span></a>
+						          <ul class="dropdown-menu dropdown-menu-left">
+						        	<li><a href="#/purchase">填写采购信息</a></li>
+						        	<li><a href="#/purchase">123{{id}}</a></li>
+						        	<li><a href="#/purchaseList">所有采购信息</a></li>
+						        	<li><a href="#/transList"><span>原料收货通知</span><span class="badge" ng-show="transnum != 0" ><span ng-bind="transnum"/></span></a></li>
+						        	<li><a href="#/deliveryList">原料收货记录</a></li>
+						        	<li><a href="#/sellerProdPurchaseList">待发货交易<span class="badge" ng-show="prodnum != 0" ><span ng-bind="prodnum"/></span></a></li>
+						         	<li><a href="#/productList">发货记录</a></li>
+						          </ul>
+	                     	  </div>
+	                     	  <div ng-show="noderType == 1">
+	                          		<a href="" data-toggle="dropdown" class="dropdown-toggle">出货<span class="caret"></span></a>
+	                     	  		<ul class="dropdown-menu dropdown-menu-left">
+							        	<li><a href="#/sellerRawmPurchaseList"><span>原料发货通知</span><span class="badge" ng-show="num != 0"><span ng-bind="num"/></span></a></li>
+							        	<li><a href="#/rawmaterialList">原料发货记录</a></li>
+						          </ul>
+	                     	  </div>
+	                     	  <div ng-show="noderType == 2">
+	                          		<a href="" data-toggle="dropdown" class="dropdown-toggle">确认/运输<span class="caret"></span></a>
+	                     	  		<ul class="dropdown-menu dropdown-menu-left">
+							        	<li><a href="#/transRawmList">原料运输通知<span class="badge" ng-show="rawmnum != 0"><span ng-bind="rawmnum"/></span></a></li>
+							        	<li><a href="#/transProdList">产品运输通知<span class="badge" ng-show="prodnum != 0"><span ng-bind="prodnum"/></span></a></li>
+							        	<li><a href="#/transAllList">运输记录</a></li>
+						          </ul>
+	                     	  </div>
+	                     	  <div ng-show="noderType == 3">
+	                          		<a href="" data-toggle="dropdown" class="dropdown-toggle">采购/进货<span class="caret"></span></a>
+	                     	  		<ul class="dropdown-menu dropdown-menu-left">
+							        	<li><a href="#/purchase">填写采购信息</a></li>
+							        	<li><a href="#/transList"><span>产品收货通知</span><span ng-show="transnum != 0" class="badge"><span ng-bind="transnum"/></span></a></li>
+							        	<li><a href="#/deliveryList">产品收货记录</a></li>
+						          	</ul>
+	                     	  </div>
+                          </div>
+                        </li>
+                        <!-- <li ng-hide="noderName == null && userName == null"><a ng-href="bcindex.html">开发者</a></li> -->
+                        <li><a ng-href="#/contactus">联系我们</a></li>
+                        <li><a ng-hide="noderName != null " ng-href="#/login">登录</a></li>
+                        <!-- <li><a ng-hide="noderName != null " ng-href="#/register">注册 </a></li> -->
+                        <li>
+                          <div class="dropdown"  ng-hide="noderName == null" ng-controller="UserController">
+                            <a  type="button" id="menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" >
+                              {{userName}}
+                              <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="menu">
+                              <li><a href="#/userInfo">个人中心</a></li>
+                              <li><a ng-click="logout()">退出</a></li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="dropdown"  ng-hide="noderName == null" ng-controller="NoderController">
+                            <a  type="button" id="menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" >
+                              {{noderName}}
+                              <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="menu">
+                              <li><a href="#/noderInfo">个人中心</a></li>
+                              <li><a ng-click="logout()">退出</a></li>
+                            </ul>
+                          </div>
+                        </li>
+                  </ul>
+                </div>
+      </nav>
+      <div ng-view class="page">
+        
+      </div>
+      </div>
+     <footer>
+		<div class="container">
+			<div class="copyright">
+				<p>Copyright © 2016 TuringThingTrace , All Rights Reserved<br><br>隐私保护　南高所　版权所有　粤ICP备12053986号-7</p>
+			</div>
+		</div>
+   	</footer>
+      
+    <script src="http://apps.bdimg.com/libs/angular.js/1.3.13/angular.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.0-beta.4/angular-animate.min.js"></script>
+    <script src="http://cdn.bootcss.com/angular-ui-bootstrap/0.13.3/ui-bootstrap.min.js"></script>
+    <script src="http://cdn.bootcss.com/angular-ui-bootstrap/0.13.3/ui-bootstrap-tpls.min.js"></script>
+    
+    <script src="js/framework/1.3.0.14/angular.js"></script>
+    <script src="js/framework/1.3.0.14/angular-route.js"></script>
+    <!-- <script src="js/framework/1.3.0.14/angular-animate.js"></script> -->
+    <script src="js/framework/1.3.0.14/angular-messages.js"></script>
+    <script src="js/framework/1.3.0.14/angular-cookies.js"></script>
+    <script src="js/framework/1.3.0.14/angular-cookies.min.js"></script>
+    <script type="text/javascript" src="js/showBo.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/directives.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/controllers/controllers.js"></script>
+    <script src="js/controllers/blockChainAdminController.js"></script>
+    <script src="js/controllers/homeController.js"></script>
+    <script src="js/controllers/blockChainAdminController.js"></script>
+    <script src="js/controllers/dateController.js"></script>
+	<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> 
+    <script src="//cdn.bootcss.com/angular-file-upload/2.3.3/angular-file-upload.js"></script>
+    <script src="js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+    <!-- <script src="js/framework/bootstrap/ui-bootstrap-tpls.js"></script>  -->
+    
+    
+</body>
+</html>

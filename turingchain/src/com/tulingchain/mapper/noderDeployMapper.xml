@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tulingchain.mapper.NoderDeployMapper">
+	<resultMap id="BaseResultMap" type="com.tulingchain.model.NoderDeploy" >
+	    <id column="id" property="id"/>
+	    <result column="nodeIP" property="nodeIP" />
+	    <result column="nodeID" property="nodeID" />
+	    <result column="region" property="region" />
+	    <result column="ownedOrgnization" property="ownedOrgnization" />
+	    <result column="respPerson" property="respPerson" />
+	    <result column="nodeType" property="nodeType"/>
+	    <result column="nodePUBKEY" property="nodePUBKEY" />
+	    <result column="createdTime" property="createdTime" />
+	    <result column="runtime" property="runtime"/>
+	    <result column="runStatistics" property="runStatistics" />
+	    <result column="nodeCpu" property="nodeCpu"/>
+	    <result column="nodeMemory" property="nodeMemory"/> 
+	     <result column="nodeBandwidth" property="nodeBandwidth"/> 
+	     <result column="nodeOS" property="nodeOS"/> 
+		<result column="nodeDisk" property="nodeDisk"/>
+		<result column="nodeName" property="nodeName"/>
+	  </resultMap>
+	  
+	  <select id="listAll" resultMap="BaseResultMap">
+		select *
+		from noderdeploy_
+	  </select> 
+	  
+	  <!-- 新建sql操作，根据ID删除区块链 -->
+	  <delete id="deleteById"  >
+		delete from noderdeploy_ where nodeID=#{nodeID}
+	  </delete> 
+	  
+	  <select id="getNodeDeployInfoByID" resultMap="BaseResultMap" parameterType="String">
+		select *
+		from noderdeploy_
+		where nodeID=#{nodeID}
+	  </select> 
+</mapper>

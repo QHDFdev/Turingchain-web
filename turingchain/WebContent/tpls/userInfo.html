@@ -1,0 +1,1043 @@
+<div class="userInfowraptest ng-scope">  
+    <div class="basic_bg">  
+        <div class="container">  
+            <div class="base_info col-md-6">  
+                	<a class="user_avatar"> 
+                	<img src="http://i2.hjfile.cn/f120/27/14/9772714.jpg" alt="username" width="90" height="90">  
+	                </a> 
+	                <!-- <a class="user_name"> <span ng-bind="user.userName"></span></a>
+	                <br> 
+	                <a class="user_email"> <span ng-bind="user.email"></span></a>   -->
+            </div>  
+            <div class="central col-md-2 col-md-offset-4">  
+                <a>个人中心</a> 
+            </div>  
+        </div>  
+    </div>  
+    <div class="infobox col-md-8 col-md-offset-2 ">  
+        <div class="main-info"> 
+            <ul class="nav nav-tabs" ng-init="tab.activeTab=1">  
+                <li ng-class="{active: tab.activeTab == 1}"><a  class="tab1" href="javascript:;" ng-click="tab.activeTab = 1">个人资料</a></li>  
+                <li ng-class="{active: tab.activeTab == 2}"><a  class="tab2" href="javascript:;" ng-click="tab.activeTab = 2">安全设置</a></li>  
+                <li ng-class="{active: tab.activeTab == 3}"><a  class="tab3" href="javascript:;" ng-click="tab.activeTab = 3">帐号绑定</a></li>  
+                <li ng-class="{active: tab.activeTab == 4}"><a  class="tab4" href="javascript:;" ng-click="tab.activeTab = 4">权限升级</a></li>  
+            </ul>
+            <div class="tab-content tab-bordered">  
+            	<!-- 个人资料 -->
+                <div class="tab-panel" ng-show="tab.activeTab == 1">  
+                    <form class="form-horizontal showcase-form">  
+                        <div class="info-left col-md-offset-1 col-md-1">  
+                            <div class="user_avatar">  
+                                <img ng-src="{{user.userImg}}"  
+                                    alt="username" width="90" height="90"> <br>  
+                                <p>请选择一张本地照片大小不超过2M</p>  
+                                <a class="change_avatar btn" data-toggle="modal" data-target="#mymodal-data">修改头像</a>  
+                            </div>
+                        </div>
+                        <div class="modal fade" id="mymodal-data" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" >
+						    <div class="form-group modal-dialog">
+						    	<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only" ng-click="upload = null">Close</span></button>
+										<h5 class="modal-title">修改头像</h5>
+									</div>
+									<div class="container">
+										<div class="modal-body">
+											<div>  
+				                                <img class="img img-circle" ng-src="{{user.userImg}}"  
+				                                    alt="username" width="90" height="90"> <br>  
+				                                <small>请选择一张本地照片大小不超过2M</small>  
+				                                <input type="file" file-model="user.userImg" required id="userImg" name="userImg"/>
+				                            </div>
+				                             
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-success" data-dismiss="modal" >完成</button>
+									</div>
+								</div>
+							</div>
+						</div>  
+                        <div class="col-md-9 col-md-offset-0"> 
+                        	<br/> 
+                        	<br/> 
+                        	<br/> 
+                        	<br/> 
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">用户名：</label> <input  
+                                    type="text" class="col-sm-10" ng-model="user.userName" readonly>  
+                            </div>
+                            <div class="form-group">  
+                                <label class="col-sm-2 control-label">邮箱：</label> <input  
+                                    type="email" class="col-sm-10" ng-model="user.email" readonly>  
+                            </div>  
+                            <div class="form-group">  
+                                <label class="col-sm-2 control-label">用户类别：</label> <input  
+                                    type="text" class="col-sm-10" ng-model="user.userState" readonly>  
+                            </div>  
+                        </div>  
+                    </form>  
+                </div>  
+                <!-- 修改密码 -->
+                <div class="tab-panel" ng-show="tab.activeTab == 2">   
+                       <form class="form-horizontal showcase-form" name="from1">  
+                       	<div class="col-md-9 col-md-offset-1">
+                       		<br/>
+	                       	<br/>  
+                        	<div class="form-group">
+                        			<label class="col-sm-2 control-label"></label>
+	                                <label class="col-sm-9 fa fa-2x" style="color:black;">修改密码</label>
+                            </div>
+	                       	<br/>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">当前密码</label>
+                                <div class="col-sm-10">
+	                                <input type="password" name="nowPassword" ng-model="user.nowPassword"  
+	                                                required="" ng-maxlength="20" ng-minlength="6" class="form-control"  
+	                                                placeholder="6-20个字符，包含字母及数字" >  
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">  
+                                <label class="col-sm-2 control-label">&nbsp;&nbsp;&nbsp;新密码</label> 
+                                <div class="col-sm-10">
+	                                <input type="password" name="newPassword" ng-model="user.newPassword"  
+	                                                 required="" ng-maxlength="20" ng-minlength="6" class="form-control"  
+	                                                 placeholder="6-20个字符，包含字母及数字">  
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">  
+                                <label class="col-sm-2 control-label">确认密码</label> 
+                                <div class="col-sm-10">
+	                                <input type="password" name="repassword" ng-model="user.repassword"  
+	                                                 required="" ng-maxlength="20" ng-minlength="6" class="form-control"  
+	                                                 placeholder="6-20个字符，包含字母及数字">  
+                                </div>
+                                <label class="col-sm-2 control-label"></label>
+                                <div class="col-sm-10">
+	                                <span ng-show="user.repassword!=null && user.repassword != null && user.repassword != user.newPassword">*两次密码输入不一致</span>  
+                                </div>
+                           	</div>
+                           	<div class="form-group">
+                           		<div class="col-sm-offset-2 col-sm-10">
+	                            	<button type="button" ng-click="updatePwd()"  
+	                                class="btn btn-success" ng-disabled="basic_form.$invalid">保存</button>
+                           		</div>
+                           	</div>
+                        </div>
+                       </form>  
+                </div>  
+                <!-- 绑定手机号 -->
+                <div class="tab-panel" ng-show="tab.activeTab == 3">  
+	                    <!-- <div class="change" class="col-md-offset-2 col-md-8"> -->  
+<!-- 	                        <h4 align="center">绑定手机号码</h4>   -->
+	                        <form action="#" class="form-horizontal showcase-form">
+	                        	<div class="col-md-9 col-md-offset-1">
+	                        		<br/>
+			                       	<br/>  
+		                        	<div class="form-group">
+		                        			<label class="col-sm-2 control-label"></label>
+			                                <label class="col-sm-9 fa fa-2x" style="color:black;">绑定手机号</label>
+		                            </div>
+			                       	<br/>
+	                        		<div class="form-group" >  
+		                                <label class="col-sm-2 control-label" for="telephone">新手机号码</label> 
+		                                <div class="col-sm-10">
+			                                <input type="text"  class="form-control" id="telephone">  
+		                                </div>
+			                            <label class="col-sm-2 control-label"></label> 
+			                            <div class="col-sm-10">
+			                                <button type="button" class="btn btn-default">获取验证码</button> 
+		                                </div>
+		                            </div>
+		                            <div class="form-group" >  
+		                                <label class="col-sm-2 control-label" for="yanzhengma">手机验证码</label> 
+		                                <div class="col-sm-10">
+			                                <input type="text" class="form-control" id="yanzhengma">  
+		                                </div>
+		                            </div>
+		                            <div class="form-group">
+	                            		<div class="col-sm-offset-2 col-sm-10">
+			                            	<button type="button" class="btn btn-success">保存</button>  
+	                            		</div>
+	                            	</div>
+	                        	</div>
+	                        </form>  
+	                    <!-- </div> -->  
+	                </div>
+                </div>  
+                
+                <div class="main-info" ng-show="tab.activeTab == 4">  
+                    <div class="change">
+                        <span>
+	                        <!-- &emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+	                        <button class="btn btn-default" ng-class="{active: tab.activeTab1 == 5}">
+	                        	<a class="tab1" href="javascript:;" ng-click="tab.activeTab1 = 5">原材料生产商权限申请表</a>
+	                        </button>
+	                        <button class="btn btn-default" ng-class="{active: tab.activeTab1 == 6}">
+	                        	<a class="tab2" href="javascript:;" ng-click="tab.activeTab1 = 6">产品生产商权限申请表</a>
+	                        </button>  
+	                        <button class="btn btn-default" ng-class="{active: tab.activeTab1 == 7}">
+	                        	<a class="tab3" href="javascript:;" ng-click="tab.activeTab1 = 7">物流运输方权限申请表</a>
+	                        </button>  
+	                        <button class="btn btn-default" ng-class="{active: tab.activeTab1 == 8}">
+	                        	<a class="tab4" href="javascript:;" ng-click="tab.activeTab1 = 8">产品商家权限申请表</a>
+	                        </button>  
+	                        <button class="btn btn-default" ng-class="{active: tab.activeTab1 == 9}">
+	                        	<a class="tab5" href="javascript:;" ng-click="tab.activeTab1 = 9">区块链管理员升级申请表</a>
+	                        </button>  
+                        </span>
+                        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;  
+<!--  -->
+			<!-- 原材料生产商申请表 -->
+			<div class="" ng-show="tab.activeTab1 == 5">  
+                <div ng-show=" isRegister != 1" ng-controller="ApplyController"> <h2>权限升级申请中!!!</h2></div>
+                <form class="form-horizontal showcase-form" ng-submit="add()" ng-show=" isRegister == 1"
+                            id="basic_form" name="basic_form" ng-controller="ApplyController" 
+                            novalidate enctype="multipart/form-data">  
+                    <div class="col-md-11 col-md-offset-0">
+						<br/>
+						<br/>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">用户ID</label>
+							<div class="col-sm-9">
+								<input type="text" ng-model="user.id" readonly class="form-control"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">用户名</label>
+							<div class="col-sm-9">
+								<input type="text" ng-model="user.userName" readonly class="form-control"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">请输入您的身份证号</label>
+							<div class="col-sm-9">
+								<input type="text" ensure-nodernameunique="" required ng-pattern="/^[0-9]{18,18}$/" class="form-control"
+									name="idNumber" ng-model="noder.idNumber" class="showcase-form" placeholder="18位有效身份证号">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">用户所属区域</label>
+							<div class="col-sm-9">
+								<div class='content' ng-app >  
+				                    <select ng-model="selectedDistrict" ng-change="selectedUnit=''" 
+				                    	ng-options="district.name for district in districts" >  
+				                    	<option value="">---省---</option>  
+				                    </select>  
+				                    <select ng-model="selectedUnit" ng-change="selectedPosition=''" ng-options="unit.name for unit in selectedDistrict.units">  
+				                    	<option value="">---市---</option>  
+				                    </select>  
+				                    <select ng-model="selectedPosition" ng-options="unit.name for unit in selectedUnit.positions">  
+				                    	<option value="">---区、县---</option>  
+				                    </select>  
+			                    </div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">街道地址</label>
+							<div class="col-sm-9">
+								<input type="text" ng-model="apply.userAddress" class="form-control"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">所属行业</label>
+							<div class="col-sm-9">
+								<div >  
+                                    <select  ng-model="apply.business" >  
+                                          <option value="">--行业类别--</option>  
+                                          <option  value="食品业">食品业</option>  
+                                          <option  value="生活用品">生活用品</option>  
+                                          <option  value="奢侈品">奢侈品</option>  
+                                          <option  value="化妆品">化妆品</option>  
+                                          <option  value="营养保健">营养保健</option>  
+                                          <option  value="户外用品">户外用品</option>  
+                                    </select>  
+                                </div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">用户权限申请起因</label>
+							<div class="col-sm-9">
+								<div>  
+	                                <textarea rows="6" ng-model="apply.reason" placeholder="用户权限申请起因" class="form-control">  
+	                                </textarea>
+	                            </div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">公司名称</label>
+							<div class="col-sm-9">
+								<input type="text" ng-model="apply.companyName" class="form-control"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">公司注册号</label>
+							<div class="col-sm-9">
+								<input type="text" ng-model="apply.companyId" class="form-control"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">公司组织机构代码</label>
+							<div class="col-sm-9">
+								<input type="text" ng-model="apply.companyCode" class="form-control"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">公司法律责任人姓名</label>
+							<div class="col-sm-9">
+								<input type="text" ng-model="apply.lawerName" class="form-control"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">公司注册时间</label>
+							<div class="col-sm-9">
+								<input type="date"  name="date" ng-model="apply.companyRegist" required class="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">公司资质证明文件</label>
+							<div class="col-sm-9">
+								<input type="file" required name="file" file-model="apply.file" class="form-control"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">有无不良记录</label>
+							<div class="col-sm-9">
+								<input type="text" ng-model="apply.record" class="form-control"/>
+							</div>
+						</div>
+						<div class="form-group">  
+	                        <div class="col-sm-offset-2 col-sm-9">
+		                        <button type="submit" class="btn btn-success" ng-disabled="basic_form.$invalid" >确定</button> 
+		                        <a type="button" class="btn btn-danger" ng-href="#/home">取消</a> 
+	                    	</div>  
+               			</div> 
+					</div>   
+		         </form> 
+				</div>  
+				
+				<!-- 产品生产商权限申请表 -->
+				<div class="tab-panel" ng-show="tab.activeTab1 == 6">  
+					<div ng-show=" isRegister != 1" ng-controller="ApplyController2"> <h2 >权限升级申请中!!!</h2></div>
+	                <form class="form-horizontal showcase-form" ng-submit="add2()" ng-show=" isRegister == 1"
+	                            id="basic_form" name="basic_form" ng-controller="ApplyController2" 
+	                            novalidate enctype="multipart/form-data">  
+	 					<div class="col-md-11 col-md-offset-0">
+							<br/>
+							<br/>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户ID</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.id" readonly class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户名</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.userName" readonly class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">请输入您的身份证号</label>
+								<div class="col-sm-9">
+									<input type="text" ensure-nodernameunique="" required ng-pattern="/^[0-9]{18,18}$/" class="form-control"
+										name="idNumber" ng-model="noder.idNumber" class="showcase-form" placeholder="18位有效身份证号">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户所属区域</label>
+								<div class="col-sm-9">
+									<div class='content' ng-app >  
+					                    <select ng-model="selectedDistrict" ng-change="selectedUnit=''" 
+					                    	ng-options="district.name for district in districts" >  
+					                    	<option value="">---省---</option>  
+					                    </select>  
+					                    <select ng-model="selectedUnit" ng-change="selectedPosition=''" ng-options="unit.name for unit in selectedDistrict.units">  
+					                    	<option value="">---市---</option>  
+					                    </select>  
+					                    <select ng-model="selectedPosition" ng-options="unit.name for unit in selectedUnit.positions">  
+					                    	<option value="">---区、县---</option>  
+					                    </select>  
+				                    </div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">街道地址</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="apply.userAddress" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">所属行业</label>
+								<div class="col-sm-9">
+									<div >  
+	                                    <select  ng-model="apply.business" >  
+	                                          <option value="">--行业类别--</option>  
+	                                          <option  value="食品业">食品业</option>  
+	                                          <option  value="生活用品">生活用品</option>  
+	                                          <option  value="奢侈品">奢侈品</option>  
+	                                          <option  value="化妆品">化妆品</option>  
+	                                          <option  value="营养保健">营养保健</option>  
+	                                          <option  value="户外用品">户外用品</option>  
+	                                    </select>  
+	                                </div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户权限申请起因</label>
+								<div class="col-sm-9">
+									<div>  
+		                                <textarea rows="6" ng-model="apply.reason" placeholder="用户权限申请起因" class="form-control">  
+		                                </textarea>
+		                            </div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">公司名称</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="apply.companyName" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">公司注册号</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="apply.companyId" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">公司组织机构代码</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="apply.companyCode" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">公司法律责任人姓名</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="apply.lawerName" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">公司注册时间</label>
+								<div class="col-sm-9">
+									<input type="date"  name="date" ng-model="apply.companyRegist" required class="form-control" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">公司资质证明文件</label>
+								<div class="col-sm-9">
+									<input type="file" required name="file" file-model="apply.file" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">有无不良记录</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="apply.record" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">  
+		                        <div class="col-sm-offset-2 col-sm-9">
+			                        <button type="submit" class="btn btn-success" ng-disabled="basic_form.$invalid" >确定</button> 
+			                        <a type="button" class="btn btn-danger" ng-href="#/home">取消</a> 
+		                    	</div>  
+	               			</div> 
+						</div>
+                    </form> 
+  				</div>  
+  				
+  				<!-- 物流运输方权限申请表 -->
+				<div class="tab-panel" ng-show="tab.activeTab1 == 7">  
+					<div ng-show=" isRegister != 1" ng-controller="ApplyController3"> <h2 >权限升级申请中!!!</h2></div>
+	                <form class="form-horizontal showcase-form" ng-submit="add3()" ng-show=" isRegister == 1"
+	                            id="basic_form" name="basic_form" ng-controller="ApplyController3" 
+	                            novalidate enctype="multipart/form-data">  
+	 					<div class="col-md-11 col-md-offset-0">
+							<br/>
+							<br/>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户ID</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.id" readonly class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户名</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.userName" readonly class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">请输入您的身份证号</label>
+								<div class="col-sm-9">
+									<input type="text" ensure-nodernameunique="" required ng-pattern="/^[0-9]{18,18}$/" class="form-control"
+										name="idNumber" ng-model="noder.idNumber" class="showcase-form" placeholder="18位有效身份证号">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户所属区域</label>
+								<div class="col-sm-9">
+									<div class='content' ng-app >  
+					                    <select ng-model="selectedDistrict" ng-change="selectedUnit=''" 
+					                    	ng-options="district.name for district in districts" >  
+					                    	<option value="">---省---</option>  
+					                    </select>  
+					                    <select ng-model="selectedUnit" ng-change="selectedPosition=''" ng-options="unit.name for unit in selectedDistrict.units">  
+					                    	<option value="">---市---</option>  
+					                    </select>  
+					                    <select ng-model="selectedPosition" ng-options="unit.name for unit in selectedUnit.positions">  
+					                    	<option value="">---区、县---</option>  
+					                    </select>  
+				                    </div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">街道地址</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="apply.userAddress" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">所属行业</label>
+								<div class="col-sm-9">
+									<div >  
+	                                    <select  ng-model="apply.business" >  
+	                                          <option value="">--行业类别--</option>  
+	                                          <option  value="食品业">食品业</option>  
+	                                          <option  value="生活用品">生活用品</option>  
+	                                          <option  value="奢侈品">奢侈品</option>  
+	                                          <option  value="化妆品">化妆品</option>  
+	                                          <option  value="营养保健">营养保健</option>  
+	                                          <option  value="户外用品">户外用品</option>  
+	                                    </select>  
+	                                </div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户权限申请起因</label>
+								<div class="col-sm-9">
+									<div>  
+		                                <textarea rows="6" ng-model="apply.reason" placeholder="用户权限申请起因" class="form-control">  
+		                                </textarea>
+		                            </div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">公司名称</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="apply.companyName" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">公司注册号</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="apply.companyId" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">公司组织机构代码</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="apply.companyCode" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">公司法律责任人姓名</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="apply.lawerName" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">公司注册时间</label>
+								<div class="col-sm-9">
+									<input type="date"  name="date" ng-model="apply.companyRegist" required class="form-control" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">公司资质证明文件</label>
+								<div class="col-sm-9">
+									<input type="file" required name="file" file-model="apply.file" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">有无不良记录</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="apply.record" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">  
+		                        <div class="col-sm-offset-2 col-sm-9">
+			                        <button type="submit" class="btn btn-success" ng-disabled="basic_form.$invalid" >确定</button> 
+			                        <a type="button" class="btn btn-danger" ng-href="#/home">取消</a> 
+		                    	</div>  
+	               			</div> 
+						</div>
+                    </form> 
+  				</div> 
+  				
+  				<!-- 产品商家权限申请表 -->
+				<div class="tab-panel" ng-show="tab.activeTab1 == 8">  
+					<div ng-show=" isRegister != 1" ng-controller="ApplyController4"> <h2 >权限升级申请中!!!</h2></div>
+	                <form class="form-horizontal showcase-form" ng-submit="add4()" ng-show=" isRegister == 1"
+	                            id="basic_form" name="basic_form" ng-controller="ApplyController4" 
+	                            novalidate enctype="multipart/form-data">  
+	 					<div class="col-md-11 col-md-offset-0">
+							<br/>
+							<br/>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户ID</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.id" readonly class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户名</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.userName" readonly class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">请输入您的身份证号</label>
+								<div class="col-sm-9">
+									<input type="text" ensure-nodernameunique="" required ng-pattern="/^[0-9]{18,18}$/" class="form-control"
+										name="idNumber" ng-model="noder.idNumber" class="showcase-form" placeholder="18位有效身份证号">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户所属区域</label>
+								<div class="col-sm-9">
+									<div class='content' ng-app >  
+					                    <select ng-model="selectedDistrict" ng-change="selectedUnit=''" 
+					                    	ng-options="district.name for district in districts" >  
+					                    	<option value="">---省---</option>  
+					                    </select>  
+					                    <select ng-model="selectedUnit" ng-change="selectedPosition=''" ng-options="unit.name for unit in selectedDistrict.units">  
+					                    	<option value="">---市---</option>  
+					                    </select>  
+					                    <select ng-model="selectedPosition" ng-options="unit.name for unit in selectedUnit.positions">  
+					                    	<option value="">---区、县---</option>  
+					                    </select>  
+				                    </div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">街道地址</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="apply.userAddress" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">所属行业</label>
+								<div class="col-sm-9">
+									<div >  
+	                                    <select  ng-model="apply.business" >  
+	                                          <option value="">--行业类别--</option>  
+	                                          <option  value="食品业">食品业</option>  
+	                                          <option  value="生活用品">生活用品</option>  
+	                                          <option  value="奢侈品">奢侈品</option>  
+	                                          <option  value="化妆品">化妆品</option>  
+	                                          <option  value="营养保健">营养保健</option>  
+	                                          <option  value="户外用品">户外用品</option>  
+	                                    </select>  
+	                                </div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户权限申请起因</label>
+								<div class="col-sm-9">
+									<div>  
+		                                <textarea rows="6" ng-model="apply.reason" placeholder="用户权限申请起因" class="form-control">  
+		                                </textarea>
+		                            </div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">公司名称</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="apply.companyName" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">公司注册号</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="apply.companyId" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">公司组织机构代码</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="apply.companyCode" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">公司法律责任人姓名</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="apply.lawerName" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">公司注册时间</label>
+								<div class="col-sm-9">
+									<input type="date"  name="date" ng-model="apply.companyRegist" required class="form-control" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">公司资质证明文件</label>
+								<div class="col-sm-9">
+									<input type="file" required name="file" file-model="apply.file" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">有无不良记录</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="apply.record" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">  
+		                        <div class="col-sm-offset-2 col-sm-9">
+			                        <button type="submit" class="btn btn-success" ng-disabled="basic_form.$invalid" >确定</button> 
+			                        <a type="button" class="btn btn-danger" ng-href="#/home">取消</a> 
+		                    	</div>  
+	               			</div> 
+						</div>
+                    </form> 
+  				</div> 
+  				
+  				<!-- 区块链管理员升级申请表 -->
+				<div class="tab-panel" ng-show="tab.activeTab1 == 9">  
+					<div ng-show=" isRegister != 1" ng-controller="ApplyController4"> <h2 >权限升级申请中!!!</h2></div>
+	                <form class="form-horizontal showcase-form" ng-submit="add4()" ng-show=" isRegister == 1"
+	                            id="basic_form" name="basic_form" ng-controller="ApplyController4" 
+	                            novalidate enctype="multipart/form-data">  
+	 					<div class="col-md-11 col-md-offset-0">
+							<br/>
+							<br/>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户ID</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.id" readonly class="form-control""/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户名</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.userName" readonly class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">邮箱</label>
+								<div class="col-sm-9">
+									<input type="email" ng-model="user.email" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户所属区域</label>
+								<div class="col-sm-9">
+									<div class='content' ng-app>  
+					                  <select ng-model="selectedDistrict" ng-change="selectedUnit=''" ng-options="district.name for district in districts" >  
+					                  		<option value="">---省---</option>  
+					                  </select>  
+					                  <select ng-model="selectedUnit" ng-change="selectedPosition=''" ng-options="unit.name for unit in selectedDistrict.units">  
+					                  		<option value="">---市---</option>  
+					                  </select>  
+					                  <select ng-model="selectedPosition" ng-options="unit.name for unit in selectedUnit.positions">  
+					                  		<option value="">---区、县---</option>  
+					                  </select>  
+					               </div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">街道地址</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.address" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户所属公司名</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.companyName" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户所属公司营业执照注册编号</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.businessLiceceNum" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户所属公司名</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.companyName" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">公司所在地</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.companyAddress" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">推荐人名</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.refereeName" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">推荐人授权码</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.refereeCode" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户所属行业</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.category" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">节点区块链名</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.nodeBlockName" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">节点所属区块链节点号</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.nodeBlockCode" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">区块链管理子节点个数上限</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.blockSubNodeMaxNum" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+									<label class="col-sm-2 control-label">区块链管理权限申请项</label>
+									<div class="col-sm-9">
+										<ul class="checkboxUl">
+											<li><input type="checkbox"  ng-model="a1" >增加子节点</li>
+											<li><input type="checkbox"  ng-model="a2" >审核子节点</li>
+											<li><input type="checkbox"  ng-model="a3" >注销子节点</li>
+											<li><input type="checkbox"  ng-model="a4" >配置文件修改</li>
+											<li><input type="checkbox"  ng-model="a5" >子节点数据项修改</li>
+										</ul>
+									</div>
+								</div>
+							
+							<div class="form-group">
+								<label class="col-sm-2 control-label">节点公钥</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.nodePubKey" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">节点私钥</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.nodePrivateKey" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">区块链管理员升级申请原因</label>
+								<div class="col-sm-9">
+			                         <textarea rows="6" ng-model="user.applyReason" placeholder="区块链管理员升级申请原因" class="form-control">  
+			                         </textarea>  
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">首次注册时间</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.nodePrivateKey" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">升级/申请时间</label>
+								<div class="col-sm-9">
+									<input type="date"  ng-model="user.upgradeTime" required class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-9">
+									<button type="submit" class="btn btn-success" ng-disabled="basic_form.$invalid" >确定</button> 
+			                   		<a type="button" class="btn btn-danger" ng-href="#/home">取消</a>
+								</div>
+							</div>
+						</div>
+                    </form> 
+  				</div>
+  				
+  				<!-- 区块链管理员升级申请表 -->
+				<!-- <div class="tab-panel" ng-show="tab.activeTab1 == 9">  
+					<div ng-show=" isRegister != 1" ng-controller="ApplyController5"> <h2 >权限升级申请中!!!</h2></div>
+	                <form class="form-horizontal showcase-form" ng-submit="add5()" ng-show=" isRegister == 1"
+	                            id="basic_form" name="basic_form" ng-controller="ApplyController5" 
+	                            novalidate enctype="multipart/form-data">  
+	 					<div class="col-md-11 col-md-offset-0">
+							<br/>
+							<br/>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户ID</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.id" readonly "/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户名</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.userName" readonly/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">邮箱</label>
+								<div class="col-sm-9">
+									<input type="email" ng-model="user.email"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户所属区域</label>
+								<div class="col-sm-9">
+									<div class='content' ng-app>  
+					                  <select ng-model="selectedDistrict" ng-change="selectedUnit=''" ng-options="district.name for district in districts" >  
+					                  		<option value="">---省---</option>  
+					                  </select>  
+					                  <select ng-model="selectedUnit" ng-change="selectedPosition=''" ng-options="unit.name for unit in selectedDistrict.units">  
+					                  		<option value="">---市---</option>  
+					                  </select>  
+					                  <select ng-model="selectedPosition" ng-options="unit.name for unit in selectedUnit.positions">  
+					                  		<option value="">---区、县---</option>  
+					                  </select>  
+					               </div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">街道地址</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.address" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户所属公司名</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.companyName" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户所属公司营业执照注册编号</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.businessLiceceNum" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户所属公司名</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.companyName" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">公司所在地</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.companyAddress" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">推荐人名</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.refereeName" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">推荐人授权码</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.refereeCode" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">用户所属行业</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.category" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">节点区块链名</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.nodeBlockName" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">节点所属区块链节点号</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.nodeBlockCode" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">区块链管理子节点个数上限</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.blockSubNodeMaxNum" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">区块链管理具体权限申请项</label>
+								<div class="col-sm-9">
+									<div class="content">
+										<select ng-model="user.blockSubNodeMaxNum">
+											<option value="">- 请选择您要申请的权限 -</option>
+											<option value="1">增加子节点</option>
+											<option value="2">审核子节点</option>
+											<option value="3">注销子节点</option>
+											<option value="4">配置文件修改</option>
+											<option value="5">子节点数据项修改</option>
+										</select>
+								  </div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">节点公钥</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.nodePubKey" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">节点私钥</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.nodePrivateKey" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">区块链管理员升级申请原因</label>
+								<div class="col-sm-9">
+			                         <textarea rows="6" ng-model="user.applyReason" placeholder="区块链管理员升级申请原因">  
+			                         </textarea>  
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">首次注册时间</label>
+								<div class="col-sm-9">
+									<input type="text" ng-model="user.nodePrivateKey" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">升级/申请时间</label>
+								<div class="col-sm-9">
+									<input type="date"  ng-model="user.upgradeTime" required class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-9">
+									<button type="submit" class="btn btn-success" ng-disabled="basic_form.$invalid" >确定</button> 
+			                   		<a type="button" class="btn btn-danger" ng-href="#/home">取消</a>
+								</div>
+							</div>
+						</div>
+                    </form> 
+  				</div>
+  				 -->
+  				
+  				
+  				
+<!--  -->
+
+                    </div>  
+            	</div>
+            </div>      
+		</div>
+	</div>  
+</div>

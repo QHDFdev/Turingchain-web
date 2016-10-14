@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tulingchain.mapper.NoderApplyBlockMapper">
+	<resultMap id="BaseResultMap" type="com.tulingchain.model.NoderApplyBlock" >
+	    <id column="userNameID" property="userNameID"/>
+	    <result column="registerDate" property="registerDate" />
+	    <result column="nodeIP" property="nodeIP" />
+	    <result column="nodeID" property="nodeID" />
+	    <result column="nodeAddr" property="nodeAddr" />
+	    <result column="nodeIPRegion" property="nodeIPRegion"/>
+	    <result column="nodeOrga" property="nodeOrga" />
+	    <result column="nodeCreaTime" property="nodeCreaTime" />
+	    <result column="nodeConfMEM" property="nodeConfMEM"/>
+	    <result column="nodeConfCPU" property="nodeConfCPU" />
+	    <result column="nodeConfOS" property="nodeConfOS" />
+	    <result column="nodeConfNetwork" property="nodeConfNetwork"/>
+	    <result column="nodeConfUsedList" property="nodeConfUsedList" />
+	    <result column="nodeChargeID" property="nodeChargeID" />
+	    <result column="nodeChargeContact" property="nodeChargeContact"/>
+	    <result column="nodeType" property="nodeType" />
+	    <result column="reason" property="reason" />
+	    <result column="refereeID" property="refereeID"/>
+	    <result column="others" property="others" />
+	    <result column="state" property="state" />
+	  </resultMap>
+	  
+	  <insert id="addNewNodeApply" keyColumn="userNameID" keyProperty="userNameID" useGeneratedKeys="true">
+	    insert into noderapplyblock_ (userNameID,registerDate,nodeIP,nodeID,nodeAddr,nodeIPRegion,
+	    			nodeOrga,nodeCreaTime,nodeConfMEM,nodeConfCPU,nodeConfOS,nodeConfNetwork,
+	    			nodeConfUsedList,nodeChargeID,nodeChargeContact,nodeType,reason,refereeID,others
+	      )
+	    values (#{userNameID}, #{registerDate},#{nodeIP},#{nodeID},#{nodeAddr},#{nodeIPRegion},
+	    		#{nodeOrga},#{nodeCreaTime},#{nodeConfMEM},#{nodeConfCPU},#{nodeConfOS},#{nodeConfNetwork},
+	    		#{nodeConfUsedList},#{nodeChargeID},#{nodeChargeContact},#{nodeType},#{reason},#{refereeID},#{others}
+	      )
+	  </insert>
+	  
+	  <select id="listAllNewNodeApply" resultMap="BaseResultMap">
+	  	select *
+	  	from noderapplyblock_
+	  </select>
+	  
+	  <select id="listAllNewNodeApplyByKey" resultMap="BaseResultMap" parameterType="String">
+	  	select *
+	  	from noderapplyblock_
+	  	where userNameID=#{userNameID}
+	  </select>
+	  
+	  <select id="getNodeApplyBlockInfoByID" resultMap="BaseResultMap" parameterType="String">
+		select *
+		from noderapplyblock_
+		where userNameID=#{userNameID}
+	  </select> 
+	  
+	  <select id="getNodeApplyBlockInfoByKey" resultMap="BaseResultMap" parameterType="NoderApplyBlock">
+		select *
+		from noderapplyblock_
+		where userNameID=#{userNameID} and nodeID=#{nodeID}
+	  </select> 
+	  
+	  <delete id="deleteById"  >
+		delete 
+		from noderapplyblock_
+		where userNameID=#{userNameID}
+	  </delete> 
+	  
+	  <delete id="deleteByKey" parameterType="NoderApplyBlock" >
+		delete 
+		from noderapplyblock_
+		where userNameID=#{userNameID} and nodeID=#{nodeID}
+	  </delete> 
+	  
+	  <update id="updateNodeApplyState" parameterType="NoderApplyBlock">
+		update  noderapplyblock_
+		 <set >
+	      	state=#{state}
+	    </set>
+		where userNameID = #{userNameID} and nodeID=#{nodeID}
+	  </update>
+	  
+	  <!-- <select id="countMessageByState" parameterType="NoderApplyBlock" resultMap="ResultOfInteger">
+		select count(*)
+		from noderapplyblock_
+		where userNameID=#{userNameID} and state=#{state}
+	  </select> -->
+	  
+	 <!--  <select id="listMessageByState" parameterType="NoderApplyBlock" resultMap="BaseResultMap">
+	  	select * 
+	  	from noderapplyblock_
+	  	where userNameID=#{userNameID} and state=#{state}
+	  </select> -->
+</mapper>

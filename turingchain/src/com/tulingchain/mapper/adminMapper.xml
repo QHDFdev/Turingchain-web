@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tulingchain.mapper.AdminMapper" >
+  <resultMap id="BaseResultMap" type="com.tulingchain.model.Admin" >
+    <id column="id" property="id"/>
+    <result column="adminName" property="adminName" />
+    <result column="password" property="password" />
+    <result column="email" property="email" />
+    <result column="regDate" property="regDate" />
+    <result column="adminType" property="adminType" />
+    <result column="adminLevel" property="adminLevel" />
+    <result column="sonCompanyFile" property="sonCompanyFile" />
+    <result column="referrerKey" property="referrerKey" />
+  </resultMap>
+    <insert id="save" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+    insert into admin_ (adminName,password,email,regDate,adminType,adminLevel,sonCompanyFile
+      )
+    values (#{adminName}, #{password},#{email},#{regDate},#{adminType},#{adminLevel},#{sonCompanyFile}
+      )
+  </insert>
+  
+  <select id="queryLogin" resultMap="BaseResultMap" parameterType="Admin" >
+	select *
+	from admin_
+	where email=#{email} and password=#{password}
+  </select> 
+  
+  <select id="queryReferrerKey" resultMap="BaseResultMap" parameterType="Admin" >
+	select *
+	from admin_
+	where adminName=#{0} and referrerKey=#{1}
+  </select> 
+	
+  <update id="update" parameterType="User">
+	update  admin_
+	set adminName = #{adminName},
+		password = #{password},
+		email = #{email},
+		adminLevel=#{adminLevel},
+		regDate=#{regDate},	
+		where id = #{id}
+  </update> 
+  
+   <select id="getAdminByEmail" resultMap="BaseResultMap" parameterType="String">
+  	 select *
+  	 from admin_
+  	 where email=#{email}
+   </select> 
+   
+   <select id="getAdminByName" resultMap="BaseResultMap" parameterType="String">
+  	select *
+  	from admin_
+  	where adminName=#{adminName}
+  </select> 
+  
+  <select id="getById" resultMap="BaseResultMap" parameterType="Integer">
+  	select *
+  	from admin_
+  	where id=#{id}
+  </select> 
+  
+  <select id="getAll" resultMap="BaseResultMap">
+  	select *
+  	from admin_
+  </select> 
+  
+  <delete id="delete">
+  	delete from admin_
+  	where id=#{id}
+  </delete>
+  
+</mapper>

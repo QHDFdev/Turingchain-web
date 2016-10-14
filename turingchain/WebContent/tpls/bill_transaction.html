@@ -1,0 +1,68 @@
+<div class="loginwrap">
+	<div class="formbox">
+		<div class="box col-md-10 col-md-offset-1" >
+			<div class="head-info">	
+			</div>
+			<div class="title">交易详情</div>
+			<div class="main-info">
+				<div class="tab-content tab-bordered">
+					<div class="tab-panel">
+						<form class="register-detail showcase-form">
+							<div class="info-right col-md-offset-1 col-md-9 ">
+							<div class="form-group">
+									<label class="col-sm-3 control-label">发起方</label>
+									<div class="col-sm-7">
+										<div>
+										<span  ng-bind="originaler" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">接收方</label>
+									<div class="col-sm-7">
+										<div>
+										<span  ng-bind="receiver" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">承贴方</label>
+									<div class="col-sm-7">
+										<div>
+										<span  ng-bind="discountinger" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">票据号</label>
+									<div class="col-sm-7">
+										<div>
+										<span  ng-bind="billNumber" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">金额</label>
+									<div class="col-sm-7">
+										<div>
+										<span  ng-bind="moneySum" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">到期时间</label>
+									<div class="col-sm-7">
+										<div>
+										<span  ng-bind="expireDate  |  isodateFilter" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+						<div class="info-right col-md-offset-2 col-md-1 "><button type="button" class="btn btn-primary"  onClick="javascript: history.go(-1);">返回上一页</button></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

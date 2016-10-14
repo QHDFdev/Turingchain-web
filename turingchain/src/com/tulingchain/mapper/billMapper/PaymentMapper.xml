@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tulingchain.mapper.billMapper.PaymentMapper">
+	<resultMap type="com.tulingchain.model.bill.Payment" id="BaseResultMap">
+		<id column="pay_id" property="pay_id" />
+		<result column="payerName" property="payerName" />
+		<result column="billNumber" property="billNumber" />
+		<result column="payee" property="payee" />
+		<result column="moneySum" property="moneySum" />
+		<result column="discountingOrg" property="discountingOrg" />
+		<result column="expireDate" property="expireDate" />
+		<result column="whenSolutionPay" property="whenSolutionPay" />
+		<result column="operateType" property="operateType" />
+		<result column="transferTo" property="transferTo" />
+		<result column="createId" property="createId"/>
+		<result column="transferId" property="transferId"/>
+		<!-- 1 to n -->
+		<association property="payerNoder" column="payerName"
+			javaType="com.tulingchain.model.bill.BillNoder" select="selectBillNoderByid">
+			<id column="id" property="id" />
+			<result column="companyName" property="companyName" />
+			<result column="noderAddress" property="noderAddress" />
+		</association>
+		<!-- 1 to n -->
+		<association property="payeeNoder"   column="payee" javaType="com.tulingchain.model.bill.BillNoder" select="selectBillNoderByid">
+			<id column="id" property="id"  />
+			<result column="companyName" property="companyName" />
+			<result column="noderAddress" property="noderAddress" />
+		</association>
+		<!-- 1 to n -->
+		<association property="discountingOrgNoder" column="discountingOrg" javaType="com.tulingchain.model.bill.BillNoder" select="selectBillNoderByid">
+			<id column="id" property="id" />
+			<result column="companyName" property="companyName" />
+			<result column="noderAddress" property="noderAddress" />
+		</association>
+	</resultMap>
+
+	<resultMap id="NoderResultMap" type="com.tulingchain.model.bill.BillNoder">
+		<id column="id" property="id" />
+		<result column="companyName" property="companyName" />
+		<result column="noderAddress" property="noderAddress" />
+	</resultMap>
+
+	<insert id="save" keyColumn="pay_id " keyProperty="keyColumn"
+		useGeneratedKeys="true">
+		insert into bill_payment_
+		(payerName,billNumber,payee,moneySum,discountingOrg,expireDate,whenSolutionPay,operateType,createId,transferId)
+		values
+		(#{payerName},#{billNumber},#{payee},#{moneySum},#{discountingOrg},#{expireDate},#{whenSolutionPay},#{operateType},#{createId},#{transferId})
+	</insert>
+
+	<select id="listAll" resultMap="BaseResultMap" parameterType="int">
+		select * from bill_payment_ where payerName=#{id}
+	</select>
+
+	<select id="selectBillNoderByid" resultMap="NoderResultMap"
+		parameterType="int">
+		select companyName,noderAddress from bill_noder_ where
+		id=#{id}
+	</select>
+	
+	 <update id="updateCreateThrnsferId"  parameterType="com.tulingchain.model.bill.Payment">
+		update  bill_payment_
+		set transferId = #{transferId},createId = #{createId}
+		where pay_id = #{pay_id}
+  	</update> 
+</mapper>

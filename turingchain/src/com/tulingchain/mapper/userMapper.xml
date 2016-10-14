@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tulingchain.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.tulingchain.model.User" >
+    <id column="id" property="id"/>
+    <result column="userName" property="userName" />
+    <result column="password" property="password" />
+    <result column="email" property="email" />
+    <result column="regDate" property="regDate" />
+    <result column="userState" property="userState" />
+    <result column="userImg" property="userImg"/>
+  </resultMap>
+
+  <insert id="add" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+    insert into user_ (userName,password,email,regDate,userState
+      )
+    values (#{userName}, #{password},#{email},#{regDate},#{userState}
+      )
+  </insert>
+  
+  <select id="queryLogin" resultMap="BaseResultMap" parameterType="User" >
+	select *
+	from user_
+	where email=#{0} and password=#{1}
+  </select> 
+	
+  <select id="queryLogin2" resultMap="BaseResultMap" parameterType="User" >
+	select *
+	from user_
+	where email=#{email} and password=#{password}
+  </select>
+  <select id="selectByCode" resultMap="BaseResultMap" >
+	select *
+	from user_
+	where code=#{code} 
+  </select> 
+  
+  <update id="updateImg" parameterType="User">
+	update  user_
+	set userImg = #{userImg}
+	where userName = #{userName}
+  </update>  
+
+  <update id="updateState" parameterType="User">
+	update  user_
+	set code = #{code},state=#{state}
+	where id = #{id}
+  </update>  
+  
+  <update id="updatePwd" parameterType="User">
+	update  user_
+	set password = #{1}
+	where userName = #{0}
+  </update> 
+  
+  <update id="update" parameterType="User">
+	update  user_
+	set userName = #{userName},
+		password = #{password},
+		email = #{email},
+		userState=#{userState},
+		regDate=#{regDate},	
+		where id = #{id}
+  </update> 
+  
+   <select id="getByEmail" resultMap="BaseResultMap" parameterType="String">
+  	 select *
+  	 from user_
+  	 where email=#{email}
+   </select> 
+   
+   <select id="getByName" resultMap="BaseResultMap" parameterType="String">
+  	select *
+  	from user_
+  	where userName=#{userName}
+  </select> 
+  
+  <select id="getById" resultMap="BaseResultMap" parameterType="Integer">
+  	select *
+  	from user_
+  	where id=#{id}
+  </select> 
+  
+  <select id="getAll" resultMap="BaseResultMap">
+  	select *
+  	from user_
+  </select> 
+  
+  <delete id="delete">
+  	delete from user_
+  	where id=#{id}
+  </delete>
+  
+  <delete id="deleteUser">
+  	delete from user_
+  	where id=#{id}
+  </delete>
+  
+  <delete id="deleteByName">
+  	delete from user_
+  	where userName=#{userName}
+  </delete>
+  
+</mapper>

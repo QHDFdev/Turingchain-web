@@ -1,0 +1,134 @@
+		<div class="col-md-12 homeDiv">
+		
+		<div id="more" class="col-md-offset-1 col-md-10">
+			<div class="row clearfix">
+				<br />
+				<div class="form-group">
+					<div class="col-md-3 col-md-offset-8">
+						<div class="control-group">
+							<div class="controls">
+								<div class="input-group">
+									<input ng-keyup="myKeydown($event)"  type="text" id="input" ng-model="input" class="form-control input-group"
+										placeholder="请输入区块高度/交易ID/地址" /> <span
+										class="input-group-addon"> <span  ng-click="queryBlock()" 
+											class="glyphicon glyphicon-search" title="搜索"></span>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<div style="font-weight: bold;" id='mytable1'>
+						<span >
+							<label name="title" style="font-size:24px;"><i class="fa fa-database" style="color:white;"></i>区块</label>
+							<label style="color:#ece6e9; font-weight:normal;">/最新生成块<span class="caret"></span></label>
+							<button class='btn btn-primary' ng-click='showtableitems0()'><span class='glyphicon glyphicon-search'></span> 查询</button>
+							<a href="#/moreBlockInfo/1" class="col-md-offset-2">详见&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></a>
+						</span>
+					</div>
+					<table name="table" class="table">
+						<thead class='col-xs-12'>
+							<tr class='col-xs-12'>
+								<th class=" col-xs-2 textAlignLeft">
+									区块高度
+								</th>
+								<th class=" col-xs-4 textAlignLeft">
+									Transaction ID
+								</th>
+								<!-- <td class="col-md-1 ">
+									
+								</td> -->
+								<th class=" col-xs-4 textAlignLeft">
+									Node-PubKey
+								</th>
+								<th class=" col-xs-2 textAlignLeft">
+									生成时间
+								</th>
+							</tr>
+						</thead>
+						<tbody class='col-xs-12'>
+						   <tr ng-repeat="b in indexBlocks" class='col-xs-12'>
+	                   		  <td class="col-xs-2 textAlignLeft">
+	                   		  	<a><span ng-click="queryBlockInfoRest(b.block_number)" ng-bind="b.block_number"></span></a>
+	                   		  </td>
+	                   		  <td class="col-xs-4 textAlignLeft">
+	                   		  	 <ul ng-repeat="bt in b.block.transactions | limitTo: 3">
+	                   		  	  		<li><span ng-bind="bt.id"></span></li>
+	                   		  	  </ul>
+	                   		  </td>
+							  <td class="col-xs-4 textAlignLeft">
+	                   		  	<span ng-bind="b.block.node_pubkey"></span>
+	                   		  </td>
+	                   		  <td class="col-xs-2 textAlignLeft">
+	                   		  	<span ng-bind="b.block.timestamp + '000' | date:'yyyy/MM/dd HH:mm:ss'"></span>
+	                   		  </td>
+						   </tr>
+						</tbody>
+					</table>
+					
+					<div style="font-weight: bold;" id='mytable2'>
+						<span>
+							<label name="title" style="font-size:24px;"><i class="fa fa-exchange" style="color:white;"></i>交易</label>
+							<label style="color:#ece6e9; font-weight:normal;">/最新生成交易<span class="caret"></span></label>
+							<button class='btn btn-primary' ng-click='showtableitems1()'><span class='glyphicon glyphicon-search'></span> 查询</button>
+							<a href="#" class="col-md-offset-2">详见&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></a>
+						</span>
+					</div>
+					<table name="table" class="table">
+						<thead class='col-xs-12'>
+							<tr class='col-xs-12'>
+								<th class="col-xs-4 textAlignLeft">
+									交易序号
+								</th>
+								<th class="col-xs-3 textAlignLeft">
+									交易发起方地址
+								</th>
+								<th class="col-xs-3 textAlignLeft">
+									交易接收方地址
+								</th>
+								<th class="col-xs-2 textAlignLeft">
+									交易时间
+								</th>
+							</tr>
+						</thead>
+						<tbody class='col-xs-12'>
+               		  	  <tr ng-repeat="t in indexTrans" class='col-xs-12'>
+               		  	  		<td  class="col-xs-4 textAlignLeft"><a  ng-click="queryTxInfoRest(t.id)"><span ng-bind="t.id"></span></td>
+               		  	  		<td   class="col-xs-3 textAlignLeft"><ul ng-repeat="tf in t.transaction.fulfillments">
+	                   		  	  		<li ng-repeat="ttc in tf.current_owners">
+	                   		  	  			<ol><span ng-bind="ttc"></ol>
+	                   		  	  		</li>
+	                   		  	  </ul></td>
+	                   		  	 <td  class="col-xs-3 textAlignLeft"><ul ng-repeat="tc in t.transaction.conditions">
+	                   		  	  		<li>
+	                   		  	  			<ol ng-repeat="tn in tc.new_owners"><span ng-bind="tn"></ol>
+	                   		  	  		</li>
+	                   		  	  </ul></td>
+               		  	  		<td class="col-xs-2 textAlignLeft"><span  ng-bind="t.transaction.timestamp + '000' | date:'yyyy/MM/dd HH:mm:ss'"></td>
+						   </tr>    
+						<!-- </tbody>
+						<tbody class='col-xs-12'>
+               		  	  <tr ng-repeat="t in indexTrans" class='col-xs-12'>
+               		  	  		<td ng-repeat=" tt in t" class="col-xs-4 textAlignLeft"><a  ng-click="queryTxInfoRest(tt.id)"><span ng-bind="tt.id"></span></td>
+               		  	  		<td ng-repeat=" tt in t"  class="col-xs-3 textAlignLeft"><ul ng-repeat="tf in tt.transaction.fulfillments">
+	                   		  	  		<li ng-repeat="ttc in tf.current_owners">
+	                   		  	  			<ol><span ng-bind="ttc"></ol>
+	                   		  	  		</li>
+	                   		  	  </ul></td>
+	                   		  	 <td ng-repeat=" tt in t"  class="col-xs-3 textAlignLeft"><ul ng-repeat="tc in tt.transaction.conditions">
+	                   		  	  		<li ng-repeat="tc in tt.transaction.conditions">
+	                   		  	  			<ol ng-repeat="ttn in tc.new_owners"><span ng-bind="ttn"></ol>
+	                   		  	  		</li>
+	                   		  	  </ul></td>
+               		  	  		<td ng-repeat="tt in t" class="col-xs-2 textAlignLeft"><span  ng-bind="tt.transaction.timestamp + '000' | date:'yyyy/MM/dd HH:mm:ss'"></td>
+						   </tr>    
+						</tbody> -->
+					</table>
+				</div>
+			</div>
+          </div>
+         </div>
+</div>

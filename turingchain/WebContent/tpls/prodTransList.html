@@ -1,0 +1,50 @@
+<style>
+	tbody{
+		color:black;
+	}
+</style>
+<div class="loginwrap">
+	<div class="formbox">
+		<div class="box col-md-10 col-md-offset-1" >
+			<div class="head-info">
+				
+			</div>
+			<div class="title">发&nbsp;货&nbsp;通&nbsp;知</div>
+			<div class="main-info col-md-10 col-md-offset-1">
+				<table class="table table-bordered table-hover">
+				   <thead>
+				     <tr>
+				       <th>产品名称</th>
+				       <th>产品编号</th>
+				       <th>单位</th>
+				       <th>价格</th>
+				       <th>生产数量</th>
+				       <th>生产日期</th>
+			 		   <th>信息录入</th>
+				     </tr>
+				   </thead>
+				   <tbody>
+				   <div class="col-md-3 col-md-offset-10">
+				  	 	<label>查询:</label>
+				  	 	<input type="text" ng-model="query"/>
+				  	 </div>
+				  	 <tr ng-show="prodSize == 0">
+				  	 	<td><span>没有发货新通知哦!</span></td>
+				  	 </tr>
+				     <tr ng-repeat="p in prods | filter:query">
+	                     <td><span ng-bind="p.productName"></span></td>
+	                     <td><span ng-bind="p.productNum"></span></td>
+	                     <td><span ng-bind="p.iu"></span></td> 
+	                     <td><span ng-bind="p.price | currency:'￥'"></span></td>
+	                     <td><span ng-bind="p.productQuantity"></span></td>
+	                     <td><span ng-bind="p.productDate | date:'yyyy-MM-dd HH:mm:ss'"></span></td>
+	                     <td>
+	                     	<a class="btn btn-info custom-width" ng-href="#/prodTransport/{{p.id}}">填写</a>
+	                     </td>
+                     </tr>
+				   </tbody>
+				 </table>
+			</div>
+		</div>
+	</div>
+</div>

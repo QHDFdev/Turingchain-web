@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tulingchain.mapper.ProductMapper" >
+
+  <resultMap id="BaseResultMap" type="com.tulingchain.model.Product" >
+    <id column="id" property="id"/>
+    <result column="productName" property="productName" />
+    <result column="productNum" property="productNum" />
+    <result column="number" property="number" />
+    <result column="iu" property="iu" />
+    <result column="productQuantity" property="productQuantity" />
+    <result column="price" property="price" />
+    <result column="origin" property="origin" />
+    <result column="expirationDate" property="expirationDate" />
+    <result column="productDate" property="productDate" />
+    <result column="image" property="image" />
+    <result column="transComName" property="transComName" />
+    <result column="sellerId" property="sellerId" />
+    <result column="purchaserId" property="purchaserId" />
+    <result column="purchaseId" property="purchaseId" />
+    <result column="principalName" property="principalName" />
+    <result column="principalNum" property="principalNum" />
+    <association property="purchase" column="purchaseId" javaType="Purchase">
+    	<id column="purchaseid" property="purchaseid"/>
+    	<result column="purchaseDate" property="purchaseDate" />
+    	<result column="purchaseNum" property="purchaseNum" />
+    </association>
+    <association property="seller" resultMap="sellerResultMap"/>
+  </resultMap>
+  
+   <resultMap id="sellerResultMap" type="com.tulingchain.model.Noder" >
+   		<id column="id" property="id"/>
+    	<result column="companyName" property="companyName" />
+    	<result column="noderAddress" property="noderAddress" />
+   </resultMap>
+   
+   <resultMap id="purchaserResultMap" type="com.tulingchain.model.Product" >
+  	    <id column="id" property="id"/>
+  	    <association property="purchaser" column="purchaserId" javaType="Noder">
+  	   		<id column="id" property="id"/>
+	    	<result column="companyName" property="companyName" />
+	    	<result column="noderAddress" property="noderAddress" />
+    	</association>
+   </resultMap>
+
+  <resultMap id="TransProdResultMap" type="com.tulingchain.model.Product" >
+    <id column="id" property="id"/>
+    <result column="productName" property="productName" />
+    <result column="productNum" property="productNum" />
+    <result column="number" property="number" />
+    <result column="iu" property="iu" />
+    <result column="productQuantity" property="productQuantity" />
+    <result column="price" property="price" />
+  </resultMap>
+  
+    <resultMap id="ProdResultMap" type="com.tulingchain.model.Product" >
+    <id column="id" property="id"/>
+    <result column="productName" property="productName" />
+    <result column="productNum" property="productNum" />
+    <result column="number" property="number" />
+    <result column="iu" property="iu" />
+    <result column="productQuantity" property="productQuantity" />
+    <result column="price" property="price" />
+    <result column="origin" property="origin" />
+    <result column="expirationDate" property="expirationDate" />
+    <result column="productDate" property="productDate" />
+    <result column="sendDate" property="sendDate" />
+    <result column="image" property="image" />
+    <result column="transComName" property="transComName" />
+    <result column="sellerId" property="sellerId" />
+    <result column="purchaserId" property="purchaserId" />
+    <result column="purchaseId" property="purchaseId" />
+    <result column="principalName" property="principalName" />
+    <result column="principalNum" property="principalNum" />
+    <result column="txPubKeyPair" property="txPubKeyPair" />
+    <result column="txPrivKeyPair" property="txPrivKeyPair" />
+    <result column="blockId" property="blockId"/>
+    <result column="txId" property="txId"/>
+    </resultMap>
+  
+    <insert id="save" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+    insert into product_ (productName,productNum,number,iu,image,price,productQuantity,sendDate,productDate,expirationDate,txPubKeyPair,txPrivKeyPair,
+    sellerId,purchaseId,purchaserId,transportId,principalName,principalNum,state,blockId,txId
+      )
+    values (#{productName},#{productNum},#{number},#{iu},#{image},#{price},#{productQuantity},#{sendDate},#{productDate},#{expirationDate},#{txPubKeyPair},#{txPrivKeyPair},
+      #{sellerId},#{purchaseId},#{purchaserId},#{transportId},#{principalName},#{principalNum},#{state},#{blockId,#{txId}
+      )
+  </insert>
+  
+  <select id="listAll" resultMap="BaseResultMap">
+  	select *
+  	from product_ p , purchase_ p1 ,noder_ n
+  	where p.purchaseId = p1.purchaseid and p.sellerId = n.id and p.sellerId = #{sellerId} 
+  </select>
+ 
+  <select id="getProdById" resultMap="BaseResultMap">
+  	SELECT *
+  	FROM product_ p ,purchase_ p1 ,noder_ n
+  	WHERE p.purchaseId = p1.purchaseid AND p.sellerId = n.id AND p.id = #{id};
+  </select> 
+  
+   <select id="listProdById" resultMap="BaseResultMap" parameterType="int">
+  	select *
+  	from product_ p ,noder_ n
+  	where p.sellerId = n.id and p.id = #{id}
+  </select> 
+  
+  <select id="getProdCount" resultType="String" parameterType="int">
+  	select count(*)
+  	from product_
+  	where transportId = #{id} and state = '未确认'
+  </select>
+  
+  <select id="listTransProdById" resultMap="TransProdResultMap" parameterType="int">
+  	select *
+  	from product_
+  	where transportId = #{id} and state = '未确认'
+  </select>
+  
+  <select id="listAllTransProdById" resultMap="TransProdResultMap" parameterType="int">
+  	select *
+  	from product_
+  	where transportId = #{id} and state = '已确认'
+  </select>
+  
+  <select id="getProdPurchaserById" resultMap="purchaserResultMap">
+  	SELECT *
+  	FROM product_ p ,noder_ n
+  	WHERE p.purchaserId = n.id AND p.id = #{id};
+  </select>
+ 
+ <select id="getProdByPurchaseId" resultMap="ProdResultMap" parameterType="int">
+  	SELECT *
+  	FROM product_ 
+  	where purchaseId = #{purchaseId}
+  </select>
+ 
+  <update id="updateState" parameterType="int">
+  	update  product_
+	set state = '已确认'
+	where purchaseId = #{purchaseId}
+  </update>
+  
+  <update id="updateTxId" parameterType="java.lang.String">
+  	update  product_
+	set txId=#{txId}
+	where purchaseId = #{purchaseId}
+  </update>
+  
+ 
+</mapper>

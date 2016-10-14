@@ -1,0 +1,33 @@
+<div class='container' style='margin-top: 120px'>
+	<div class="input-group">
+		<input ng-keyup="myKeydown($event)"  type="text"  id="tid" ng-model="tid" class="form-control input-group"
+										placeholder="请输入交易ID" /> <span
+										class="input-group-addon"> <span  ng-click="trace()" 
+											class="glyphicon glyphicon-search" title="搜索"></span>
+	</div>
+	<div class='col-lg-3' ng-repeat="t in allTraces">
+		<ul class='list-group' >
+			<li class=list-group-item>发起方国家：<span ng-bind="t.transaction.data.payload.where.goto.nation"></span></li>
+			<li class=list-group-item>发起方城市：<span ng-bind="t.transaction.data.payload.where.goto.place">123</span></li>
+			<li class=list-group-item>发起方区域：<span ng-bind="t.transaction.data.payload.where.goto.region""></span></li>
+			<li class=list-group-item>接收方国家：<span ng-bind="t.transaction.data.payload.where.original.nation"></span></li>
+			<li class=list-group-item>接收方城市：<span ng-bind="t.transaction.data.payload.where.original.place"></span></li>
+			<li class=list-group-item>接收方区域：<span ng-bind="t.transaction.data.payload.where.original.region"></span></li>
+			<li class=list-group-item>发起方：<span ng-bind="t.transaction.data.payload.who.original.user_name"></span></li>
+			<li class=list-group-item>发起方公司名称：<span ng-bind="t.transaction.data.payload.who.original.user_name"></span></li>
+			<li class=list-group-item>接收方：<span ng-bind="t.transaction.data.payload.who.goto.user_name"></span></li>
+			<li class=list-group-item>接收方公司名称：<span ng-bind="t.transaction.data.payload.who.goto.company_name"></span></li>
+			<li class=list-group-item>物件类型：<span ng-bind="t.transaction.data.payload.thing.thing_type_name"></span></li>
+			<li class=list-group-item>物件名称：<span ng-bind="t.transaction.data.payload.thing.thing_name"></span></li>
+			<li class=list-group-item>物件Id：<span ng-bind="t.transaction.data.payload.thing.thing_id"></span></li>
+			<li class=list-group-item>物件产地：<span ng-bind="t.transaction.data.payload.thing.origin_place"></span></li>
+			<li class=list-group-item>物件订购数量：<span ng-bind="t.transaction.data.payload.thing.thing_order_quantity"></span></li>
+			<li class=list-group-item>物件订购批次：<span ng-bind="t.transaction.data.payload.thing.thing_order_batch"></span></li>
+			<li class=list-group-item>物件价格：<span ng-bind="t.transaction.data.payload.thing.price"></span></li>
+			<li class=list-group-item>生产完成时间：<span ng-bind="t.transaction.data.payload.when.make_date |  isodateFilter"></span></li>
+			<li class=list-group-item>发货时间：<span ng-bind="t.transaction.data.payload.when.send_date |  isodateFilter"></span></li>
+			<li class=list-group-item>收货时间：<span ng-bind="t.transaction.data.payload.when.receive_date |  isodateFilter"></span></li>
+			<li class=list-group-item>保质期：<span ng-bind="t.transaction.data.payload.when.expire_date |  isodateFilter">></span></li>
+		</ul>
+	</div>
+</div>

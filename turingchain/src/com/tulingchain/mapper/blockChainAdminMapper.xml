@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tulingchain.mapper.BlockChainAdminMapper">
+	<resultMap id="BaseResultMap" type="com.tulingchain.model.BlockChainAdmin" >
+	    <id column="id" property="id"/>
+	    <result column="bcAdmName" property="bcAdmName" />
+	    <result column="password" property="password" />
+	    <result column="email" property="email" />
+	    <result column="address" property="address" />
+	    <result column="companyName" property="companyName" />
+	    <result column="companyRegNum" property="companyRegNum"/>
+	    <result column="companyAddress" property="companyAddress" />
+	    <result column="referrerName" property="referrerName" />
+	    <result column="referrerKey" property="referrerKey"/>
+	    <result column="userBusinessType" property="userBusinessType" />
+	    <result column="nodeBlockChainName" property="nodeBlockChainName" />
+	    <result column="nodeBlockChainNum" property="nodeBlockChainNum"/>
+	    <result column="sonNodeNum" property="sonNodeNum" />
+	    <result column="authority" property="authority" />
+	    <result column="nodePublicKey" property="nodePublicKey"/>
+	    <result column="nodePrivaeteKey" property="nodePrivaeteKey" />
+	    <result column="applyReason" property="applyReason"/>
+	    <result column="applyDate" property="applyDate" />
+	    <result column="registDate" property="registDate"/>
+	    <result column="blockChainAdminState" property="blockChainAdminState"/>
+	  </resultMap>
+	  
+	  <insert id="add" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+	    insert into blockchainadmin_ (bcAdmName,password,email,address,companyName,companyRegNum,
+	    			companyAddress,referrerName,referrerKey,userBusinessType,nodeBlockChainName,nodeBlockChainNum,
+	    			sonNodeNum,authority,nodePublicKey,nodePrivaeteKey,applyReason,applyDate,registDate,blockChainAdminState
+	      )
+	    values (#{bcAdmName}, #{password},#{email},#{address},#{companyName},#{companyRegNum},
+	    		#{companyAddress},#{referrerName},#{referrerKey},#{userBusinessType},#{nodeBlockChainName},#{nodeBlockChainNum},
+	    		#{sonNodeNum},#{authority},#{nodePublicKey},#{nodePrivaeteKey},#{applyReason},#{applyDate},#{registDate},#{blockChainAdminState}
+	      )
+	  </insert>
+	  
+	  <select id="listAllBlockChainAdminByState" resultMap="BaseResultMap" parameterType="String">
+	  	select *
+	  	from blockchainadmin_
+	  	where blockChainAdminState = #{blockChainAdminState}
+	  </select>
+	  
+	  <select id="getBlockChainAdminInfoById" resultMap="BaseResultMap" parameterType="int">
+	  	select *
+	  	from blockchainadmin_
+	  	where id = #{id}
+	  </select>
+	  
+	  <update id="updateState" parameterType="BlockChainAdmin">
+		update  blockchainadmin_
+		 <set >
+	      	blockChainAdminState=#{blockChainAdminState}
+	    </set>
+		where id = #{id}
+	  </update> 
+	  
+	  <delete id="delete" parameterType="int">
+	  	delete
+	  	from blockchainadmin_
+	  	where id = #{id}
+	  </delete>
+	  
+	  <select id="queryLogin1" resultMap="BaseResultMap" parameterType="BlockChainAdmin" >
+		select *
+		from blockchainadmin_
+		where email=#{email} and password=#{password}
+	  </select> 
+	  
+	  <select id="queryLogin" resultMap="BaseResultMap" parameterType="BlockChainAdmin" >
+		select *
+		from blockchainadmin_
+		where email=#{0} and password=#{1}
+	  </select> 
+</mapper>

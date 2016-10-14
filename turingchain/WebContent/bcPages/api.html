@@ -1,0 +1,104 @@
+<div class='apiWrap'>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 hidden-xs hidden-sm clearfix">
+				<ul class="nav nav-tabs nav-stacked">
+					<li class='active'><a ng-click="section1()">查询新产生的区块</a></li>
+					<li><a ng-href='' ng-click="section2()">查询新产生的交易</a></li>
+					<li><a ng-href='' ng-click="section3()">根据区块 Height查询区块信息</a></li>
+					<li><a ng-href='' ng-click="section4()">根据区块交易ID查询交易信息</a></li>
+					<li><a ng-href='' ng-click="section5()">根据区块地址查询区块信息</a></li>
+					<li><a ng-href='' ng-click="section6()">获取秘钥</a></li>
+					<li><a ng-href='' ng-click="section7()">区块创建 Create交易</a></li>
+					<li><a ng-href='' ng-click="section8()">创建Transfer交易</a></li>
+					<li><a ng-href='' ng-click="section9()">通用的查询区块中打入的数据</a></li>
+					<li><a ng-href='' ng-click="section10()">通用将数据打入区块</a></li>
+				</ul>
+			</div>
+			<div class="col-md-8 col-xs-12 col-sm-12">
+				<div class='api-section'>
+					<i id='section1'>{{scroll}}</i>
+					
+					<h2>查询新产生的区块<small>（每分钟更新一次）</small></h2>
+					<p><strong>输入：</strong>无</p>
+					<p><strong>输出：</strong>区块高度， TransactionID, node_pubkey, tx_ids, 区块生成时间</p>
+					<p class='api-item'>public LastBlock <span class='api-text'>getLastBlock()</span></p>
+				</div>
+				<hr>
+				<div class='api-section'>
+					<i id='section2'></i>
+					<h2>查询新产生的交易<small>（每分钟更新一次）</small></h2>
+					<p><strong>输入：</strong>无</p>
+					<p><strong>输出：</strong>交易发起方地址， 交易接受方地址，tx_ids, 交易时间</p>
+					<p class='api-item'>public LastTx <span class='api-text'>getLastTx()</span></p>
+				</div>
+				<hr>
+				<div class='api-section'>
+					<i id='section3'></i>
+					<h2>根据区块 Height查询区块信息</h2>
+					<p>输入: Block_Height</p>
+					<p><strong>输出：</strong>该区块所有信息</p>
+					<p class='api-item'>public BigBlock <span class='api-text'>getBlockByHeight(int height)</span></p>
+				</div>
+				<hr>
+				<div class='api-section'>
+					<i id='section4'></i>
+					<h2>根据区块交易ID查询交易信息</h2>
+					<p><strong>输入：</strong> TransactionID</p>
+					<p><strong>输出：</strong> 该笔交易数据</p>
+					<p class='api-item'>public Data <span class='api-text'>getTxById(String id)</span></p>
+				</div>
+				<hr>
+				<div class='api-section'>
+					<i id='section5'></i>
+					<h2>根据区块地址查询区块信息</h2>
+					<p><strong>输入：</strong>区块地址</p>
+					<p><strong>输出：</strong> 该地址所有交易信息序列数据</p>
+					<p class='api-item'>public TransactionArray <span class='api-text'>getTxsByBlockAddr(String addr)</span></p>
+				</div>
+				<hr>
+				<div class='api-section'>
+					<i id='section6'></i>
+					<h2>获取秘钥</h2>
+					<p><strong>输入：</strong>无</p>
+					<p><strong>输出：</strong>公钥和私钥</p>
+					<p class='api-item'>public KeyPair <span class='api-text'>getKeyPair()</span></p>
+				</div>
+				<hr>
+				<div class='api-section'>
+					<i id='section7'></i>
+					<h2>区块创建 Create交易</h2>
+					<p><strong>输入：</strong>公钥，人员，地点</p>
+					<p><strong>输出：</strong>交易 id</p>
+					<p class='api-item'>public String <span class='api-text'>createTransaction</span>(String publicKey, Who who, Where where, When when, Thing thing)</p>
+				</div>
+				<hr>
+				<div class='api-section'>
+					<i id='section8'></i>
+					<h2>创建Transfer交易</h2>
+					<p><strong>输入：</strong>交易发起方公钥，交易接收方公钥，交易发起方私钥，人员，地点</p>
+					<p><strong>输出：</strong>新创建的 TransferResult对象</p>
+					<p class='api-item'>public TransferResult <span class='api-text'>transferTransaction</span>(String txOriginatorPublicKey, String txRecipientPublicKey,String txOriginatorPrivateKey, Who who, Where where,When when, Thing thing);</p>
+				</div>
+				<hr>
+				<div class='api-section'>
+					<i id='section9'></i>
+					<h2>通用的查询区块中打入的数据</h2>
+					<p><strong>输入：</strong>用户公钥，用户私钥</p>
+					<p><strong>输出：</strong>查询出打入数据</p>
+					<p class='api-item'>public String <span class='api-text'>trace_common_transaction</span>(String txPublicKey, String txPrivateKey)</p>
+				</div>
+				<hr>
+				<div class='api-section'>
+					<i id='section10'></i>
+					<h2>通用将数据打入区块</h2>
+					<p><strong>输入：</strong>用户公钥，用户私钥，写入数据</p>
+					<p><strong>输出：</strong>打入数据的交易 tx_id</p>
+					<p class='api-item'>public String <span class='api-text'>create_common_transaction</span>(String txPublicKey, String txPrivateKey, String tx_data)</p>
+				</div>
+				<hr>
+			</div>
+		</div>
+	</div>
+</div>	
+

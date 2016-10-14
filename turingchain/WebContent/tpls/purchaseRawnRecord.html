@@ -1,0 +1,52 @@
+<style>
+	tbody{
+		color:black;
+	}
+</style>
+<div class="loginwrap">
+	<div class="formbox">
+		<div class="box col-md-10 col-md-offset-1" >
+			<div class="head-info">
+				
+			</div>
+			<div class="title">采&nbsp;购&nbsp;通&nbsp;知</div>
+			<div class="main-info col-md-10 col-md-offset-1">
+				<table class="table table-bordered table-hover">
+				   <thead>
+				     <tr>
+				       <th>采购单号</th>
+				       <th>物品名称</th>
+				       <th>物品编号</th>
+				       <th>采购数量</th>
+				       <th>采购单位</th>
+				       <th>采购时间</th>
+				       <th>采购公司</th>
+			 		   <th>填写原料发货记录</th>
+				     </tr>
+				   </thead>
+				   <tbody>
+				     <div class="col-md-3 col-md-offset-10">
+				  	 	<label>查询:</label>
+				  	 	<input type="text" ng-model="query"/>
+				  	 </div>
+				  	 <tr ng-show="puchaseSize == 0">
+				  	 	<td><span>没有采购新通知哦!</span></td>
+				  	 </tr>
+				     <tr ng-repeat="p in puchases | filter:query">
+	                     <td><span ng-bind="p.purchaseNum"></span></td>
+	                     <td><span ng-bind="p.articleName"></span></td>
+	                     <td><span ng-bind="p.articleNum"></span></td>
+	                     <td><span ng-bind="p.number"></span></td>
+	                     <td><span ng-bind="p.iu"></span></td>
+	                     <td><span ng-bind="p.purchaseDate | date:'yyyy-MM-dd'"></span></td>
+	                     <td><span ng-bind="p.purchaser.companyName"></span></td>
+	                     <td>
+	                     	<a class="btn btn-info custom-width" ng-href="#/rawmaterial/{{p.purchaseid}}">填写</a>
+	                     </td>
+                     </tr>
+				   </tbody>
+				 </table>
+			</div>
+		</div>
+	</div>
+</div>

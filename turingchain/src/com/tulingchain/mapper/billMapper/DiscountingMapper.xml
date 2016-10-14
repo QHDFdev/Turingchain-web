@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tulingchain.mapper.billMapper.DiscountingMapper">
+	<resultMap id="BaseResultMap"  type="com.tulingchain.model.bill.Discounting">
+		<id column="dis_id" property="dis_id"/>
+		<result column="discountingName" property="discountingName" />
+		<result column="billNumber" property="billNumber"/>
+		<result column="payee" property="payee"/>
+		<result column="moneySum" property="moneySum"/>
+		<result column="discountingOrg" property="discountingOrg"/>
+		<result column="expireDate" property="expireDate"/>
+		<result column="whenSolutionPay" property="whenSolutionPay"/>
+		<result column="operateType" property="operateType"/>
+		<result column="transferTo" property="transferTo"/>
+		<result column="createId" property="createId"/>
+		<result column="transferId" property="transferId"/>
+		<association property="signerNoder"  column="signer" javaType="com.tulingchain.model.bill.BillNoder"  select="selectBillNoderByid" >
+				<id column="id" property="id"/>
+				<result column="companyName" property="companyName" />
+	    		<result column="noderAddress" property="noderAddress" />
+		</association>
+		<association property="payeeNoder"  column="payee"  javaType="com.tulingchain.model.bill.BillNoder" select="selectBillNoderByid" >
+			<id column="id" property="id"/>
+			<result column="companyName" property="companyName" />
+			<result column="noderAddress" property="noderAddress" />
+		</association>
+		<association property="discountingOrgNoder"  column="discountingOrg"  javaType="com.tulingchain.model.bill.BillNoder"  select="selectBillNoderByid">
+			<id column="id" property="id"/>
+			<result column="companyName" property="companyName" />
+			<result column="noderAddress" property="noderAddress" />
+		</association>
+	</resultMap>
+	
+	 <resultMap id="NoderResultMap" type="com.tulingchain.model.bill.BillNoder" >
+    <id column="id" property="id"/>
+    <result column="companyName" property="companyName" />
+    <result column="noderAddress" property="noderAddress" />
+  </resultMap>
+	
+	
+	<!-- Issuance 插入，添加属性“useGeneratedKeys”和“keyProperty”,keyProperty是Java对象的属性，
+	插入对象后，可通过getter方法获取插入id -->
+	<insert id="save" keyColumn="dis_id"  keyProperty="dis_id" useGeneratedKeys="true">
+		insert into bill_discounting_ (discountingName,billNumber,payee,moneySum,discountingOrg,expireDate,whenSolutionPay,operateType,transferTo,createId,transferId) values (#{discountingName},#{billNumber},#{payee},#{moneySum},#{discountingOrg},#{expireDate},#{whenSolutionPay},#{operateType},#{transferTo},#{createId},#{transferId})
+	</insert>
+	
+	<select id="listAll"  resultMap="BaseResultMap" parameterType="int">
+		select * from bill_discounting_ where discountingName=#{id}
+	</select>
+	
+	<select id="selectBillNoderByid"  resultMap="NoderResultMap" parameterType="int">
+		select  companyName,noderAddress from bill_noder_ where id=#{id}
+	</select>
+	
+	<update id="updateCreateThrnsferId"  parameterType="com.tulingchain.model.bill.Discounting">
+		update  bill_discounting_
+		set transferId = #{transferId},createId = #{createId}
+		where dis_id = #{dis_id}
+  	</update> 
+  	
+  	<select id="listFinishedDiscounting" parameterType="int">
+  		select * from bill_inssuance_ where discountingOrg=#{discountingOrg} and isDiscounted=1
+  	</select>
+</mapper>

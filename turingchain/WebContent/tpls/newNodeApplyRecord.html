@@ -1,0 +1,46 @@
+
+<div class="loginwrap">
+	<div class="formbox">
+		<div class="box col-md-10 col-md-offset-1" >
+			<div class="head-info">
+				
+			</div>
+			<div class="title">申&nbsp;请&nbsp;记&nbsp;录</div>
+			<div class="main-info col-md-10 col-md-offset-1">
+				<table class="table table-bordered table-hover">
+				   <thead>
+				     <tr>
+				       <th>用户名ID</th>
+				       <th>新节点ID</th>
+				       <th>新节点IP地址</th>
+				       <th>新节点具体地址</th>
+				       <th>新节点所属机构</th>
+				       <th>审核状态</th>
+			 		   <th>详情</th>
+				     </tr>
+				   </thead>
+				   <tbody>
+				   <!-- 	<div class="col-md-3 col-md-offset-10">
+				  	 	<label>查询:</label>
+				  	 	<input type="text" ng-model="query"/>
+				  	 </div>
+				  	 <tr ng-show="tranSize == 0">
+				  	 	<td><span>没有运输记录哦!</span></td>
+				  	 </tr> -->
+				     <tr ng-repeat="apply in newNodeApplys | filter:query">
+	                     <td><span ng-bind="apply.userNameID"></span></td> 
+	                     <td><span ng-bind="apply.nodeID"></span></td> 
+	                     <td><span ng-bind="apply.nodeIP"></span></td>
+	                     <td><span ng-bind="apply.nodeAddr"></span></td>
+	                     <td><span ng-bind="apply.nodeOrga"></span></td>
+	                     <td><span ng-bind="apply.state"></span></td>
+	                     <td>
+	                     	<a class="btn btn-info custom-width" ng-href="#/newNodeApplyRecordInfo/{{apply.userNameID}}/{{apply.nodeID}}">详细信息</a>
+	                     </td>
+                     </tr>
+				   </tbody>
+				 </table>
+			</div>
+		</div>
+	</div>
+</div>

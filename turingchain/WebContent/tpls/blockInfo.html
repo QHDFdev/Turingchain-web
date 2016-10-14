@@ -1,0 +1,91 @@
+<div class="loginwrap">
+	<div class="formbox">
+		<div class="box col-md-10 col-md-offset-1" >
+			<div class="head-info">
+			</div>
+			<div class="title">区块信息</div>
+			<div class="main-info">
+				<div class="tab-content tab-bordered">
+					<div class="tab-panel">
+						<form class="register-detail showcase-form" id="form" name="form" >
+							<div class="info-right  col-md-10 ">
+								<div class="form-group">
+									<label class="col-sm-3 control-label">区块高度</label>
+									<div class="col-sm-9">
+										<div>
+											<span  ng-bind="blockinfo.block_number" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">本区块hash</label>
+									<div class="col-sm-9">
+										<div>
+											<span  ng-bind="blockinfo.id" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">区块node-publicKey</label>
+									<div class="col-sm-9">
+										<div>
+											<span  ng-bind="blockinfo.block.node_pubkey" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">生成时间</label>
+									<div class="col-sm-9">
+										<div>
+											<span  ng-bind=" blockinfo.block.timestamp + '000' | date:'yyyy/MM/dd HH:mm:ss'" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">交易信息</label>
+									<div class="col-sm-9">
+									<table class="table table-bordered table-hover">
+										   <thead>
+										     <tr>
+										       <th>交易Hash</th>
+										       <th>前置交易</th>
+										     </tr>
+										   </thead>
+										   <tbody>
+										     <tr  style="color: black;" ng-repeat="t in blockinfo.block.transactions">
+							                     <td><a class="hover"><span  ng-click="blockContent(t.id)" ng-bind="t.id" ></span></a></td>
+							                     <td><span ng-bind="t.transaction.data.payload.previous_process_tx_id != null ? t.transaction.data.payload.previous_process_tx_id : '没有前置交易'"></span></td>
+						                     </tr>
+										   </tbody>
+										 </table>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">投票节点</label>
+									<div class="col-sm-9">
+										<table  class="table table-bordered table-hover">
+										   <thead>
+										     <tr>
+										       <th>节点公钥</th>
+										     </tr>
+										   </thead>
+										   <tbody>
+										     <tr style="color: black;" ng-repeat="v in blockinfo.block.voters">
+							                     <td><span ng-bind="v"></span></td>
+						                     </tr>
+										   </tbody>
+										 </table>
+									</div>
+								</div>
+							</div>
+						</form>
+						<div class="info-right col-md-offset-2 col-md-1 "><button type="button" class="btn btn-primary"  onClick="javascript: history.go(-1);">返回上一页</button></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<style>
+ a:hover{text-decoration:underline;}
+</style>

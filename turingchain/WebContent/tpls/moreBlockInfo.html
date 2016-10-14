@@ -1,0 +1,66 @@
+<style>
+
+.li-select select {
+  width:35px;
+  height:32px;
+  margin-top:1px;
+  margin-left:11px;
+  margin-right:5px;
+  
+
+}
+.caption-head{
+	font-size:35px;
+	text-align:center;
+}
+
+</style>
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table table-striped table-hover">
+					<caption class="caption-head">区块详情页面</caption>
+					<thead>
+						<tr>
+							<th>区块高度</th>
+							<th>Transaction ID</th>
+							<th>Node-PubKey</th>
+							<th>生成时间</th>
+						</tr>
+					</thead>
+					<tbody style="color: black;">
+						<tr ng-repeat="b in page.listPerPage">
+							<td><a style="color: black;"
+								ng-click="queryBlockInfoRest(b.block_number)"><span
+									ng-bind="b.block_number"></span></a></td>
+							<td>
+								<!--  <ul
+									ng-repeat="bt in b.block.value.transactions.value.transaction | limitTo: 3">
+									<li><span ng-bind="bt.id.value"></span></li>
+								</ul>-->
+								<li><span  ng-bind="b.id"></span></li>
+							</td>
+							<td><span  ng-bind="b.block.node_pubkey"></span></td>
+							<td><span 
+								ng-bind="b.block.timestamp + '000' | date:'yyyy/MM/dd HH:mm:ss'"></span></td>
+						</tr>
+					</tbody>
+				</table>
+				<ul class="pagination"  id="pagination-flickr">
+					<!-- <li><a href="#">&laquo;</a></li> -->
+					<li><a href="#/moreBlockInfo/1">1</a></li>
+					<li><a href="#/moreBlockInfo/2">2</a></li>
+					<li><a href="#/moreBlockInfo/3">3</a></li>
+					<li><a href="#/moreBlockInfo/4">4</a></li>
+					<li><a href="#/moreBlockInfo/5">5</a></li>
+					<!--<li><a href="#">&raquo;</a></li> -->
+					<li class="li-select"><select onchange="javascript:location.href=this.value;">
+					  <option ng-selected="{{currentPage}} == p"  ng-repeat="p in totalPagesAll" value ="#/moreBlockInfo/{{p}}">{{p}}</option>
+					</select></li>
+					<li>共:<b>{{page.count}}</b>条数据</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>

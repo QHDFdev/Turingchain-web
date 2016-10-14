@@ -1,0 +1,173 @@
+
+<div class="loginwrap">
+	<div class="formbox">
+		<div class="box col-md-10 col-md-offset-1" >
+			<div class="head-info">
+				
+			</div>
+			<div class="title">收货详情</div>
+			<div class="main-info">
+				<div class="tab-content tab-bordered">
+					<div class="tab-panel">
+						<form class="register-detail showcase-form" ng-submit="articleDelivery()" id="form" name="form" novalidate enctype="multipart/form-data">
+							<div class="info-right col-md-offset-1 col-md-9 ">
+								<div class="form-group">
+									<label class="col-sm-3 control-label">运输单号</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text" required name="" ng-model="tp.transportNum"
+												class="form-control" placeholder="采购单号">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">物品名称</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text"  required  ng-model="tp.articleName"
+												class="form-control" placeholder="物品名称">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">物品编号</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text"  required  ng-model="tp.articleNum"
+												class="form-control" placeholder="物品名称">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">采购数量</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text"  required  ng-model="tp.purchase.number"
+												class="form-control" placeholder="采购数量">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">计量单位</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text"  required  ng-model="tp.purchase.iu"
+												class="form-control" placeholder="计量单位">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">价格</label>
+									<div>
+										<div class="col-sm-4">
+											<input type="text"  required  ng-model="tp.price"
+												class="form-control" placeholder="价格">
+										</div>
+										<div class="col-sm-3">
+											<span>元/</span><span ng-bind="tp.purchase.iu"></span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">发货日期</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text"  required  ng-model="tp.sentDate"
+												class="form-control" placeholder="采购单位">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">发货公司</label>
+									<div class="col-sm-7">
+									<div>
+										<input type="text" name="" ng-model="ts.seller.companyName" required 
+											 class="form-control" placeholder="生产公司"/>
+											 </div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">发货公司地址</label>
+									<div class="col-sm-7">
+									<div>
+										<input type="text" name="" ng-model="ts.seller.noderAddress" required 
+											 class="form-control" placeholder="生产公司编号"/>
+											 </div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">运输公司名称</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text"  required name="" ng-model="tt.transport.companyName"
+												class="form-control">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">物件运输负责人名</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text" required name="senderName" ng-model="tp.senderName"
+												class="form-control" placeholder="物件运输负责人名">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">物件运输负责人编号</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text" required name="senderNum" ng-model="tp.senderNum"
+												class="form-control" placeholder="物件运输负责编号">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">收货公司</label>
+									<div class="col-sm-7">
+									<div>
+										<input type="text" name="" ng-model="tpr.purchaser.companyName" required 
+											 class="form-control" placeholder="生产公司"/>
+											 </div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">收货公司地址</label>
+									<div class="col-sm-7">
+									<div>
+										<input type="text" name="" ng-model="tpr.purchaser.noderAddress" required 
+											 class="form-control" placeholder="生产公司编号"/>
+											 </div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">收货人</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text"  required name="transComName" ng-model="transDel.recipientName"
+												class="form-control" >
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">收货人编号</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text"  required name="transComName" ng-model="transDel.recipientNum"
+												class="form-control" >
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-offset-9 col-sm-1">
+										<button type="submit" class="btn btn-success" ng-disabled="form.$invalid">确认收货</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

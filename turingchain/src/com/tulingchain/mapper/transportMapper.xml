@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tulingchain.mapper.TransportMapper" >
+  
+  <resultMap id="BaseResultMap" type="com.tulingchain.model.Transport" >
+  	<id column="id" property="id"/>
+    <result column="transportNum" property="transportNum" />
+    <result column="price" property="price" />
+    <result column="receiveDate" property="receiveDate" />
+    <result column="sentDate" property="sentDate" />
+    <result column="deliveryDate" property="deliveryDate" />
+    <result column="state" property="state" />
+    <result column="purchaseId" property="purchaseId" />
+    <result column="purchaserId" property="purchaserId" />
+    <result column="transportId" property="transportId" />
+    <result column="senderName" property="senderName" />
+    <result column="senderNum" property="senderNum" />
+    <result column="articleName" property="articleName" />
+    <result column="articleNum" property="articleNum" />
+    <result column="articleType" property="articleType" />
+    <result column="carrierName" property="carrierName" />
+    <result column="carrierNum" property="carrierNum" />
+	<result column="txPubKeyPair" property="txPubKeyPair" />
+	<result column="txPrivKeyPair" property="txPrivKeyPair" />
+	<result column="txId" property="txId" />
+    <association property="purchase" column="purchaseId" javaType="Purchase">
+    	<id column="purchaseid" property="purchaseid"/>
+    	<result column="number" property="number" />
+    	<result column="iu" property="iu" />
+    </association>
+  </resultMap>
+  
+  <resultMap id="TransResultMap" type="com.tulingchain.model.Transport" >
+  	<id column="id" property="id"/>
+    <result column="transportNum" property="transportNum" />
+    <result column="price" property="price" />
+    <result column="receiveDate" property="receiveDate" />
+    <result column="sentDate" property="sentDate" />
+    <result column="deliveryDate" property="deliveryDate" />
+    <result column="state" property="state" />
+    <result column="purchaseId" property="purchaseId" />
+    <result column="purchaserId" property="purchaserId" />
+    <result column="transportId" property="transportId" />
+    <result column="senderName" property="senderName" />
+    <result column="senderNum" property="senderNum" />
+    <result column="articleNum" property="articleNum" />
+    <result column="articleName" property="articleName" />
+    <result column="articleType" property="articleType" />
+    <result column="carrierName" property="carrierName" />
+    <result column="carrierNum" property="carrierNum" />
+	<result column="txPubKeyPair" property="txPubKeyPair" />
+	<result column="txPrivKeyPair" property="txPrivKeyPair" />
+	<result column="txId" property="txId" />
+</resultMap>
+  
+   <resultMap id="SellerResultMap" type="com.tulingchain.model.Transport" >
+   		<association property="seller" column="sellerId" javaType="Noder">
+	   		<id column="id" property="id"/>
+	    	<result column="companyName" property="companyName" />
+	    	<result column="noderAddress" property="noderAddress" />
+    	</association>
+   </resultMap>
+   
+   <resultMap id="PurchaserResultMap" type="com.tulingchain.model.Transport" >
+   		<association property="purchaser" column="purchaserId" javaType="Noder">
+	   		<id column="id" property="id"/>
+	    	<result column="companyName" property="companyName" />
+	    	<result column="noderAddress" property="noderAddress" />
+	    </association>
+   </resultMap>
+   
+   <resultMap id="TransportResultMap" type="com.tulingchain.model.Transport" >
+   		<association property="transport" column="transportId" javaType="Noder">
+	   		<id column="id" property="id"/>
+	    	<result column="companyName" property="companyName" />
+	    	<result column="noderAddress" property="noderAddress" />
+    	</association>
+   </resultMap>
+   
+   
+    <insert id="save" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+    insert into transport_ (transportNum,articleName,articleNum,articleType,price,becity,destination,receiveDate,sentDate,deliveryDate,senderName,senderNum,sendComName,sendComNum,sendComAddress,recipientName,
+    	recipientNum,recipientComName,recipientComNum,recipientComAddress,carrierNum,carrierName,transportComName,transportComNum,transportComAddress,purchaseId,
+    	transportId,purchaserId,sellerId,txPubKeyPair,txPrivKeyPair,state,txId
+      )
+    values (#{transportNum},#{articleName},#{articleNum},#{articleType},#{price},#{becity},#{destination},#{receiveDate},#{sentDate},#{deliveryDate},#{senderName},#{senderNum},#{sendComName}, #{sendComNum},#{sendComAddress},#{recipientName},
+    	#{recipientNum},#{recipientComName},#{recipientComNum},#{recipientComAddress},#{carrierNum},#{carrierName},#{transportComName},#{transportComNum},#{transportComAddress},
+    	#{purchaseId},#{transportId},#{purchaserId},#{sellerId},#{txPubKeyPair},#{txPrivKeyPair},#{state},#{txId}
+      )
+  </insert>
+  
+   <select id="getTransCount" resultType="String" parameterType="int">
+  	select count(*)
+  	from transport_
+  	where purchaserId = #{id} and state = '未确认'
+  </select>
+  
+  <select id="listAll" resultMap="BaseResultMap">
+  	select *
+  	from transport_
+  </select> 
+
+ <select id="listDelivery" resultMap="BaseResultMap" parameterType="int">
+  	select t.*,p.*
+  	from transport_ t , purchase_ p
+  	where t.purchaserId = #{id} and p.purchaseid = t.purchaseId and t.state = '未确认'
+  </select> 
+  
+  <select id="listDelivered" resultMap="BaseResultMap" parameterType="int">
+  	select t.*,p.*
+  	from transport_ t , purchase_ p
+  	where t.purchaserId = #{id} and p.purchaseid = t.purchaseId and t.state = '已确认'
+  </select> 
+  <select id="listAllDelivery" resultMap="BaseResultMap" parameterType="int">
+  	select t.*,p.*
+  	from transport_ t , purchase_ p
+  	where t.purchaserId = #{id} and p.purchaseid = t.purchaseId 
+  </select> 
+  
+  <select id="getTransPurchase" resultMap="BaseResultMap" parameterType="int">
+  	select t.*,p.*
+  	from transport_ t , purchase_ p
+  	where t.id = #{id} and p.purchaseid = t.purchaseId
+  </select> 
+  
+  <select id="getTransSeller" resultMap="SellerResultMap" parameterType="int">
+  	select *
+  	from transport_ t , noder_ n
+  	where t.id = #{id} and n.id = t.sellerId
+  </select> 
+  
+  <select id="getTransPurchaser" resultMap="PurchaserResultMap" parameterType="int">
+  	select *
+  	from transport_ t , noder_ n
+  	where t.id = #{id} and n.id = t.purchaserId
+  </select> 
+  
+  <select id="getTransTransport" resultMap="TransportResultMap" parameterType="int">
+  	select t.*,n.*
+  	from transport_ t , noder_ n
+  	where t.id = #{id} and n.id = t.transportId
+  </select> 
+  
+  <select id="getTransByID" resultMap="TransResultMap" parameterType="int">
+  	select *
+  	from transport_ 
+  	where id = #{id} 
+  </select> 
+  
+  <update id="updateDelivery" parameterType="Transport">
+	update  transport_
+	set recipientName = #{recipientName},recipientNum=#{recipientNum},deliveryDate=#{deliveryDate},state='已确认'
+	where id = #{id}
+  </update>
+  
+   <update id=" updateTxId" parameterType="java.lang.String">
+	update  transport_
+	set txId=#{txId}
+	where id = #{id}
+  </update>
+ 
+  
+  
+</mapper>

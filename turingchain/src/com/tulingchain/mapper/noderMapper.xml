@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tulingchain.mapper.NoderMapper" >
+  <resultMap id="BaseResultMap" type="com.tulingchain.model.Noder" >
+    <id column="id" property="id"/>
+    <result column="noderName" property="noderName" />
+    <result column="idNumber" property="idNumber" />
+    <result column="noderProvince" property="noderProvince" />
+    <result column="noderCity" property="noderCity" />
+    <result column="noderCounty" property="noderCounty" />
+    <result column="noderAddress" property="noderAddress" />
+    <result column="email" property="email" />
+    <result column="password" property="password" />
+    <result column="noderImg" property="noderImg" />
+    <result column="noderKey" property="noderKey" />
+    <result column="noderType" property="noderType" />
+    <result column="noderState" property="noderState" />
+    <result column="business" property="business" />
+    <result column="registerStart" property="registerStart" />
+    <result column="applyTime" property="applyTime" />
+    <result column="companyName" property="companyName" />
+    <result column="companyId" property="companyId" />
+    <result column="companyCode" property="companyCode" />
+    <result column="lawerName" property="lawerName" />
+    <result column="companyRegist" property="companyRegist" />
+    <result column="noderFile" property="noderFile" />
+    <result column="record" property="record" />
+    <result column="nodeCount" property="nodeCount" />
+    <result column="nodeIp" property="nodeIp" />
+    <result column="chainCount" property="chainCount" />
+    <result column="chainId" property="chainId" />
+    <result column="nodePubKey" property="nodePubKey" />
+    <result column="nodePrivateKey" property="nodePrivateKey" />
+    <result column="noderEnd" property="noderEnd" />
+    <result column="upReason" property="upReason" />
+    <result column="endReason" property="endReason" />
+    <result column="protectRecord" property="protectRecord" />
+  </resultMap>
+  
+  <resultMap id="NoderServerMap" type="com.tulingchain.model.Noder" >
+	<id column="id" property="id"/>
+	<result column="regDate" property="regDate" />
+	<result column="noderType" property="noderType" />
+	<result column="nodePubKey" property="nodePubKey" />
+	<result column="noderState" property="noderState" />
+  </resultMap>
+	
+  <insert id="save" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+   insert into noder_ (noderName,idNumber,noderProvince,noderCity,noderCounty,noderAddress,email,password,noderImg,
+    noderKey,noderType,noderState,business,registerStart,applyTime,companyName,companyId,companyCode,lawerName,companyRegist,
+    noderFile,record,nodeCount,nodeIp,chainCount,chainId,nodePubKey,nodePrivateKey,noderEnd,upReason,endReason,protectRecord
+      )
+    values (#{noderName}, #{idNumber},#{noderProvince},#{noderCity},#{noderCounty},#{noderAddress},#{email},#{password},#{noderKey},#{noderImg},
+    #{noderType},#{noderState},#{business},#{registerStart},#{applyTime},#{companyName},#{companyId},#{companyCode},#{lawerName},
+    #{companyRegist},#{noderFile},#{record},#{nodeCount},#{nodeIp},#{chainCount},#{chainId},#{nodePubKey},#{nodePrivateKey},#{noderEnd},#{upReason},#{endReason},
+    #{protectRecord}
+      )
+  </insert>
+  
+  <select id="queryLogin" resultMap="BaseResultMap" parameterType="Noder" >
+	select *
+	from noder_
+	where email=#{email} and password=#{password}
+  </select> 
+	
+  <select id="selectByCode" resultMap="BaseResultMap" >
+	select *
+	from noder_
+	where code=#{code} 
+  </select> 
+  
+   <update id="updateImg" parameterType="Noder">
+	update  noder_
+	set noderImg = #{noderImg}
+	where noderName = #{noderName}
+  </update>  
+  
+  <update id="updateState" parameterType="Noder">
+	update  noder_
+	 <set >
+      <if test="noderKey != null" >
+        noderKey = #{noderKey},
+      </if>
+      	noderState=#{noderState}
+    </set>
+	where id = #{id}
+  </update> 
+  
+  <delete id="deleteNoder" parameterType="Noder">
+	delete from noder_
+  	where id=#{id}
+  </delete>
+  
+  <update id="updatePwd" parameterType="Noder">
+	update  noder_
+	set password = #{1}
+	where noderName = #{0}
+  </update> 
+ 
+   <select id="getNoderByEmail" resultMap="BaseResultMap" parameterType="String">
+  	 select *
+  	 from noder_
+  	 where email=#{email}
+   </select> 
+   
+   <select id="getNoderByName" resultMap="BaseResultMap" parameterType="String">
+  	select *
+  	from noder_
+  	where noderName=#{noderName}
+  </select> 
+ 
+ <select id="getNoderById" resultMap="BaseResultMap" parameterType="Integer">
+  	select *
+  	from noder_
+  	where id=#{id}
+  </select> 
+   <!-- 查询Noder信息服务 -->
+   <select id="getNoderSer" resultMap="NoderServerMap" parameterType="Integer">
+  	select id,registerStart,noderType,noderKey,noderState
+  	from noder_
+  	where id=#{id}
+  </select> 
+  
+  <select id="getNoderIpSer" resultType="String" parameterType="Integer">
+  	select nodeIp
+  	from noder_
+  	where id=#{id}
+  </select> 
+  
+  <select id="getNoderPubKeySer" resultType="String" parameterType="Integer">
+  	select nodePubKey
+  	from noder_
+  	where id=#{id}
+  </select> 
+  
+  <select id="getNoderRegDateSer" resultType="Date" parameterType="Integer">
+  	select registerStart
+  	from noder_
+  	where id=#{id}
+  </select> 
+  
+  <select id="getNoderRegUserCountSer" resultType="String" parameterType="Integer">
+  	select nodeCount
+  	from noder_
+  	where id=#{id}
+  </select> 
+  
+  <select id="getNoderByComNum" resultMap="BaseResultMap" parameterType="String">
+  	select *
+  	from noder_
+  	where companyId=#{companyId}
+  </select> 
+  
+  <select id="getNoderByComName" resultMap="BaseResultMap" parameterType="String">
+  	select *
+  	from noder_
+  	where companyName=#{companyName}
+  </select> 
+  
+  <select id="listAll" resultMap="BaseResultMap">
+  	select *
+  	from noder_
+  </select> 
+  
+  <select id="listAllByState" resultMap="BaseResultMap">
+  	select *
+  	from noder_
+  	where noderState = '未审核'
+  </select> 
+  
+  <select id="listAllByState2" resultMap="BaseResultMap">
+  	select *
+  	from noder_
+  	where noderState = '审核通过'
+  </select> 
+  
+  <select id="getNoderByComId" resultType="int" parameterType="String">
+  	select id
+  	from noder_
+  	where companyId=#{companyId}
+  </select> 
+  <delete id="delete">
+  	delete from noder_
+  	where id=#{id}
+  </delete>
+  
+</mapper>

@@ -1,0 +1,86 @@
+
+<div class="loginwrap">
+	<div class="formbox">
+		<div class="box col-md-10 col-md-offset-1" >
+			<div class="head-info">
+				
+			</div>
+			<div class="title">采&nbsp;购&nbsp;单</div>
+			<div class="main-info">
+				<div class="tab-content tab-bordered">
+					<div class="tab-panel" ng-controller="PurcController">
+						<form class="register-detail showcase-form" ng-submit="addPurchase()" id="form" name="form" novalidate enctype="multipart/form-data">
+							<div class="info-right col-md-offset-1 col-md-9 ">
+								<div class="form-group">
+									<label class="col-sm-3 control-label">采购单号</label>
+									<div class="col-sm-6">
+										<div>
+											<input type="text" required name="purchaserNum" ng-model="purchase.purchaseNum"
+												class="form-control" placeholder="采购单号">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">物品名称</label>
+									<div class="col-sm-6">
+										<div>
+											<input type="text" required name="articleName" ng-model="purchase.articleName"
+												class="form-control" placeholder="物品名称">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">物品编号</label>
+									<div class="col-sm-6">
+										<div>
+											<input type="text"  required ng-pattern="/^[0-9]{6,6}$/"
+												name="articleNum" ng-model="purchase.articleNum"
+												class="form-control" placeholder="6位有效编号">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">采购数量</label>
+									<div class="col-sm-6">
+										<div>
+											<input type="text"  required name="number" ng-model="purchase.number"
+												class="form-control" placeholder="采购数量">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">计量单位</label>
+									<div class="col-sm-6">
+										<div>
+											<input type="text"  required name="iu" ng-model="purchase.iu"
+												class="form-control" placeholder="计量单位">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">生产公司</label>
+									<div class="col-sm-6">
+										<input type="text" name="sellerComName" ng-model="purchase.sellerComName" required 
+											 class="form-control" placeholder="生产公司"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">生产公司编号</label>
+									<div class="col-sm-6">
+										<input type="text" name="sellerComNum" ng-model="purchase.sellerComNum" required 
+											 class="form-control" placeholder="生产公司编号"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-offset-11 col-sm-1">
+										<button type="submit" class="btn btn-success" ng-disabled="form.$invalid">完成</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,160 @@
+<div class='bill-index'>
+	<div class='index-down hidden-xs'>
+		<span class="icon-arrow-down icon-3x" ng-click='indexdown()'></span>
+	</div>
+	<div id='particles-js'></div>
+	<script>
+		particlesJS.load('particles-js', 'js/particles.json');
+	</script>
+	<div class='jumbotron container-fluid'>
+		<!-- <img src='images/20160914121921.png' class='img-responsive'> -->
+		<!-- <div class='charts-box'>
+			<div id="chart"></div>
+		</div> -->
+		<!-- <h1>票据<span class='red-text'>对比</span></h1> -->
+		<div class='row'>
+		<div class='col-lg-8 col-lg-offset-2 col-sm-12'>
+		<div class='row'>	
+			<div class='col-md-4 col-sm-4 col-xs-12'>
+				<div class='bill-msg'>
+					<div class='bill-msg-content'>
+						<h3>传统票据</h3>
+						<ul class='list-unstyled'>
+							<li>未形成统一票据市场</li>
+							<li>交易工具单一</li>
+							<li>重‘银’轻‘商’</li>
+							<li>违规常出现，风险大</li>
+							<li>查询方式不统一，成本高</li>
+							<li>市场参与主体少，投资功能不明显</li>
+							<li>市场监督缺失</li>
+						</ul>
+					</div>	
+				</div>	
+			</div>
+			<div class='col-md-4 col-sm-4 col-xs-12'>
+				<div class='bill-msg'>
+					<div class='bill-msg-content'>
+						<h3>电子票据</h3>
+						<ul class='list-unstyled lh3'>
+							<li>提高电子化程度</li>
+							<li>有效监督风险，建立信用机制</li>
+							<li>建立票据市场，降低商业融资成本</li>
+						</ul>
+					</div>	
+				</div>	
+			</div>
+			<div class='col-md-4 col-sm-4 col-xs-12'>
+				<div class='bill-msg'>
+					<div class='bill-msg-content'>
+						<h3>TuringSmartBill</h3>
+						<ul class='list-unstyled'>
+							<li>解决假票/克隆票等现象</li>
+							<li>降低票据流转成本</li>
+							<li>避免票据伪造贸易背景假像</li>
+							<li>解决到期解付不及时</li>
+							<li>根绝票据违规操作</li>
+							<li>促进商业承兑汇票市场发展</li>
+						</ul>
+					</div>	
+				</div>	
+			</div>	
+		</div>
+		</div>
+		</div>	
+	</div>
+</div>
+<div class='tuling-bill'>
+	<div class='container'>
+	<!-- <h1><span>TuringSmartBill</span><br class='visible-xs'><span class='red-text'>能做什么？</span></h1>
+	<hr> -->
+		<img src='images/20160930172025.jpg'>
+	</div>
+</div>
+<script type="text/javascript">
+		$(function(){
+			$('#chart').highcharts({
+				chart:{
+					type:'spline',
+					zoomType:'x',
+					resetZoomButton:{
+						position:{
+							right:'20px',
+							verticalAlign:'top'
+						}
+					}
+				},
+				title:{
+					text:'图表',
+					style:{
+						color:'transparent',
+						fontSize:'24px',
+						fontWeight:'bold'
+					}
+				},
+				subtitle:{
+					text:'图表',
+					style:{
+						color:'transparent',
+						fontSize:'24px',
+						fontWeight:'bold'
+					}
+				},
+				xAxis:{
+					tickmarkPlacement:'on',
+					categories:['1994年','1995年','1996年','1997年','1998年','1999年','2000年','2001年','2002年','2003年','2004年','2005年','2006年','2007年','2008年','2009年','2010年','2011年','2012年','2013年']
+				},
+				yAxis:{
+					title:{
+						text:null
+					},
+		            tickInterval: 5000
+				},
+				tooltip: {
+					valueDecimals: 0,
+		            shared: true,
+		            useHTML: true,
+		            headerFormat: '<small>{point.key}</small><table>',
+		            pointFormat: '<tr><td style="color: {series.color}">{series.name}: </td>' +
+		            '<td style="text-align: right"><b>{point.y}元</b></td></tr>',
+		            footerFormat: '</table>', 
+		           /* crosshairs: [{
+		                width: 2,
+		                color: '#292421'
+		            }, {
+		                width: 2,
+		                color: '#292421'
+		            }]  */
+		        },
+				legend:{
+					/* layout: 'vertical',
+		            align: 'right',
+		            verticalAlign: 'top',
+		            y: 50,
+		            padding: 3,
+		            itemMarginTop: 15,
+		            itemMarginBottom: 15,
+		            itemStyle: {
+		                lineHeight: '14px'
+		            } */
+		            align:'center',
+		            verticalAlign:'bottom'
+				},
+				series: [{
+		            name: '商业汇票发生额',
+		            color:'#6c6',
+		            data: [0,0,0,0,0,0,0,1000,1500,2000,2800,3500,5000,8800,9200,10030,14000,17000,18500,21000]
+		        }, {
+		            name: '贴现发生额',
+		            color:'#900',
+		            data: [0,0,0,0,0,0,340,2000,3500,5000,4800,7000,9000,12000,15000,25000,28000,27000,30500,45000]
+		        }, {
+		            name: '再贴现发生额',
+		            color:'#c96',
+		            data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+		        }],
+		        credits: {
+		            enabled: false
+		        }
+			})
+		})
+	</script>

@@ -1,0 +1,170 @@
+
+<div class="loginwrap">
+	<div class="formbox">
+		<div class="box col-md-10 col-md-offset-1" >
+			<div class="head-info">
+				
+			</div>
+			<div class="title" style="width:200px;">新节点申请详细信息</div>
+			<div class="main-info">
+				<div class="tab-content tab-bordered">
+					<div class="tab-panel" ng-controller="newNodeApplyController">
+						<form class="register-detail showcase-form" id="form" name="form" novalidate enctype="multipart/form-data">
+							<div class="info-right col-md-offset-1 col-md-9 ">
+								<div class="form-group">
+									<label class="col-sm-3 control-label">用户名ID</label>
+									<div class="col-sm-6">
+										<div>
+											<input type="text" required name="userNameID" ng-model="newNodeApplyInfo.userNameID"
+												class="form-control">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">用户注册时间</label>
+									<div class="col-sm-6"  >
+										<input type="text" required name="userNameID" ng-model="newNodeApplyInfo.registerDate" 
+											class="form-control">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">新节点IP地址</label>
+									<div class="col-sm-6">
+										<div>
+											<input type="text"  required
+												name="nodeIP" ng-model="newNodeApplyInfo.nodeIP"
+												class="form-control">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">新节点ID</label>
+									<div class="col-sm-6">
+										<div>
+											<input type="text"  required name="nodeID" ng-model="newNodeApplyInfo.nodeID"
+												class="form-control"  >
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">新节点具体地址</label>
+									<div class="col-sm-6">
+										<div>
+											<input type="text"  required name="nodeAddr" ng-model="newNodeApplyInfo.nodeAddr"
+												class="form-control"  >
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+                       				<label class="col-sm-3 control-label">新节点IP所属区域</label>
+                       				<div class="col-sm-6">
+										<div>
+											<input type="text"  required name="nodeID" ng-model="newNodeApplyInfo.nodeIPRegion"
+												class="form-control"  >
+										</div>
+									</div>
+          						</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">新节点所属机构</label>
+									<div class="col-sm-6">
+										<input type="text" name="nodeOrga" ng-model="newNodeApplyInfo.nodeOrga" required 
+											 class="form-control"  />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">新节点创始时间</label>
+									<div class="col-sm-6"  >
+										<input type="text" name="nodeOrga" ng-model="newNodeApplyInfo.nodeCreaTime" required 
+											 class="form-control"  />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">新节点配置-MEM</label>
+									<div class="col-sm-6">
+										<input type="text" name="nodeConfMEM" ng-model="newNodeApplyInfo.nodeConfMEM" required 
+											 class="form-control"  />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">新节点配置-CPU</label>
+									<div class="col-sm-6">
+										<input type="text" name="nodeConfCPU" ng-model="newNodeApplyInfo.nodeConfCPU" required 
+											 class="form-control"  />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">新节点配置-OS</label>
+									<div class="col-sm-6">
+										<input type="text" name="nodeConfOS" ng-model="newNodeApplyInfo.nodeConfOS" required 
+											 class="form-control"  />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">新节点配置-NETWORK</label>
+									<div class="col-sm-6">
+										<input type="text" name="nodeConfNetwork" ng-model="newNodeApplyInfo.nodeConfNetwork" required 
+											 class="form-control"  />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">新节点配置-USED-LIST</label>
+									<div class="col-sm-6">
+										<input type="text" name="nodeConfUsedList" ng-model="newNodeApplyInfo.nodeConfUsedList" required 
+											 class="form-control"  />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">新节点负责人-ID</label>
+									<div class="col-sm-6">
+										<input type="text" name="nodeChargeID" ng-model="newNodeApplyInfo.nodeChargeID" required 
+											 class="form-control"  />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">新节点负责人联系方式</label>
+									<div class="col-sm-6">
+										<input type="text" name="nodeChargeContact" ng-model="newNodeApplyInfo.nodeChargeContact" required 
+											 class="form-control"  />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">申请加入节点类型</label>
+									<div class="col-sm-6">
+										<input type="text" name="nodeChargeContact" ng-model="newNodeApplyInfo.nodeType" required 
+											 class="form-control"  />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">申请加入网络原因</label>
+									<div class="col-sm-6">
+										<input type="text" name="reason" ng-model="newNodeApplyInfo.reason" required 
+											 class="form-control"  />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">申请加入网络推荐人ID</label>
+									<div class="col-sm-6">
+										<input type="text" name="refereeID" ng-model="newNodeApplyInfo.refereeID" required 
+											 class="form-control"  />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">其他事项说明</label>
+									<div class="col-sm-6">
+										<input type="text" name="others" ng-model="newNodeApplyInfo.others" required 
+											 class="form-control" />
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-offset-11 col-sm-1">
+										<button type="button" class="btn btn-success" ng-click="close()">关闭</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

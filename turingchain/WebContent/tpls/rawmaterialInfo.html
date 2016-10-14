@@ -1,0 +1,182 @@
+
+<div class="loginwrap">
+	<div class="formbox">
+		<div class="box col-md-10 col-md-offset-1" >
+			<div class="head-info">
+				
+			</div>
+			<div class="title">发货信息</div>
+			<div class="main-info">
+				<div class="tab-content tab-bordered">
+					<div class="tab-panel">
+						<form class="register-detail showcase-form">
+							<div class="info-right col-md-offset-1 col-md-9 ">
+								<div class="form-group">
+									<label class="col-sm-3 control-label">物品名称</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text" name="name" ng-model="rawm.rawmName"
+												class="form-control">
+										</div>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-sm-3 control-label">物品编号</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text" 
+												name="number" ng-model="rawm.rawmNum"
+												class="form-control">
+										</div>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-sm-3 control-label">采购数量</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text" 
+												name="number" ng-model="rawm.number"
+												class="form-control">
+										</div>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label class="col-sm-3 control-label">单位</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text"   name="iu" ng-model="rawm.iu"
+												class="form-control">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">价格</label>
+									<div>
+										<div class="col-sm-4">
+											<input type="text" name="price" ng-model="rawm.price"
+												class="form-control" >
+										</div>
+										<div class="col-sm-3">
+											<span>元/</span><span ng-bind="rawm.iu"></span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">生产日期</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text" name="productedDate" ng-model="rawm.productedDate"
+												class="form-control" >
+										</div>
+									</div>
+								</div>
+								 <div class="form-group">
+									<label class="col-sm-3 control-label">保质期</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text"  required name="expirationDate" ng-model="rawm.expirationDate"
+												class="form-control" >
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">生产数量</label>
+									<div>
+										<div class="col-sm-4">
+											<input type="text"  required name="productQuantity" ng-model="rawm.productQuantity"
+												class="form-control" >
+										</div>
+										<div class="col-sm-3">
+											<span ng-bind="rawm.iu"></span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">原产地</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text"  required name="origin" ng-model="rawm.origin"
+												class="form-control" >
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">图片</label>
+									<div class="col-sm-7">
+										<div>
+											<img class="img img-circle" ng-src="{{rawm.image}}"  
+				                      			alt="username" width="90" height="90"> <br>  
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">原料负责人名</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text" name="principalName" ng-model="rawm.principalName"
+												class="form-control" placeholder="原料负责人名">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">原料负责人编号</label>
+									<div class="col-sm-7">
+										<div>
+											<input type="text" name="principalNum" ng-model="rawm.principalNum"
+												class="form-control" placeholder="原料负责人编号">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">生产公司</label>
+									<div class="col-sm-7">
+										<input type="text" name="companyName" ng-model="rawm.seller.companyName"  
+											 class="form-control" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">生产公司编号</label>
+									<div class="col-sm-7">
+										<input type="text" name="companyNum" ng-model="rawm.seller.companyId"  
+											 class="form-control" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">采购日期</label>
+									<div class="col-sm-7">
+										<input type="text" name="purchaseDate" ng-model="rawm.purchase.purchaseDate"  
+											 class="form-control"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">采购单号</label>
+									<div class="col-sm-7">
+										<input type="text" name="purchaseNum" ng-model="rawm.purchase.purchaseNum"  
+											 class="form-control" />
+									</div>
+								</div> 
+								<div class="form-group">
+									<label class="col-sm-3 control-label">运输公司名称</label>
+									<div class="col-sm-7">
+										<input type="text" name="purchaseNum" ng-model="rawm.transComName"  
+											 class="form-control" />
+									</div>
+								</div> 
+								<div class="form-group">
+									<label class="col-sm-3 control-label">运输公司编号</label>
+									<div class="col-sm-7">
+										<input type="text" name="purchaseNum" ng-model="rawm.transComNum"  
+											 class="form-control" />
+									</div>
+								</div> 
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

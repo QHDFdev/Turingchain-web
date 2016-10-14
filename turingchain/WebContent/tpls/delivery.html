@@ -1,0 +1,48 @@
+<style>
+	tbody{
+		color:black;
+	}
+</style>
+<div class="loginwrap">
+	<div class="formbox">
+		<div class="box col-md-10 col-md-offset-1" >
+			<div class="head-info">
+				
+			</div>
+			<div class="title">收&nbsp;货&nbsp;通&nbsp;知</div>
+			<div class="main-info col-md-10 col-md-offset-1">
+				<table class="table table-bordered table-hover">
+				   <thead>
+				     <tr>
+				       <th>运输单号</th>
+				       <th>物品名称</th>
+				       <th>物品编号</th>
+				       <th>运输价格</th>
+				       <th>发送日期</th>
+			 		   <th>详情</th>
+				     </tr>
+				   </thead>
+				   <tbody style="color: black">
+				     <div class="col-md-3 col-md-offset-10">
+				  	 	<label>查询:</label>
+				  	 	<input type="text" ng-model="query"/>
+				  	 </div>
+				  	 <tr ng-show="tranSize == 0">
+				  	 	<td><span>没有收货新通知哦!</span></td>
+				  	 </tr>
+				     <tr ng-repeat="t in trans | filter:query">
+	                     <td><span ng-bind="t.transportNum"></span></td> 
+	                     <td><span ng-bind="t.articleName"></span></td>
+	                     <td><span ng-bind="t.articleNum"></span></td>
+	                     <td><span ng-bind="t.price | currency:'￥'"></span></td>
+	                     <td><span ng-bind="t.sentDate | date:'yyyy-MM-dd'"></span></td>
+	                     <td>
+	                     	<a class="btn btn-info custom-width" ng-href="#/transDelivery/{{t.id}}">详细信息</a>
+	                     </td>
+                     </tr>
+				   </tbody>
+				 </table>
+			</div>
+		</div>
+	</div>
+</div>

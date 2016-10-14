@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tulingchain.mapper.RawmaterialMapper" >
+  <resultMap id="ListResultMap" type="com.tulingchain.model.Rawmaterial" >
+    <id column="id" property="id"/>
+    <result column="rawmName" property="rawmName" />
+    <result column="rawmNum" property="rawmNum" />
+    <result column="number" property="number" />
+    <result column="iu" property="iu" />
+    <result column="price" property="price" />
+    <result column="productedDate" property="productedDate" />
+    <result column="principalName" property="principalName" />
+    <result column="principalNum" property="principalNum" />
+  </resultMap>
+  
+  <resultMap id="BaseResultMap" type="com.tulingchain.model.Rawmaterial" >
+    <id column="id" property="id"/>
+    <result column="rawmName" property="rawmName" />
+    <result column="rawmNum" property="rawmNum" />
+    <result column="number" property="number" />
+    <result column="iu" property="iu" />
+    <result column="productQuantity" property="productQuantity" />
+    <result column="price" property="price" />
+    <result column="origin" property="origin" />
+    <result column="expirationDate" property="expirationDate" />
+    <result column="productedDate" property="productedDate" />
+    <result column="sendDate" property="sendDate" />
+    <result column="image" property="image" />
+    <result column="transComName" property="transComName" />
+    <result column="sellerId" property="sellerId" />
+    <result column="purchaserId" property="purchaserId" />
+    <result column="purchaseId" property="purchaseId" />
+    <result column="transComName" property="transComName" />
+    <result column="transComNum" property="transComNum" />
+    <result column="principalName" property="principalName" />
+    <result column="principalNum" property="principalNum" />
+    <association property="purchase" column="purchaseId" javaType="Purchase">
+    	<id column="purchaseid" property="purchaseid"/>
+    	<result column="purchaseDate" property="purchaseDate" />
+    	<result column="purchaseNum" property="purchaseNum" />
+    </association>
+    <association property="seller" resultMap="sellerResultMap"/>
+  </resultMap>
+  
+   <resultMap id="sellerResultMap" type="com.tulingchain.model.Noder" >
+   		<id column="id" property="id"/>
+    	<result column="companyName" property="companyName" />
+    	<result column="companyId" property="companyId" />
+    	<result column="noderAddress" property="noderAddress"/>
+   </resultMap>
+   
+   <resultMap id="purchaserResultMap" type="com.tulingchain.model.Rawmaterial" >
+  	    <id column="id" property="id"/>
+  	    <association property="purchaser" column="purchaserId" javaType="Noder">
+  	   		<id column="id" property="id"/>
+	    	<result column="companyName" property="companyName" />
+	    	<result column="noderAddress" property="noderAddress" />
+    	</association>
+   </resultMap>
+
+  
+  <resultMap id="TransRawmResultMap" type="com.tulingchain.model.Rawmaterial" >
+    <id column="id" property="id"/>
+    <result column="name" property="name" />
+    <result column="number" property="number" />
+    <result column="iu" property="iu" />
+    <result column="productQuantity" property="productQuantity" />
+    <result column="price" property="price" />
+  </resultMap>
+  
+   <resultMap id="RawmResultMap" type="com.tulingchain.model.Rawmaterial" >
+    <id column="id" property="id"/>
+    <result column="rawmName" property="rawmName" />
+    <result column="rawmNum" property="rawmNum" />
+    <result column="number" property="number" />
+    <result column="iu" property="iu" />
+    <result column="productQuantity" property="productQuantity" />
+    <result column="price" property="price" />
+    <result column="origin" property="origin" />
+    <result column="expirationDate" property="expirationDate" />
+    <result column="productedDate" property="productedDate" />
+    <result column="sendDate" property="sendDate" />
+    <result column="image" property="image" />
+    <result column="transComName" property="transComName" />
+    <result column="sellerId" property="sellerId" />
+    <result column="purchaserId" property="purchaserId" />
+    <result column="purchaseId" property="purchaseId" />
+    <result column="transComName" property="transComName" />
+    <result column="transComNum" property="transComNum" />
+    <result column="principalName" property="principalName" />
+    <result column="principalNum" property="principalNum" />
+    <result column="txPubKeyPair" property="txPubKeyPair" />
+    <result column="txPrivKeyPair" property="txPrivKeyPair" />
+    <result column="blockId" property="blockId"/>
+    <result column="txId" property="txId"/>
+    </resultMap>
+  
+  <insert id="save" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+    insert into rawmaterial_ (rawmName,rawmNum,number,image,iu,price,origin,productQuantity,expirationDate,productedDate,sendDate,sellerId,purchaseId,
+    purchaserId,transportId,transComName,transComNum,state,principalName,principalNum,txPubKeyPair,txPrivKeyPair,blockId,txId
+      )
+    values (#{rawmName},#{rawmNum}, #{number},#{image},#{iu},#{price},#{origin},#{productQuantity},#{expirationDate},#{productedDate},#{sendDate},
+    #{sellerId},#{purchaseId},#{purchaserId},#{transportId},#{transComName},#{transComNum},#{state},#{principalName},#{principalNum},#{txPubKeyPair},#{txPrivKeyPair},#{blockId},#{txId}
+      )
+  </insert>
+  
+  <select id="listAll" resultMap="ListResultMap" parameterType="int">
+  	select *
+  	from rawmaterial_ r 
+  	where r.sellerId = #{sellerId};
+  </select> 
+ 
+ <select id="getRawmById" resultMap="BaseResultMap" parameterType="int">
+  	SELECT *
+  	FROM rawmaterial_ r ,purchase_ p ,noder_ n
+  	WHERE r.purchaseId = p.purchaseid AND r.sellerId = n.id AND r.id = #{id};
+  </select> 
+  
+   <select id="listRawmById" resultMap="BaseResultMap" parameterType="int">
+  	select *
+  	from rawmaterial_ r ,noder_ n
+  	where r.sellerId = n.id and r.id = #{id}
+  </select> 
+  
+  <select id="getRawmCount" resultType="String" parameterType="int">
+  	select count(*)
+  	from rawmaterial_
+  	where transportId = #{id} and state = '未确认'
+  </select>
+  
+  <select id="listTransRawmById" resultMap="TransRawmResultMap" parameterType="int">
+  	select *
+  	from rawmaterial_
+  	where transportId = #{id} and state = '未确认'
+  </select>
+  
+  <select id="getRawmPurchaserById" resultMap="purchaserResultMap" parameterType="int">
+  	SELECT *
+  	FROM rawmaterial_ r ,noder_ n
+  	WHERE r.purchaserId = n.id AND r.id = #{id};
+  </select>
+  
+   <select id="getRawmByPurchaseId" resultMap="RawmResultMap" parameterType="int">
+  	SELECT *
+  	FROM rawmaterial_ 
+  	where purchaseId = #{purchaseId}
+  </select>
+  
+  <update id="updateState" parameterType="int">
+  	update  rawmaterial_
+	set state = '已确认',txId=#{txId}
+	where purchaseId = #{purchaseId}
+  </update>
+  
+  <update id="updateTxId" parameterType="java.lang.String">
+  	update  rawmaterial_
+	set txId=#{txId}
+	where purchaseId = #{purchaseId}
+  </update>
+  
+
+  
+</mapper>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tulingchain.mapper.billMapper.IssuanceMapper">
+	<resultMap id="BaseResultMap"  type="com.tulingchain.model.bill.Issuance">
+		<id column="is_id" property="is_id"/>
+		<result column="signer" property="signer" />
+		<result column="billNumber" property="billNumber"/>
+		<result column="payee" property="payee"/>
+		<result column="moneySum" property="moneySum"/>
+		<result column="discountingOrg" property="discountingOrg"/>
+		<result column="expireDate" property="expireDate"/>
+		<result column="whenSolutionPay" property="whenSolutionPay"/>
+		<result column="operateType" property="operateType"/>
+		<result column="transferTo" property="transferTo"/>
+		<result column="createId" property="createId"/>
+		<result column="transferId" property="transferId"/>
+		<result column="isDiscounted" property="isDiscounted"/>
+		<association property="signerNoder"  column="signer" javaType="com.tulingchain.model.bill.BillNoder"  select="selectBillNoderByid" >
+				<id column="id" property="id"/>
+				<result column="companyName" property="companyName" />
+	    		<result column="noderAddress" property="noderAddress" />
+		</association>
+		<association property="payeeNoder"  column="payee"  javaType="com.tulingchain.model.bill.BillNoder" select="selectBillNoderByid" >
+			<id column="id" property="id"/>
+			<result column="companyName" property="companyName" />
+			<result column="noderAddress" property="noderAddress" />
+		</association>
+		<association property="discountingOrgNoder"  column="discountingOrg"  javaType="com.tulingchain.model.bill.BillNoder"  select="selectBillNoderByid">
+			<id column="id" property="id"/>
+			<result column="companyName" property="companyName" />
+			<result column="noderAddress" property="noderAddress" />
+		</association>
+	</resultMap>
+	
+	 <resultMap id="NoderResultMap" type="com.tulingchain.model.bill.BillNoder" >
+    <id column="id" property="id"/>
+    <result column="companyName" property="companyName" />
+    <result column="noderAddress" property="noderAddress" />
+  </resultMap>
+	
+	
+	<!-- Issuance 插入，添加属性“useGeneratedKeys”和“keyProperty”,keyProperty是Java对象的属性，
+	插入对象后，可通过getter方法获取插入id -->
+	<insert id="save" keyColumn="is_id"  keyProperty="is_id" useGeneratedKeys="true">
+		insert into bill_issuance_ (signer,billNumber,payee,moneySum,discountingOrg,expireDate,whenSolutionPay,operateType,transferTo,createId,transferId,isDiscounted) values (#{signer},#{billNumber},#{payee},#{moneySum},#{discountingOrg},#{expireDate},#{whenSolutionPay},#{operateType},#{transferTo},#{createId},#{transferId},#{isDiscounted})
+	</insert>
+	
+	<select id="listAll"  resultMap="BaseResultMap" parameterType="int">
+		select * from bill_issuance_ where signer=#{id}
+	</select>
+	
+	<select id="selectBillNoderByid"  resultMap="NoderResultMap" parameterType="int">
+		select  companyName,noderAddress from bill_noder_ where id=#{id}
+	</select>
+	
+	<select id="selectCreateIdByid"  resultType="java.lang.String" parameterType="int">
+		select  createId  from bill_noder_ where id=#{id}
+	</select>
+	
+	<!-- 承贴机构进行确认承贴 -->
+	<select id="selectIsDiscounted"  resultType="com.tulingchain.model.bill.Issuance" parameterType="int">
+		select  *  from bill_issuance_ where discountingOrg=#{id} and isDiscounted=0
+	</select>	
+	
+	 <update id="updateCreateThrnsferId"  parameterType="com.tulingchain.model.bill.Issuance">
+		update  bill_issuance_
+		set transferId = #{transferId},createId = #{createId}
+		where is_id = #{is_id}
+  	</update> 
+  	
+  	<select id="selectIssuanceByCreateId"  resultType="com.tulingchain.model.bill.Issuance"  parameterType="java.lang.String">
+  		select * from bill_issuance_ where createId=#{createId}
+  	</select>
+  	<update id="updateDiscounted" parameterType="com.tulingchain.model.bill.Issuance">
+  		update bill_issuance_ set isDiscounted = #{isDiscounted} where is_id =#{is_id}
+  	</update>
+  	
+	
+</mapper>

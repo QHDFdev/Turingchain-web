@@ -1,0 +1,88 @@
+<div class="loginwrap">
+	<div class="formbox">
+		<div class="box col-md-10 col-md-offset-1" >
+			<div class="head-info">
+			</div>
+			<div class="title">区块信息</div>
+			<div class="main-info">
+				<div class="tab-content tab-bordered">
+					<div class="tab-panel">
+						<form class="register-detail showcase-form" id="form" name="form" >
+							<div class="info-right  col-md-10 ">
+								<div class="form-group">
+									<label class="col-sm-3 control-label">区块高度</label>
+									<div class="col-sm-9">
+										<div>
+											<span  ng-bind="blockNumber" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">本区块hash</label>
+									<div class="col-sm-9">
+										<div>
+											<span  ng-bind="hashId" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">区块node-publicKey</label>
+									<div class="col-sm-9">
+										<div>
+											<span  ng-bind="nodePubKey" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">生成时间</label>
+									<div class="col-sm-9">
+										<div>
+											<span  ng-bind=" timestamp | date:'yyyy/MM/dd HH:mm:ss'" class="form-control"> </span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">交易信息</label>
+									<div class="col-sm-9">
+									<table class="table table-bordered table-hover">
+										   <thead>
+										     <tr>
+										       <th>交易Hash</th>
+										       <th>上一区块Hash</th>
+										     </tr>
+										   </thead>
+										   <tbody>
+										     <tr ng-repeat="t in transactions">
+							                     <td><span ng-bind="t.id.value"></span></td>
+							                     <td><span ng-bind="t.transaction.value.data.value.payload.value.previousProcessTxId != null ? t.transaction.value.data.value.payload.value.previousProcessTxId.value : '没有上一区块'"></span></td>
+						                     </tr>
+										   </tbody>
+										 </table>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 control-label">投票节点</label>
+									<div class="col-sm-9">
+										<table class="table table-bordered table-hover">
+										   <thead>
+										     <tr>
+										       <th>节点公钥</th>
+										     </tr>
+										   </thead>
+										   <tbody>
+										     <tr ng-repeat="v in votes">
+							                     <td><span ng-bind="v.nodePubkey.value"></span></td>
+							                      
+						                     </tr>
+										   </tbody>
+										 </table>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

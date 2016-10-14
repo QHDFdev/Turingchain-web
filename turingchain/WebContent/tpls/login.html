@@ -1,0 +1,194 @@
+
+<div class="loginwrap">
+	<div class="formbox">
+		<div class="box col-md-6 col-md-offset-3">
+			<div class="head-info">
+				<label class="lbl-1"> </label> <label class="lbl-2"> </label> <label
+					class="lbl-3"> </label>
+			</div>
+			<div class="title">登&nbsp;&nbsp;&nbsp;录</div>
+			<div class="clear"></div>
+			<div class="avtar">
+				<img src="images/avtar.png" />
+			</div>
+			<div class="main-info">
+				<ul class="nav nav-tabs" ng-init="tab.activeTab=1">
+					<li ng-class="{active: tab.activeTab == 1}"><a class="tab1"
+						href="javascript:;" ng-click="tab.activeTab = 1">开发者</a></li>
+					<li ng-class="{active: tab.activeTab == 2}"><a class="tab2"
+						href="javascript:;" ng-click="tab.activeTab = 2">节点用户</a></li>
+					<li ng-class="{active: tab.activeTab == 3}"><a class="tab3"
+						href="javascript:;" ng-click="tab.activeTab = 3">区块链管理员</a></li>
+					<li ng-class="{active: tab.activeTab == 4}"><a class="tab4"
+						href="javascript:;" ng-click="tab.activeTab = 4">超级管理员</a></li>
+				</ul>
+				<br /> <br />
+				<div class="tab-content tab-bordered">
+					<!-- 开发者用户 -->
+					<div class="tab-panel" ng-show="tab.activeTab == 1"
+						ng-controller="LoginController">
+						<form class="form-horizontal showcase-form " role="form"
+							id="basic_form1" name="basic_form1" novalidate>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label">邮箱</label>
+								<div class="col-sm-10">
+									<input type="email" name="email" ng-model="postUser.email" required
+										class="form-control" placeholder="邮箱" />
+								</div>
+							</div>
+							<br />
+							<div class="form-group">
+								<label class="col-sm-2 control-label">密码</label>
+								<div class="col-sm-10">
+									<input type="password" name="password" ng-model="postUser.password"
+										required="" ng-maxlength="20" ng-minlength="6"
+										class="form-control" placeholder="6-20个字符">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+									<button type="button" ng-click="devLogin()"
+										class="btn btn-success"
+										ng-disabled="basic_form1.$invalid && vm.show_type != 3">登录
+									</button>
+									<!-- <a type="button" class="btn btn-success" ng-href="#/register">
+										还没有帐号？注册一个吧 </a> -->
+									<!--  action="userLogin.do" -->
+									<!-- <i class="fa " style="width: 60px; height: 60px; color: black;">字体
+										<span
+										style="font-family: 微软雅黑; width: 60px; height: 60px; color: black;">测试</span>
+									</i> <span
+										style="font-family: fa; width: 60px; height: 60px; color: green;">字体</span>
+									<span
+										style="font-family: 微软雅黑; width: 60px; height: 60px; color: green;">测试</span>
+									<i style="width: 60px; height: 60px; color: green;">字体测试</i> -->
+								</div>
+							</div>
+						</form>
+					</div>
+
+
+					<!-- 节点用户 -->
+					<div class="tab-panel" ng-show="tab.activeTab == 2"
+						ng-controller="LoginController">
+						<!-- ng-controller="NoderController" -->
+						<form class="form-horizontal showcase-form " role="form"
+							id="basic_form2" name="basic_form2" novalidate=""
+							><!-- action="adminLogin.do" method="post" -->
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label">邮箱</label>
+								<div class="col-sm-10">
+									<input type="email" name="email"  ng-model="postUser.email" required=""
+										class="form-control" placeholder="邮箱" />
+								</div>
+							</div>
+							<br />
+							<div class="form-group">
+								<label class="col-sm-2 control-label">密码</label>
+								<div class="col-sm-10">
+									<input type="password" name="password" ng-model="postUser.password" required=""
+										ng-maxlength="20" ng-minlength="6" class="form-control"
+										placeholder="6-20个字符">
+								</div>
+							</div>
+							<br />
+							<div class="form-group">
+								<label class="col-sm-2 control-label">节点秘钥 </label>
+								<div class="col-sm-10">
+									<input type="password" name="noderKey" ng-model="postUser.referrerKey"
+										required="" ng-maxlength="32" ng-minlength="32"
+										class="form-control" placeholder="32位秘钥">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+									<input type="submit" class="btn btn-success" ng-click="noderLogin()"
+										ng-disabled="basic_form2.$invalid && vm.show_type != 3"
+										value="登陆">
+									<!-- <a type="button" class="btn btn-success" ng-href="#/register">
+										还没有帐号？注册一个吧 </a> -->
+								</div>
+							</div>
+						</form>
+					</div>
+
+					<!-- 区块链管理员 -->
+					<div class="tab-panel" ng-show="tab.activeTab == 3"
+						ng-controller="LoginController">
+						<form class="form-horizontal showcase-form "
+							role="form" id="basic_form3"
+							name="basic_form3" novalidate="" >
+<!-- action="adminLogin.do" method="post" -->
+							<div class="form-group">
+								<label class="col-sm-2 control-label">邮箱</label>
+								<div class="col-sm-10">
+									<input type="email" name="email" ng-model="postUser.email" required=""
+										class="form-control" placeholder="邮箱" />
+								</div>
+							</div>
+							<br />
+							<div class="form-group">
+								<label class="col-sm-2 control-label">密码</label>
+								<div class="col-sm-10">
+									<input type="password" name="password" ng-model="postUser.password"
+										required="" ng-maxlength="20" ng-minlength="6"
+										class="form-control" placeholder="6-20个字符">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+									<button type="submit" class="btn btn-success" ng-click="bcaLogin()"
+										ng-disabled="basic_form3.$invalid && vm.show_type != 3">登录
+									</button>
+									<!-- <a type="button" class="btn btn-success" ng-href="#/register">
+										还没有帐号？注册一个吧 </a> -->
+								</div>
+							</div>
+						</form>
+					</div>
+
+					<!-- 超级管理员-->
+					<div class="tab-panel" ng-show="tab.activeTab == 4"
+						ng-controller="LoginController">
+						<form class="form-horizontal showcase-form " role="form"
+							 id="basic_form4"
+							name="basic_form4" novalidate="" >
+							<!-- action="blockChainAdminLogin.do" method="post" -->
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label">邮箱</label>
+								<div class="col-sm-10">
+									<input type="email" name="email" ng-model="postUser.email" required=""
+										class="form-control" placeholder="邮箱" />
+								</div>
+							</div>
+							<br />
+							<div class="form-group">
+								<label class="col-sm-2 control-label">密码</label>
+								<div class="col-sm-10">
+									<input type="password" name="password" ng-model="postUser.password"
+										required="" ng-maxlength="20" ng-minlength="6"
+										class="form-control" placeholder="6-20个字符">
+								</div>
+							</div>
+
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+									<button type="submit" class="btn btn-success"  ng-click="adminLogin()"
+										ng-disabled="basic_form4.$invalid && vm.show_type != 3">登录
+									</button>
+									<!-- <a type="button" class="btn btn-success" ng-href="#/register">
+									 	还没有帐号？注册一个吧 </a>-->
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>

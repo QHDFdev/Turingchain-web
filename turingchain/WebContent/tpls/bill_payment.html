@@ -1,0 +1,58 @@
+<div class='container bill-forms' ng-controller="NoderController">
+	<div class='row'>
+		<div class='col-sm-8 col-sm-offset-2 form-box'>
+			<form ng-submit="paymentBill()" name="paymentBill_form" novalidate>
+				<div class='form-top text-center'>
+
+					<h2>
+						支付票据<i class=' icon-arrow-right'></i>
+					</h2>
+
+				</div>
+				<div class='form-bottom'>
+					<div class="form-group">
+						<label for="" class="sr-only">支付人：</label> <input type="text"
+							ng-model="payment.payerNoder.companyName" name="signer"
+							class="form-control " placeholder="支付人..." required>
+
+					</div>
+					<div class="form-group">
+						<label for="" class="sr-only">票据号：</label> <input type="text"
+							ng-model="payment.billNumber " name="billNumber"
+							class="form-control " placeholder="票据号..." required>
+
+					</div>
+					<div class="form-group">
+						<label for="" class="sr-only">收款人：</label> <input type="text"
+							ng-model="payment.payeeNoder.companyName" name="payee"
+							class="form-control " placeholder="收款人..." required>
+
+					</div>
+					<div class="form-group">
+						<label for="" class="sr-only">金额：</label> <input type="number"
+							ng-model="payment.moneySum" name="moneySum"
+							class="form-control " placeholder="金额..." required>
+
+					</div>
+					<div class="form-group">
+						<label for="" class="sr-only">承贴机构：</label> <input type="text"
+							ng-model="payment.discountingOrgNoder.companyName"
+							name="discountingOrg" class="form-control " placeholder="承贴机构..."
+							required>
+
+					</div>
+					<div class="form-group">
+						<label for="">到期日：</label> <input type="date"
+							ng-model="payment.expireDate" name="expireDate"
+							class="form-control " required>
+
+					</div>
+					<div class='form-group'>
+						<button type="submit" class="btn"
+							ng-disabled="payment_form.$invalid">支付</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

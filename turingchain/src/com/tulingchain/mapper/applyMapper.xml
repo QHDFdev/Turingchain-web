@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tulingchain.mapper.ApplyMapper" >
+  <resultMap id="BaseResultMap" type="com.tulingchain.model.Apply" >
+    <id column="userId" property="userId"/>
+    <result column="userName" property="userName" />
+    <result column="idNumber" property="idNumber" />
+    <result column="userProvince" property="userProvince" />
+    <result column="userCity" property="userCity" />
+    <result column="userCounty" property="userCounty" />
+    <result column="userAddress" property="userAddress" />
+    <result column="business" property="business" />
+    <result column="reason" property="reason" />
+    <result column="registerStart" property="registerStart" />
+    <result column="applyTime" property="applyTime" />
+    <result column="companyName" property="companyName" />
+    <result column="companyId" property="companyId" />
+    <result column="companyCode" property="companyCode" />
+    <result column="lawerName" property="lawerName" />
+    <result column="companyRegist" property="companyRegist" />
+    <result column="applyType" property="applyType" />
+    <result column="file" property="file" />
+    <result column="record" property="record" />
+  </resultMap>
+
+  <insert id="add" keyColumn="userId" keyProperty="userId" useGeneratedKeys="true">
+    insert into apply_ (userId,userName,idNumber,userProvince,userCity,userCounty,userAddress,business,reason,
+    registerStart,applyTime,companyName,companyId,companyCode,lawerName,companyRegist,applyType,file,record
+      )
+    values (#{userId}, #{userName},#{idNumber},#{userProvince},#{userCity},#{userCounty},#{userAddress},#{business},#{reason},
+    #{registerStart},#{applyTime},#{companyName},#{companyId},#{companyCode},
+    #{lawerName},#{companyRegist},#{applyType},#{file},#{record}
+      )
+  </insert>
+  
+  <select id="queryLogin" resultMap="BaseResultMap" parameterType="Apply" >
+	select *
+	from apply_
+	where userName=#{userName} 
+  </select> 
+
+	<select id="getByName" resultMap="BaseResultMap" parameterType="String">
+  	select *
+  	from apply_
+  	where userName=#{userName}
+  	</select> 
+  
+ 
+  
+  <update id="update" parameterType="Apply">
+	update  apply_
+	set userId = #{1}
+	where userName = #{0}
+  </update> 
+ 
+   <select id="getApplyById" resultMap="BaseResultMap" parameterType="Integer">
+  	 select *
+  	 from apply_
+  	 where userId=#{userId}
+   </select> 
+   
+ 	<select id="findApplyById" resultMap="BaseResultMap" parameterType="Integer">
+  	 select *
+  	 from apply_
+  	 where userId=#{userId}
+   </select> 
+ 
+  
+  <select id="listAll" resultMap="BaseResultMap">
+  	select *
+  	from apply_
+  </select> 
+  
+  <delete id="delete">
+  	delete from apply_
+  	where userId=#{userId}
+  </delete>
+  
+   <delete id="deleteByName">
+  	delete from apply_
+  	where userName=#{userName}
+  </delete>
+  
+  <delete id="deleteApply" parameterType="Apply">
+	delete from apply_
+  	where userId=#{userId}
+  </delete>
+</mapper>

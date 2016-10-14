@@ -1,0 +1,1020 @@
+<!DOCTYPE html >
+<html ng-app='myApp3'>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+<link rel="stylesheet"
+	href="http://static.runoob.com/assets/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bill.css">
+<link rel="stylesheet" href="css/showBo.css">
+<link rel="stylesheet"
+	href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+<link rel="stylesheet" href="fontForMermaid/css/font-awesome.min.css">
+<link rel="stylesheet" href="mermaid/mermaid.forest.css">
+<link rel='stylesheet'
+	href='Font-Awesome-3.2.1/css/font-awesome.min.css'>
+
+<title>TuringSmartBill</title>
+</head>
+<body ng-controller='homeController'>
+	<div class='index--main-wrapper'>
+		<div class="main-navbar">
+			<div class="navbar navbar-default">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button class="navbar-toggle" type="button" data-toggle='collapse'
+							data-target='.navbar-responsive-collapse'>
+							<span class="sr-only">Toggle Navigation</span> <span
+								class="icon-bar"></span> <span class="icon-bar"></span> <span
+								class="icon-bar"></span>
+						</button>
+						<a ng-href='#' class="navbar-brand">TuringSmartBill</a>
+					</div>
+					<div class="collapse navbar-collapse navbar-responsive-collapse">
+						<ul class="nav navbar-nav left-nav">
+							<li><a ng-href="#/home"
+								ng-class="{active:natived=='#/home'}">首页</a></li>
+							<li><a ng-href='#/billShow'
+								ng-class="{active:natived=='#/billShow'}">票据流转演示</a></li>
+							<li><a ng-href>票据市场</a></li>
+							<li><a ng-href>票据浏览器</a></li>
+							<li><a ng-href='index2.html' class='red-text'>返回TC</a></li>
+
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li><a
+								ng-hide="userName != null || billNoder.noderName != null"
+								ng-href="" class="btn btn-link loginReg-btn  login-btn"
+								data-toggle="modal" data-target="#loginModal">登陆</a></li>
+							<!-- <li><a
+								ng-hide="userName != null || billNoder.noderName != null "
+								ng-href="" class="btn btn-link loginReg-btn  reg-btn"
+								data-toggle="modal" data-target="#registerModal">注册</a></li> -->
+							<li class="dropdown" ng-hide="billNoder.noderName == null"
+								ng-controller="homeController"><a id="menu"
+								data-toggle="dropdown" class="dropdown-toggle" ng-href ng-cloak>
+									{{billNoder.noderName}}<span class="caret"></span>
+							</a>
+								<ul class="dropdown-menu">
+									<li><a href="#userInfo">个人中心</a></li>
+									<li><a ng-click="logout()">退出</a></li>
+								</ul></li>
+							<li class="dropdown" ng-hide="billNoder.noderName == null"
+								ng-controller="homeController"><a id="menu"
+								data-toggle="dropdown" class="dropdown-toggle" ng-href ng-cloak>
+									票据箱<span class="caret"></span>
+							</a>
+								<ul class="dropdown-menu">
+									<li><a ng-click="myBill()">我的票据</a></li>
+									<li ng-show="billNoder.noderType==1 "><a
+										ng-href="#/inssuance">签发</a></li>
+									<li ng-controller="NoderController"
+										ng-show="billNoder.noderType==2"><a
+										ng-click="showDiscountinglist()">承贴</a></li>
+									<li
+										ng-show="billNoder.noderType==3 || billNoder.noderType==1 || billNoder.noderType==2"><a
+										ng-href="#/payment">支付</a></li>
+									<li
+										ng-show="billNoder.noderType==3 || billNoder.noderType==1 || billNoder.noderType==2"><a
+										ng-href="#/payoff">发薪</a></li>
+									<li ng-show="billNoder.noderType==4"><a
+										ng-href="#/payroll">提薪</a></li>
+									<li ng-show="billNoder.noderType==3"><a
+										ng-href="#/discount">贴现</a></li>
+									<!-- <li ng-show="billNoder.noderType==2"><a ng-href="#/">查看待承贴</a></li> -->
+								</ul></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div ng-view class='index-ngView'></div>
+	</div>
+	<footer>
+		<div class="container-fluid">
+			<div class='bill-footer row'>
+				<div class='col-sm-4'>
+					<p class='footer-text-head'>
+						<i class="glyphicon glyphicon-map-marker"></i><span>联系我们</span><i
+							class='w50'></i>
+					</p>
+					<p>广东省深圳市福田区泰然六路海松大厦A座708室</p>
+					<p>江苏省南京市玄武区珠江路88号新世界中心A座2715室</p>
+				</div>
+				<div class='col-sm-4'>
+					<p class='footer-text-head'>
+						<i class="glyphicon glyphicon-question-sign"></i><span>使用帮助</span><i
+							class='w50'></i>
+					</p>
+					<p>使用说明</p>
+					<p>使用说明</p>
+				</div>
+				<div class='col-sm-4'>
+					<p class='footer-text-head'>
+						<i class="glyphicon glyphicon-heart"></i><span>友情链接</span><i
+							class='w50'></i>
+					</p>
+					<p>
+						<a href='http://www.chaintrix.org/' title='Chaintrix'>Chaintrix</a>
+					</p>
+					<p>
+						<a ng-href='index3.html' title='turingchain'>Turingchain</a>
+					</p>
+				</div>
+			</div>
+			<div class="copyright row">
+				<p>Copyright © 2016 TuringChain , All Rights Reserved</p>
+				<p>隐私保护 南高所 版权所有 粤ICP备12053986号-7</p>
+			</div>
+		</div>
+	</footer>
+	<!-- 登录模态框（Modal） -->
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div
+			class='col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12 col-xs-12'>
+			<div class="modal-dialog ">
+				<div class='bill-login'>
+					<div class='panel panel-default '>
+						<div class='panel-heading'>
+							&nbsp;&nbsp;&nbsp;账户登录
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">&times;</button>
+						</div>
+						<div class='login-img'>
+							<img src="images/avtar.png" />
+						</div>
+						<ul id="loginTabs" class="nav nav-tabs">
+							<!-- <li class="active"><a data-target="#user1" data-toggle="tab">普通用户</a>
+							</li> --> 
+							<li class="active"><a data-target="#user2" data-toggle="tab">用户 登录</a></li>
+							<!-- <li><a data-target="#user3" data-toggle="tab">超级管理员</a></li> -->
+							<!--  <li><a data-target="#user4" data-toggle="tab">区块链管理员</a></li> -->
+						</ul>
+						<div id="loginTabs-content" class="tab-content">
+							<!-- <div class="tab-pane fade in active" id="user1"
+								ng-controller='ptUserController'>
+								<form class="form-horizontal " role="form" name="userForm1"
+									novalidate>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">邮箱</label>
+										<div class="col-sm-6">
+											<input type="email" name="email" ng-model="email" required
+												class="form-control" placeholder="邮箱" />
+										</div>
+									</div>
+									<br>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">密码</label>
+										<div class="col-sm-6">
+											<input type="password" name="password" ng-model="password"
+												required="" ng-maxlength="20" ng-minlength="6"
+												class="form-control" placeholder="6-20个字符">
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-xs-offset-3 col-xs-9">
+											<button type="button" ng-click="queryLogin1()"
+												class="btn btn-success"
+												ng-disabled="basic_form1.$invalid && vm.show_type != 3">登录
+											</button>
+											<a type="button" class="btn btn-success"  ng-click="turnRegister()">
+												还没有帐号？注册一个吧 </a>
+										</div>
+									</div>
+								</form>
+							</div> -->
+							<div class="tab-pane fade in active" id="user2"
+								ng-controller='homeController'>
+								<form class="form-horizontal showcase-form " role="form"
+									name="userForm2" novalidate="">
+									<div class="form-group">
+										<label class="col-xs-3 control-label">邮箱：</label>
+										<div class="col-sm-6 col-xs-9">
+											<input type="email" name="email" ng-model="noder.email"
+												required="" class="form-control" placeholder="邮箱" />
+										</div>
+									</div>
+									<br />
+									<div class="form-group">
+										<label class="col-xs-3 control-label">密码：</label>
+										<div class="col-sm-6 col-xs-9">
+											<input type="password" name="password"
+												ng-model="noder.password" required="" ng-maxlength="20"
+												ng-minlength="6" class="form-control" placeholder="6-20个字符">
+										</div>
+									</div>
+									<br />
+									<div class="form-group">
+										<label
+											class="col-xs-3 control-label">授权码：
+										</label>
+										<div class="col-sm-6 col-xs-9">
+											<input type="password" name="noderKey" ng-model="noderKey"
+												required="" ng-maxlength="32" ng-minlength="32"
+												class="form-control" placeholder="32位秘钥">
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="text-center">
+											<button type="button" ng-click="queryLogin1()"
+												class="btn btn-success"
+												ng-disabled="userForm2.$invalid && vm.show_type != 3">登录
+											</button>
+											<!-- <a type="button" class="btn btn-success"  ng-click="turnRegister()">
+												还没有帐号？注册一个吧 </a> -->
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="tab-pane fade" id="user3"
+								ng-controller='AdminController'>
+								<form class="form-horizontal showcase-form "
+									action="adminLogin.do" role="form" name="userForm3"
+									novalidate="" method="post">
+									<div class="form-group">
+										<label class="col-sm-3 control-label">邮箱</label>
+										<div class="col-sm-6">
+											<input type="email" name="email" ng-model="email" required=""
+												class="form-control" placeholder="邮箱" />
+										</div>
+									</div>
+									<br />
+									<div class="form-group">
+										<label class="col-sm-3 control-label">密码</label>
+										<div class="col-sm-6">
+											<input type="password" name="password" ng-model="password"
+												required="" ng-maxlength="20" ng-minlength="6"
+												class="form-control" placeholder="6-20个字符">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<div class="col-xs-offset-3 col-xs-9">
+											<button type="submit" class="btn btn-success"
+												ng-disabled="basic_form3.$invalid && vm.show_type != 3">登录
+											</button>
+											<a type="button" class="btn btn-success"
+												ng-click="turnRegister()"> 还没有帐号？注册一个吧 </a>
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="tab-pane fade" id="user4"
+								ng-controller="BlockChainAdminController">
+								<form class="form-horizontal showcase-form " role="form"
+									action="blockChainAdminLogin.do" name="userForm4" novalidate=""
+									method="post">
+									<div class="form-group">
+										<label class="col-sm-3 control-label">邮箱</label>
+										<div class="col-sm-6">
+											<input type="email" name="email" ng-model="email" required=""
+												class="form-control" placeholder="邮箱" />
+										</div>
+									</div>
+									<br />
+									<div class="form-group">
+										<label class="col-sm-3 control-label">密码</label>
+										<div class="col-sm-6">
+											<input type="password" name="password" ng-model="password"
+												required="" ng-maxlength="20" ng-minlength="6"
+												class="form-control" placeholder="6-20个字符">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<div class="col-xs-offset-3 col-xs-9">
+											<button type="submit" class="btn btn-success"
+												ng-disabled="basic_form4.$invalid && vm.show_type != 3">登录
+											</button>
+											<!--<a type="button" class="btn btn-success"  ng-click="turnRegister()">
+												还没有帐号？注册一个吧 </a>-->
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- 注册模态框 -->
+	<div class="modal fade" id="registerModal" tabindex="-1" role="dialog">
+		<div class='col-lg-8 col-lg-offset-2 col-md-12  col-sm-12 col-xs-12'>
+			<div class="modal-dialog ">
+				<div class='bill-login'>
+					<div class='panel panel-default '>
+						<div class='panel-heading'>
+							&nbsp;&nbsp;&nbsp;用户注册
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">&times;</button>
+						</div>
+						<div class='login-img'>
+							<img src="images/avtar.png" />
+						</div>
+						<ul id="registerTabs" class="nav nav-tabs">
+							<li class="active"><a data-target="#registerUser1"
+								data-toggle="tab">普通用户</a></li>
+							<li><a data-target="#registerUser2" data-toggle="tab">节点用户</a></li>
+							<!--<li><a data-target="#registerUser3" data-toggle="tab">超级管理员</a></li> -->
+							<!--<li><a data-target="#registerUser4" data-toggle="tab">区块链管理员</a></li> -->
+						</ul>
+						<div id="registerTabs-content" class="tab-content">
+							<!-- 普通用户注册 -->
+							<div class="tab-pane fade in active" id="registerUser1"
+								ng-controller='ptUserController'>
+								<form class="form-horizontal showcase-form"
+									ng-submit="addUser()" id="basic_form" name="basic_form"
+									novalidate enctype="multipart/form-data"
+									ng-controller='ptUserController'>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">用户名</label>
+										<div class="col-sm-6">
+											<div>
+												<input type="text" ensure-nameunique="" required
+													ng-pattern="/^[A-Za-z]{1}[0-9A-Za-z]{5,12}$/" id="userName"
+													name="userName" ng-model="user.userName"
+													class="form-control" placeholder="由字母、数字组成，以字母开头，6-12个字符" />
+											</div>
+											<div class="error" ng-messages="basic_form.userName.$error">
+												<div ng-message="userNameAvi">用户名已被使用！</div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">邮箱</label>
+										<div class="col-sm-6">
+											<input type="email" name="email" ng-model="user.email"
+												required class="form-control" ng-blur="queryEmail()"
+												ensure-emailunique="" placeholder="邮箱" />
+											<div class="error" ng-messages="basic_form.email.$error">
+												<div ng-message="emailAvi">邮箱已被使用！</div>
+											</div>
+											<div class="error" ng-show="emailInfo != null">
+												<div ng-model="emailInfo">{{emailInfo}}</div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">密码</label>
+										<div class="col-sm-6">
+											<input type="password" name="password"
+												ng-model="user.password" required="" ng-maxlength="20"
+												ng-minlength="6" class="form-control"
+												placeholder="6-20个字符，包含字母及数字">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">确认密码</label>
+										<div class="col-sm-6">
+											<input type="password" name="repassword"
+												ng-model="repassword" required ng-maxlength="20"
+												ng-minlength="6" class="form-control" placeholder="请重复输入密码">
+											<p>
+												<span ng-show="basic_form.repassword.$valid"> <span
+													ng-show="repassword != user.password ">*两次密码输入不一致</span>
+												</span>
+											</p>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-9">
+											<button type="submit" class="btn btn-success"
+												ng-disabled="basic_form.$invalid">注册</button>
+											<!--<a type="button" class="btn btn-success"  ng-click="turnLogin()">
+												已有帐号？登录 </a>-->
+										</div>
+									</div>
+								</form>
+							</div>
+							<!-- 节点用户注册 -->
+							<div class="tab-pane fade" id="registerUser2"
+								ng-controller="NoderController">
+								<form class="form-horizontal showcase-form"
+									ng-submit="addNoder()" id="basic_form1" name="basic_form1"
+									novalidate enctype="multipart/form-data">
+									<br /> <br />
+									<div class="form-group">
+										<label class="col-sm-3 control-label">用户名</label>
+										<div class="col-sm-6">
+											<div>
+												<input type="text" ensure-nodernameunique="" required
+													ng-pattern="/^[A-Za-z]{1}[0-9A-Za-z]{5,12}$/"
+													name="noderName" ng-model="noder.noderName"
+													class="form-control" placeholder="由字母、数字组成，以字母开头，6-12个字符">
+												<div class="error"
+													ng-messages="basic_form1.noderName.$error">
+													<div ng-message="noderNameAvi">用户名已被使用！</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">用户身份证号</label>
+										<div class="col-sm-6">
+											<div>
+												<input type="text" ensure-nodernameunique="" required
+													ng-pattern="/^[0-9]{18,18}$/" name="idNumber"
+													ng-model="noder.idNumber" class="form-control"
+													placeholder="18位有效身份证号">
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">邮箱</label>
+										<div class="col-sm-6">
+											<input type="email" ensure-noderemailunique="" name="email"
+												ng-model="noder.email" ng-blur="queryEmail()" required=""
+												class="form-control" placeholder="邮箱" />
+											<div class="error" ng-messages="basic_form1.email.$error">
+												<div ng-message="emailAvi">邮箱已被使用！</div>
+											</div>
+											<div class="error" ng-show="emailInfo != null">
+												<div ng-model="emailInfo">{{emailInfo}}</div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">密码</label>
+										<div class="col-sm-6">
+											<input type="password" name="password"
+												ng-model="noder.password" required ng-maxlength="20"
+												ng-minlength="6" class="form-control"
+												placeholder="6-20个字符，包含字母及数字">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">确认密码</label>
+										<div class="col-sm-6">
+											<input type="password" name="repassword"
+												ng-model="repassword" required ng-maxlength="20"
+												ng-minlength="6" class="form-control" placeholder="请重复输入密码">
+
+											<span ng-show="basic_form1.repassword.$valid"> <span
+												ng-show="repassword != noder.password ">*两次密码输入不一致</span>
+											</span>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">用户所属区域</label>
+										<div class="col-sm-6">
+											<select ng-model="selectedDistrict"
+												ng-change="selectedUnit=''"
+												ng-options="district.name for district in districts">
+												<option value="">---省---</option>
+											</select> <select ng-model="selectedUnit"
+												ng-change="selectedPosition=''"
+												ng-options="unit.name for unit in selectedDistrict.units">
+												<option value="">---市---</option>
+											</select> <select ng-model="selectedPosition"
+												ng-options="unit.name for unit in selectedUnit.positions">
+												<option value="">---区、县---</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">街道地址</label>
+										<div class="col-sm-6">
+											<input type="text" name="noderAddress"
+												ng-model="noder.noderAddress" required class="form-control">
+										</div>
+									</div>
+									<!-- <div class="form-group">
+										<label class="col-sm-3 control-label">选择节点类别</label>
+										<div class="col-sm-6">
+											<select class="form-control" ng-model="noder.noderType">
+												<option value="">- 请选择您的类别  -</option>
+												<option value="1">原料商</option>
+												<option value="0">产品生产商</option>
+												<option value="4">质检员</option>
+												<option value="2">物流运输商</option>
+												<option value="3">销售商</option>
+											</select>
+										</div> 
+									</div>-->
+									<div class="form-group">
+										<label class="col-sm-3 control-label">用户所属行业</label>
+										<div class="col-sm-6">
+											<select class="form-control" ng-model="noder.business">
+												<option value="">--用户类别--</option>
+												<option value="核心集团">核心集团</option>
+												<option value="金融机构">金融机构</option>
+												<option value="下属公司">下属公司</option>
+												<option value="个人用户">个人用户</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">公司名称</label>
+										<div class="col-sm-6">
+											<input type="text" ensure-comnameunique="" required=""
+												name="companyName" ng-model="noder.companyName"
+												class="form-control" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">营业执照注册号</label>
+										<div class="col-sm-6">
+											<input type="text" ensure-comnumunique="" required
+												ng-pattern="/^[0-9]{6,12}$/" name="companyId"
+												ng-model="noder.companyId" class="form-control"
+												placeholder="6-12个数字" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">公司组织机构代码</label>
+										<div class="col-sm-6">
+											<input type="text" ensure-comnameunique="" required=""
+												name="companyCode" ng-model="noder.companyCode"
+												class="form-control" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">法人代表名称</label>
+										<div class="col-sm-6">
+											<div>
+												<input type="text" ensure-nodernameunique=""
+													placeholder="由2-12个汉字组成或由6-12个字母组成"
+													ng-model="noder.lawerName"
+													ng-pattern="/^[\u4e00-\u9fa5]{2,12}|[A-Za-z]{6,12}$/"
+													class="form-control">
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">公司注册时间</label>
+										<div class="col-sm-6">
+											<p class="input-group">
+												<input type="text" class="form-control"
+													datepicker-popup="{{format}}"
+													ng-model="noder.registerStart" is-open="opened"
+													max-date="currentDate" date-disabled="disabled(date,mode)"
+													ng-required="true" close-text="Close"> <span
+													class="input-group-btn">
+													<button type="button" class="btn btn-default"
+														ng-click="open($event)">
+														<i class="glyphicon glyphicon-calendar"></i>
+													</button>
+												</span>
+											</p>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">节点用户权限申请项</label>
+										<!-- <div class="col-sm-9" ng-model="noder.authority">
+											<ul class="checkboxUl">
+												<li><input type="checkbox"  ng-model="a1" >新节点申请</li>
+											</ul>
+										</div> -->
+										<div class='checkbox col-sm-9' ng-model="noder.authority">
+											<label> <input type="checkbox" ng-model="a1">新节点申请
+											</label>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">资质证明文件</label>
+										<div class="col-sm-9 input-file">
+											<input type="file" required name="noderFile"
+												file-model="noder.noderFile">
+
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">有无不良记录</label>
+										<div class="col-sm-6">
+											<div>
+												<input type="text" ensure-nodernameunique="" name="record"
+													ng-model="noder.record" class="form-control" readonly>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">节点名称</label>
+										<div class="col-sm-6">
+											<input type="text" readonly name="nodeCount"
+												ng-model="noder.nodeCount" class="form-control">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">节点申请原因</label>
+										<div class="col-sm-6">
+											<input type="text" name="upReason" ng-model="noder.upReason"
+												class="form-control">
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-9">
+											<button type="submit" class="btn btn-success"
+												ng-disabled="basic_form1.$invalid">注册</button>
+											<!--<a type="button" class="btn btn-success"  ng-click="turnLogin()">
+												已有帐号？登录 </a>-->
+										</div>
+									</div>
+								</form>
+							</div>
+							<!-- 超级管理员注册 -->
+							<
+							<!-- div class="tab-pane fade" id="registerUser3" ng-controller="AdminController">
+						        <form class="form-horizontal showcase-form" ng-submit="addAdmin()" id="basic_form2" name="basic_form2" novalidate enctype="multipart/form-data">
+									<br/>
+									<br/>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">用户名</label>
+										<div class="col-sm-6">
+											<input type="text" ensure-adminnameunique="" required
+												ng-pattern="/^[A-Za-z]{1}[0-9A-Za-z]{5,12}$/"
+												name="adminName" ng-model="admin.adminName"
+												class="form-control" placeholder="由字母、数字组成，以字母开头，6-12个字符" />
+										</div>
+										
+										<div class="error" ng-messages="basic_form2.adminName.$error">
+												<div ng-message="adminNameAvi">用户名已被使用！</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">邮箱</label>
+										<div class="col-sm-6">
+											<input type="email" name="email" ensure-adminemailunique=""
+												ng-model="admin.email" required class="form-control"
+												placeholder="邮箱" ng-blur="queryEmail()"/>
+											<div class="error"  ng-messages="basic_form2.email.$error">
+													<div ng-message="emailAvi">邮箱已被使用！</div>
+											</div>
+											<div class="error" ng-show="emailInfo != null">
+												<div ng-model="emailInfo">{{emailInfo}}</div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">密码</label>
+										<div class="col-sm-6">
+											<input type="password" name="password"
+												ng-model="admin.password" required="" ng-maxlength="20"
+												ng-minlength="6" class="form-control"
+												placeholder="6-20个字符，包含字母及数字">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">确认密码</label>
+										<div class="col-sm-6">
+											<input type="password" name="repassword"
+												ng-model="repassword" required="" ng-maxlength="20"
+												ng-minlength="6" class="form-control" placeholder="请重复输入密码">
+											<span ng-show="basic_form2.repassword.$valid"> 
+											<span ng-show="repassword != admin.password">*两次密码输入不一致</span></span>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">请选择类别</label>
+										<div class="col-sm-6">
+											<select class="form-control" ng-model="admin.adminType">
+												<option value="">- 请选择您的类别 -</option>
+												<option value="1">原料商</option>
+												<option value="2">产品生产商</option>
+												<option value="3">质检员</option>
+												<option value="4">物流运输商</option>
+												<option value="5">商品卖家</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">公司组织号</label>
+										<div class="col-sm-6">
+											<input type="text" required="" ng-pattern="/^[0-9]{6,12}$/"
+												name="companyNum" ng-model="companyNum"
+												class="form-control" placeholder="6-12个数字">
+										</div>
+										<div class="error" ng-messages="basic_form2.companyNum.$error">
+												<div ng-message="comNumAvi">公司组织号已被使用！</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">公司名称</label>
+										<div class="col-sm-6">
+											<input type="text" required
+												ng-pattern="/^[0-9A-Za-z\u4e00-\u9fa5]{1,50}$/"
+												name="companyName" ng-model="companyName"
+												class="form-control" placeholder="由中文、字母、数字组成，50个字符以内">
+										</div>
+										<div class="error" ng-messages="basic_form2.companyName.$error">
+												<div ng-message="comNameAvi">公司名称已被使用！</div>
+											</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">管理员资质证明文件</label>
+										<div class="col-sm-6">
+											<input type="file" required name="adminFile"
+												file-model="adminFile" class="form-control">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">管理员级别</label>
+										<div class="col-sm-6">
+											<select class="form-control" ng-model="admin.adminLevel">
+												<option value="">- 请选择您的级别 -</option>
+												<option value="1">一级</option>
+												<option value="2">二级</option>
+												<option value="3">三级</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-9">
+											<button type="submit" class="btn btn-success" ng-disabled="basic_form2.$invalid" >注册
+											</button>
+											<a type="button" class="btn btn-success" ng-href="#/login">
+												已有帐号？登录 </a>
+										</div>
+									</div>
+								</form>
+						    </div> -->
+							<!-- 区块链管理员注册 -->
+							<!-- <div class="tab-pane fade" id="registerUser4" ng-controller="BlockChainAdminController">
+					       		<form class="form-horizontal showcase-form" ng-submit="addBlockChainAdmin()" id="basic_form3" name="basic_form3" novalidate enctype="multipart/form-data">
+									<br/>
+									<br/>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">用户名</label>
+										<div class="col-sm-6">
+											<div>
+												<input type="text"  required ensure-nameunique=""
+													ng-pattern="/^[A-Za-z]{1}[0-9A-Za-z]{5,12}$/" id="bcAdmName"
+													name="bcAdmName" ng-model="bcAdmin.bcAdmName"
+													class="form-control" placeholder="由字母、数字组成，以字母开头，6-12个字符" />
+											</div>
+												<div class="error" ng-messages="basic_form3.userName.$error">
+													<div ng-message="userNameAvi">用户名已被使用！</div>
+												</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">邮箱</label>
+										<div class="col-sm-6">
+											<input type="email" name="email" ng-model="bcAdmin.email" ng-blur="queryEmail()"
+												required class="form-control" 
+												 placeholder="邮箱" />
+	
+											<div class="error" ng-messages="basic_form3.email.$error">
+												<div ng-message="emailAvi">邮箱已被使用！</div>
+											</div>
+											<div class="error" ng-show="emailInfo != null">
+												<div ng-model="emailInfo">{{emailInfo}}</div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">密码</label>
+										<div class="col-sm-6">
+											<input type="password" name="password"
+												ng-model="bcAdmin.password" required="" ng-maxlength="20"
+												ng-minlength="6" class="form-control"
+												placeholder="6-20个字符，包含字母及数字">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">确认密码</label>
+										<div class="col-sm-6">
+											<input type="password" name="repassword" ng-model="repassword"
+												required ng-maxlength="20" ng-minlength="6"
+												class="form-control" placeholder="请重复输入密码">
+												<span ng-show="basic_form3.repassword.$valid"> <span
+													ng-show="repassword != bcAdmin.password ">*两次密码输入不一致</span>
+												</span>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">用户所属公司名</label>
+										<div class="col-sm-6">
+											<input type="text" name="companyName"
+												ng-model="bcAdmin.companyName" class="form-control">
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label class="col-sm-3 control-label">公司营业执照注册编号</label>
+										<div class="col-sm-6">
+											<input type="text" name="companyRegNum"
+												ng-model="bcAdmin.companyRegNum" class="form-control">
+										</div>
+									</div>
+									
+									<div class="form-group">
+	                       				<label class="col-sm-3 control-label">公司所属区域</label>
+	                       				<div class="col-sm-6">
+						                    <select ng-model="selectedDistrict2" ng-change="selectedUnit=''" ng-options="district.name for district in districts" >  
+						                    <option value="">---省---</option>  
+						                    </select>  
+						                    <select ng-model="selectedUnit2" ng-change="selectedPosition=''" ng-options="unit.name for unit in selectedDistrict2.units">  
+						                    <option value="">---市---</option>  
+						                    </select>  
+						                     <select ng-model="selectedPosition2" ng-options="unit.name for unit in selectedUnit2.positions">  
+						                    <option value="">---区、县---</option>  
+					                    </select>  
+	                       				</div>
+	          						</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">公司地址</label>
+										<div class="col-sm-6">
+											<input type="text" name="companyAddress2"
+												ng-model="companyAddress2" class="form-control">
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label class="col-sm-3 control-label">推荐人名</label>
+										<div class="col-sm-6">
+											<input type="text" name="referrerName" required placeholder="请输入推荐人名"
+												ng-model="bcAdmin.referrerName" class="form-control">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">推荐人授权码</label>
+										<div class="col-sm-6">
+											<input type="text" name="referrerKey" 
+												ng-model="bcAdmin.referrerKey" class="form-control" required ng-maxlength="32"
+												ng-minlength="32" ng-blur="queryReferrerKey()"
+												placeholder="请输入32位授权码">
+											<div class="error" ng-show="referrerKeyInfo != null">
+												<div ng-model="referrerKeyInfo">{{referrerKeyInfo}}</div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">用户所属行业</label>
+										<div class="col-sm-6">
+											<input type="text" name="userBusinessType" 
+												ng-model="bcAdmin.userBusinessType" class="form-control">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">节点区块链名</label>
+										<div class="col-sm-6">
+											<input type="text" name="nodeBlockChainName" required placeholder="请输入区块链名"
+												ng-model="bcAdmin.nodeBlockChainName" class="form-control">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">节点所属区块链节点号</label>
+										<div class="col-sm-6">
+											<input type="text" name="nodeBlockChainNum" required placeholder="请输入区块链节点号"
+												ng-model="bcAdmin.nodeBlockChainNum" class="form-control">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">管理子节点个数上限</label>
+										<div class="col-sm-6">
+											<input type="text" name="sonNodeNum" required placeholder="请输入区块链节点号上限"
+												ng-model="bcAdmin.sonNodeNum" class="form-control">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">区块链管理权限申请项</label>
+										<div class="col-sm-6">
+											<ul class="checkboxUl">
+												<li><input type="checkbox"  ng-model="a1" >增加子节点</li>
+												<li><input type="checkbox"  ng-model="a2" >审核子节点</li>
+												<li><input type="checkbox"  ng-model="a3" >注销子节点</li>
+												<li><input type="checkbox"  ng-model="a4" >配置文件修改</li>
+												<li><input type="checkbox"  ng-model="a5" >子节点数据项修改</li>
+											</ul>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">首次注册时间</label>
+										<div class="col-sm-9"  >
+											<p class="input-group"> bcAdmin.registDate
+												<input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="bcAdmin.registDate" is-open="registDateOpened" 
+													max-date="currentDate"  date-disabled = "disabled(date,mode)"
+													ng-required="true" close-text="Close">
+													
+												<span class="input-group-btn" >
+													<button type="button" class="btn btn-default" style="height:40px;" ng-click="open1($event)">
+														<i class="glyphicon glyphicon-calendar"></i>
+													</button>
+												</span>
+											</p>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">升级/申请时间</label>
+										<div class="col-sm-9"  >
+											<p class="input-group"> bcAdmin.applyDate
+												<input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="bcAdmin.applyDate" is-open="applyDateOpened" 
+													max-date="currentDate"  date-disabled = "disabled(date,mode)"
+													ng-required="true" close-text="Close">
+													
+												<span class="input-group-btn" >
+													<button type="button" class="btn btn-default" style="height:40px;" ng-click="open2($event)">
+														<i class="glyphicon glyphicon-calendar"></i>
+													</button>
+												</span>
+											</p>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">节点公钥</label>
+										<div class="col-sm-6">
+											<input type="text" name="nodePublicKey" required placeholder="请输入节点公钥"
+												ng-model="bcAdmin.nodePublicKey" class="form-control">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">节点私钥</label>
+										<div class="col-sm-6">
+											<input type="text" name="nodePrivaeteKey" required placeholder="请输入节点私钥"
+												ng-model="bcAdmin.nodePrivaeteKey" class="form-control">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">升级申请原因</label>
+										<div class="col-sm-6">
+											<input type="text" name="applyReason" 
+												ng-model="bcAdmin.applyReason" class="form-control">
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<div class="col-sm-offset-3 col-sm-9">
+											<button type="submit" class="btn btn-success"
+												ng-disabled="basic_form3.$invalid">注册</button>
+											<a type="button" class="btn btn-success" ng-href="#/login">
+												已有帐号？登录 </a>
+										</div>
+									</div>
+								</form>
+						    </div> -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<script
+		src="http://static.runoob.com/assets/jquery/2.0.3/jquery.min.js"></script>
+	<!-- <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script> -->
+	<script src="js/framework/1.3.0.14/angular.js"></script>
+	<script src="js/framework/1.3.0.14/angular-route.js"></script>
+	<script src="js/framework/1.3.0.14/angular-animate.js"></script>
+	<script src="js/framework/1.3.0.14/angular-messages.js"></script>
+	<script src="js/framework/1.3.0.14/angular-cookies.js"></script>
+	<script src="js/framework/1.3.0.14/angular-cookies.min.js"></script>
+	<script
+		src="http://static.runoob.com/assets/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="http://flowchart.js.org/flowchart-latest.js"></script> -->
+	<script src="js/framework/bootstrap/ui-bootstrap-tpls.js"></script>
+	<script type="text/javascript" src='mermaid/mermaid.js'></script>
+	<script type="text/javascript" src='js/lib/particles.js'></script>
+	<script type='text/javascript' src='js/lib/highcharts/highcharts.js'></script>
+	<script type='text/javascript' src='js/lib/highcharts/dark-blue.js'></script>
+	<script type="text/javascript" src='js/showBo.js'></script>
+	<script type="text/javascript" src='js/myApp3.js'></script>
+	<script type="text/javascript" src='js/billServices.js'></script>
+	<script type="text/javascript" src='js/billdirectives.js'></script>
+	<script type="text/javascript" src='js/filters.js'></script>
+
+</body>
+</html>
