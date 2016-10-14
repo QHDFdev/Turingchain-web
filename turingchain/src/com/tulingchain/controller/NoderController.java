@@ -99,6 +99,7 @@ public class NoderController {
 	
 	@RequestMapping(value="/noderLogin" , method=RequestMethod.POST)
 	public @ResponseBody Noder queryLogin(@RequestBody Noder noder){
+		System.out.println(noder);
 			System.out.println(noderService.queryLogin(noder));
 			return noderService.queryLogin(noder);
 	}

@@ -32,7 +32,24 @@ app.factory('loginServices',['$http','$q',function($http,$q){
 		});
 		return deferred.promise; 
 	}
+    var registe=function (address,user) {
+        var defered=$q.defer();
+        console.log(address);
+        $http({
+            method: 'POST',
+            url:     address+'.do',
+            data:    user
+        }).success(function (data) {
+			deferred.resolve(data);
+        }).error(function (data) {
+            console.log('注册出错！')
+            Showbo.Msg.alert("注册出错！");
+        });
+    }
+
+
 	return{
-		login: login
+		login: login,
+        registe:registe
 	}
 }]);

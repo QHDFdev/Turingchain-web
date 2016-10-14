@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tulingchain.mapper.DeveloperMapper">
+    <resultMap id="BaseResultMap" type="com.tulingchain.model.Developer">
+        <id column="id" property="id"/>
+        <result column="username" property="username"></result>
+        <result column="email" property="email"></result>
+        <result column="password" property="password"></result>
+        <result column="description" property="description"></result>
+        <result column="realname" property="realname"></result>
+    </resultMap>
+    <insert id="add" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO developer_  (username,password,email,description,realname)
+        VALUES (#{username},#{password},#{email},#{description},#{realname})
+    </insert>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM developer_ WHERE id=#{id}
+    </delete>
+
+    <select id="queryLogin" resultMap="BaseResultMap">
+        SELECT * FROM developer_
+        WHERE email=#{email} and password=#{password}
+    </select>
+
+    <select id="listAllDevelopers" resultMap="BaseResultMap">
+        SELECT * FROM developer_
+    </select>
+</mapper>

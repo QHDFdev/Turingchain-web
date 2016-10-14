@@ -5,7 +5,11 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>classpath:spring.xml;classpath:spring-mybatis.xml</param-value>
   </context-param>
-  <filter>
+    <context-param>
+        <param-name/>
+        <param-value/>
+    </context-param>
+    <filter>
     <description>字符集过滤器</description>
     <filter-name>encodingFilter</filter-name>
     <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
