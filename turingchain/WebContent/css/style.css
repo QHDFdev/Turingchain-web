@@ -140,14 +140,15 @@ h2.title {
 
 footer {
 	background-color: #2d3e50;
-	height: 60px;
+	/* height: 60px; */
 }
 
 footer p {
 	text-align: center;
 	color: #fff;
-	padding: 15px;
+	/* padding: 15px; */
 	margin-bottom: 0;
+	line-height: 2;
 }
 /* S- index */
 
@@ -846,17 +847,18 @@ body, html {
 
 .wrap {
 	min-height: 100%;
-	_height: 100%;
+	height: 100%;
 	padding-bottom: 60px;
 }
 
 .page {
-	min-height: 100%;
-	_height: 100%;
-	position: relative;
+	/* min-height: 100%;
+	height: auto!important; */
+	position: relative; 
 }
 
 #div5 {
+	
 	padding-bottom: 60px;
 	text-align: center;
 }
@@ -902,13 +904,14 @@ body, html {
 
 footer {
 	position: relative;
-	bottom: 0;
-	left: 0;
-	height: 96px;
+	/* margin-top:-96px; */
+	clear:both;
+	padding: 20px 0;
+	/* height: 96px; */
 	/* background-color:#444; */
 	width: 100%;
 	clear: both;
-	line-height: 96px;
+	/* line-height: 96px; */
 }
 
 .copyright>p {

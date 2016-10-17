@@ -48,8 +48,8 @@
 	#more .box-content div{height:210px;}
 	footer{background-color:#2d3e50;height:50px;}
 	footer p{text-align: center;color:#333;margin-bottom: 0;}
-	.b5bd68{color:#b5bd68};
-	.c66{color:#cc6666};
+	.b5bd68{color:#b5bd68}
+	.c66{color:#cc6666}
 /* S- index */
 
 /* S- 登录注册 */
@@ -509,8 +509,9 @@
     	margin: 0;
     	padding: 0;
     	height: 70px;
-	    width: 215px;
-	    background: url(../images/turing_logo_01.png) 0 -5px no-repeat;
+	    width: 70px;
+	    background: url(../images/tbc_logo_03.png) center center no-repeat;
+	    background-size:85% 85%;
 	} 
 	.index-header .navbar-default .navbar-brand:focus, .index-header .navbar-default .navbar-brand:hover {
 	    color:#fff;
@@ -906,6 +907,11 @@ h1, h2, h3, h4, h5, h6 {
 .index-header .collapse{
 	background-color:transparent;
 }
+@media (max-width:767px){
+	.index-header .collapse{
+		background-color:rgb(5, 13, 19);
+	}
+}
  .index-header .navbar-default .navbar-nav>.open>a, .index-header .navbar-default .navbar-nav>.open>a:focus, .index-header .navbar-default .navbar-nav>.open>a:hover, .index-header .navbar-default .navbar-nav>li>a:focus, .index-header .navbar-default .navbar-nav>li>a:hover{
 	/* color: #DF6A63; */
     background-color: transparent;
@@ -969,13 +975,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 #div1>.jumbotron h1{
 	position:relative;
+	font-size: 120px;
 }
 #div1>.jumbotron h1 small{
 	position: absolute;
     font-size: 40px;
     color: #ff4500;
    /*  text-shadow: 0px 0px 5px #fff; */
-    top: 130px;
+    top: 80px;
     /* margin-left: 20px; */
 }
 #div2 > .column h2{
@@ -1024,7 +1031,7 @@ h1, h2, h3, h4, h5, h6 {
 #div2 .bill-data-service{
 	position:relative;
 	/* margin-bottom:150px; */
-	padding-top:50px;
+	padding-top:100px;
 	width:100%;
 	background:#f8f7fd;
 }
@@ -1115,7 +1122,7 @@ h1, h2, h3, h4, h5, h6 {
 #div2 .data-service-msg{
 	display:none;
 }
-#div2 .data-service-msg .lead{
+#div2 .data-service-msg lead{
 	font-size:20px;
 	margin-right:20px;
 }
@@ -2068,7 +2075,7 @@ to {
 	background:#fff;
 }
 .industryCase-case  .industryCase-case-head{
-	padding: 30px 0;
+	padding: 50px 0 30px;
 	/* height:300px; */
 	background:url(../images/net1.jpg) center center no-repeat;
 }
@@ -2353,10 +2360,91 @@ to {
     color: #141414;
     background-color: transparent;
 }
+/* 10-17 首页 home */
+.index-intro-baner .index-intro-item{
+	position:relative;
+	padding:70px 0;
+	width:100%;
+	
+}
+@media (max-width:767px){
+	.index-intro-baner .index-intro-item{padding-top:0;}
+}
+.index-intro-baner .index-intro-item .index-intro-img{
+	height:300px;
+	border-radius:8px;
+	background-repeat:no-repeat;
+	background-position:center center;
+	background-size:100% 100%;	
+	border: 2px dashed #228B22;
+	border-radius: 8px;
+}
+.index-intro-baner .odd .index-intro-img{
+	background-color:#fff;
+}
+.index-intro-baner .even .index-intro-img{
+	background-color:rgba(250,235,215,.15);
+}
+.index-intro-baner .index-intro-item .index-intro-text{
+	padding: 70px 0;
+	height:300px;
+}
+.index-intro-baner .index-intro-item .index-intro-text h2{
+	position:relative;
+	margin:0 0 30px;
+	padding:0;
+	color: #228b22;
+	letter-spacing:8px;
+}
+.index-intro-baner .index-intro-item .index-intro-text h2:after{
+	content:'';
+	position:absolute;
+	display:inline-block;
+	width:68px;
+	height:2px;
+	top:50px;
+	left:0;
+	background:#228b22;
+}
+.index-intro-baner .index-intro-item .index-intro-text p{
+	margin:0 0 50px;
+	padding:0;
+	line-height: 2;
+    letter-spacing: 1px;
+}
+.index-intro-baner .odd{
+	background:#f8f7fd;
+}
+.index-intro-baner .even{
+	/* background:#f8f7fd; */
+	 background:url(../images/20161016194819_94632.jpg) center center no-repeat; 
+	backgrond-size:100% 100%;
+}
+@media (min-width:767px){
+	.index-intro-baner .index-intro-item.even .col-sm-5{float:right;}
+}
 
-
-
-
+.index-intro-baner .index-intro-item.forthright .index-intro-img{
+	background-image:url(../images/jianjie2_02.png);
+}
+.index-intro-baner .index-intro-item.trust .index-intro-img{
+	background-image:url(../images/xinren_03.png);
+}
+.index-intro-baner .index-intro-item.data .index-intro-img{
+	background-image:url(../images/shuju_03.png);
+}
+.index-intro-baner .index-intro-item.safety .index-intro-img{
+	background-image:url(../images/safety_03.png);
+}
+#div2{
+	position: relative;
+}
+#div2 .column{
+	position: absolute;
+    width: 100%;
+    top: 40px;
+    z-index: 3;
+}
 
 
 
