@@ -111,7 +111,7 @@ a:hover{color:#c00; text-decoration:underline;}
 		padding-right:6px;
 	}  
 
-	input.btn{
+	#dvMsgBox input.btn{
 		width:60px;   
 		border-radius: 4px; 
 		font-family:fa; 
@@ -131,7 +131,7 @@ a:hover{color:#c00; text-decoration:underline;}
 	    background-color: #5cb85c;
 	    border-color: #4cae4c;
 	}  
-	input.btnfocus{ 
+	#dvMsgBox input.btnfocus{ 
 		width:60px;   
 		border-radius: 4px; 
 		font-family:fa; 
